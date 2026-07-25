@@ -30,6 +30,19 @@
 		this.getContainer().removeByStackByID("perk.hold_out", false);
 	}
 
+	q.onAfterUpdate = @(__original) function( _properties )
+	{
+		// Feat: temporarily charmed units are now less likely to be targeted by their former allies
+		if (_properties.IsStunned)
+		{
+			_properties.TargetAttractionMult *= 0.1;
+		}
+		else
+		{
+			_properties.TargetAttractionMult *= 0.5;
+		}
+	}
+
 // Modular Vanilla Functions
 	q.getQueryTargetValueMult = @(__original) function( _user, _target, _skill )
 	{
