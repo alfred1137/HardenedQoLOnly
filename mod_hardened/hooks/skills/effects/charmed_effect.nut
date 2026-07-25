@@ -21,6 +21,12 @@
 		this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_hold_out", function(o) {
 			o.m.IsSerialized = false;
 		}));
+
+		local actor = this.getContainer().getActor();
+		if (!actor.isHiddenToPlayer())
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " is charmed for " + ::MSU.Text.colorPositive(this.m.TurnsLeft) + " turns");
+		}
 	}
 
 	q.onRemoved = @(__original) function()
