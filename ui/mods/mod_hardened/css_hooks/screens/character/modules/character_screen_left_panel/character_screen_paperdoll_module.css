@@ -7,3 +7,21 @@
 {
 	left: 5.9rem;	/* calculation is hard-coded, like vanilla did it for slot-2 and slot-4 */
 }
+
+.character-screen-container .paperdoll-module .l-slot-container.is-top-small-offset
+{
+	/* Vanilla Fix: accessories and ammo items being too low */
+    margin-top: 0.8rem;		/* Vanilla: 1.0rem; */
+}
+
+.character-screen-container .paperdoll-module .l-slot-container.is-top-big-offset
+{
+	/* Vanilla Fix: accessories and ammo items being too low */
+    margin-top: 1.6rem;		/* Vanilla: 1.8rem; */
+}
+
+.character-screen-container .paperdoll-module .l-slot-container.is-in-between-offset
+{
+	/* Increase margin-top of equipment slots in the middle to off-set the reduction from above */
+    margin-top: 1.2rem;		/* Vanilla: 1.0rem; */
+}
