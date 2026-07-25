@@ -12,6 +12,13 @@
 	{	// Alps
 	}
 
+	{	// Direwolves
+		local party = ::Reforged.Spawns.Parties["Direwolves"];
+
+		// Feat: make late-game beast parties sometimes spawn with a single Hexe
+		party.DynamicDefs.UnitBlocks.push({ BaseID = "UnitBlock.RF.Hexe", ExclusionChance = 90, StartingResourceMin = 400, HardMax = 1 });
+	}
+
 	{	// Ghouls
 		local ghoulParty = ::Reforged.Spawns.Parties["Ghouls"];
 		// We remove Reforged adjustments during onBeforeSpawnStart where they set custom Ratios and StartingResource on a unit-basis
@@ -22,6 +29,16 @@
 			if (this.getTopParty().HD_isLocation()) ret *= ::Hardened.Global.PartySizeMult.Location;
 			return ret;
 		}
+
+		// Feat: make late-game spider ghoul sometimes spawn with a single Hexe
+		ghoulParty.DynamicDefs.UnitBlocks.push({ BaseID = "UnitBlock.RF.Hexe", ExclusionChance = 90, StartingResourceMin = 400, HardMax = 1 });
+	}
+
+	{	// Spiders
+		local party = ::Reforged.Spawns.Parties["Spiders"];
+
+		// Feat: make late-game spider parties sometimes spawn with a single Hexe
+		party.DynamicDefs.UnitBlocks.push({ BaseID = "UnitBlock.RF.Hexe", ExclusionChance = 90, StartingResourceMin = 400, HardMax = 1 });
 	}
 }
 
