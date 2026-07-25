@@ -42,4 +42,15 @@
 			available.remove(r);
 		}
 	}
+
+	q.setValuesBeforeRandomize = @(__original) function( _baseItem )
+	{
+		__original(_baseItem);
+
+		// Feat: Standardize named shield price to always be higher than the price of their base versions by the same multiplier
+		if (_baseItem != null)
+		{
+			this.m.Value = _baseItem.m.Value * 4;
+		}
+	}
 });
