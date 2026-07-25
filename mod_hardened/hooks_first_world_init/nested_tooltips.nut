@@ -102,7 +102,7 @@
 	Morale = ::MSU.Class.BasicTooltip("Morale", ::Reforged.Mod.Tooltips.parseString(
 		"Morale represents the mental condition of characters and influences their effectiveness in battle. It exists in one of five states: [Fleeing|Skill+hd_dummy_morale_state_fleeing], [Breaking|Skill+hd_dummy_morale_state_breaking], [Wavering|Skill+hd_dummy_morale_state_wavering], Steady or [Confident|Skill+hd_dummy_morale_state_confident].\n\n" +
 		"A positive morale check raises morale on success, a negative check lowers it, and a neutral check does not change morale but may trigger other effects.\n\n" +
-		"A Mental Attack is a special type of morale check triggered by supernatural effects such as fear or mind control.\n\n" +
+		"A Mental Attack is a special type of morale check, triggered by supernatural skills such as fear or mind control. It has no implicit effect and instead triggers unique effects.\n\n" +
 		"Typical positive checks:\n" +
 		"- Killing an enemy\n" +
 		"- Seeing an enemy killed by an ally\n" +
