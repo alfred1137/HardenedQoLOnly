@@ -19,7 +19,7 @@ this.hd_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (_skill.getDirectDamage() < 1.0)
+		if (!_hitInfo.MV_PropertiesForUse.IsIgnoringArmorOnAttack)
 		{
 			_hitInfo.DamageDirect = ::Math.minf(this.m.Max, _hitInfo.DamageDirect);
 		}
