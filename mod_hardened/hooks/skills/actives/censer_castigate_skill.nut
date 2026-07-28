@@ -46,7 +46,7 @@
 			if (tile.IsEmpty) continue;
 			if (!tile.getEntity().isAttackable()) continue;
 
-			ret = ret || this.attackEntity(_user, tile.getEntity());
+			ret = this.attackEntity(_user, tile.getEntity()) || ret;
 
 			if (!_user.isAlive()) break;
 		}
