@@ -315,6 +315,17 @@
 		return this.getMainhandItem() == null || this.isDisarmed();
 	}
 
+	// Determine, whether this actor is currently bleeding
+	q.HD_isBleeding <- function()
+	{
+		foreach (skill in this.getSkills().m.Skills)
+		{
+			if (skill.m.HD_IsBleed) return true;
+		}
+
+		return false;
+	}
+
 	// This is called whenever an actors Morale is changed to Fleeing, if they were not previously fleeing before
 	// This only covers changes from the functions checkMorale or setMoraleState
 	q.HD_onStartFleeing <- function()

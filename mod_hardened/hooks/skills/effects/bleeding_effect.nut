@@ -6,6 +6,9 @@
 	q.m.HD_IconBaseName <- "skills/hd_bleeding_";
 	q.m.HD_MiniIconBaseName <- "hd_bleeding_mini_";
 
+// Hardened
+	q.m.HD_IsBleed = true;
+
 	q.applyDamage = @(__original) function()
 	{
 		if (this.m.LastRoundApplied != ::Time.getRound())	// Same condition as original

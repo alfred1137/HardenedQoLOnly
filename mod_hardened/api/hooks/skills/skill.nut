@@ -21,6 +21,7 @@
 	q.m.HD_LastsForRounds <- null;	// When not null, this will decrement at the end of each round and remove this skill, when it reaches 0
 	q.m.HD_KnockBackDistance <- 1;	// [SoftReset] Might be used by certain active skills to determine, how far they knock back a target
 	q.m.HD_UsableWhileEngagedInMelee <- true;	// If false, then this skill is not usable while in enemy zone of control and a tooltip is added
+	q.m.HD_IsBleed <- false;	// Is this effect a type of bleed?
 
 	// Private
 	q.m.HD_RoundLastUsed <- null;	// This is set to the current round whenever the skills onUse is called
