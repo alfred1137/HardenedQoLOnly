@@ -3,5 +3,7 @@
 	{
 		__original();
 		this.m.Name = "Poisoned (Goblin)";		// Vanilla: Poisoned
+
+		this.m.HD_IsPoison = true;
 	}
 });

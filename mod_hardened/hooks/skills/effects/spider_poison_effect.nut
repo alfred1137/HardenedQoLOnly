@@ -9,6 +9,7 @@
 		this.m.Description = "This character has a vicious poison running through his veins.";
 
 		this.m.HD_LastsForTurns = this.m.DurationInTurns;
+		this.m.HD_IsPoison = true;
 	}
 
 	// Overwrite, because we prefer a static description

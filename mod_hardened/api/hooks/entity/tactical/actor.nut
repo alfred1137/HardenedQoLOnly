@@ -326,6 +326,17 @@
 		return false;
 	}
 
+	// Determine, whether this actor is currently poisoned
+	q.HD_isPoisoned <- function()
+	{
+		foreach (skill in this.getSkills().m.Skills)
+		{
+			if (skill.m.HD_IsPoison) return true;
+		}
+
+		return false;
+	}
+
 	// This is called whenever an actors Morale is changed to Fleeing, if they were not previously fleeing before
 	// This only covers changes from the functions checkMorale or setMoraleState
 	q.HD_onStartFleeing <- function()
