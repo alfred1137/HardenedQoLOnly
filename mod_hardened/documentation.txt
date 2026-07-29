@@ -30,6 +30,11 @@
 
 # Changelog
 
+1.21.3
+	- Fix **Castigate** never triggering more than one attack per use
+	- Fix(Vanilla): downwards offset for accessory and ammo items images on paperdoll
+	- Explain in Moral Concept, that Mental Attacks have no implicit effect
+
 1.21.2
 	- Fix **Inspiring Presence** sometimes not putting the receivers Action Points to their maximum correctly
 	- Clarify in **Long Reach** effect, that the polearm needs to have at least one polearm skill that is able to target those enemies at 2 tile distance for it to count for surrounding

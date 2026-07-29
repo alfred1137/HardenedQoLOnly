@@ -1629,6 +1629,7 @@ This section talks about adjustments made to other optional mods, when present a
 - Fix **Drums of War** (from Barbarian Drummer) spawning 2 overlay icons on each target
 - Two entities can no longer accidentally get teleported (e.g. via Knockback) onto the same tile
 - Every accessory now plays a default sound when moved around in the inventory
+- Fix downwards offset for accessory and ammo items images on paperdoll
 - Fix Roads spawning directly on the map border
 - Fix Settlements with water access sometimes not generating a port
 - Fix Armor Damage combat logs being generated for non-visible actors
