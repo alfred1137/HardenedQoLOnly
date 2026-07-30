@@ -429,7 +429,7 @@
 				icon = "ui/icons/action_points.png",
 				text = "Lasts until the end of ",
 			};
-			entry.text += actor.isActiveEntity() ? "this": "your next";
+			entry.text += actor.isActiveEntity() ? "this": "your";
 			entry.text += ::Reforged.Mod.Tooltips.parseString(" [turn|Concept.Turn]");
 			ret.push(entry);
 		}
