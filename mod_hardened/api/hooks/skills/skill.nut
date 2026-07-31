@@ -23,6 +23,7 @@
 	q.m.HD_UsableWhileEngagedInMelee <- true;	// If false, then this skill is not usable while in enemy zone of control and a tooltip is added
 	q.m.HD_IsBleed <- false;	// Is this effect a type of bleed?
 	q.m.HD_IsPoison <- false;	// Is this effect a type of poison?
+	q.m.HD_PreventedByProperties <- [];	// CharacterProperties flags that prevent this skill from being added or remaining active. Can be used to enforce immunities
 
 	// Private
 	q.m.HD_RoundLastUsed <- null;	// This is set to the current round whenever the skills onUse is called
@@ -485,6 +486,16 @@
 
 	q.onAdded = @(__original) function()
 	{
+		// Feat: streamline handling for immunities which prevent this effect
+		foreach (immunityKey in this.m.HD_PreventedByProperties)
+		{
+			if (this.getContainer().getActor().getCurrentProperties()[immunityKey])
+			{
+				this.removeSelf();
+				return;
+			}
+		}
+
 		__original();
 		this.getContainer().onOtherSkillAdded(this);
 	}
@@ -536,6 +547,23 @@
 
 		if (isRootSkill) ::Hardened.Temp.RootSkillCounter = null;	// Our initial execution has ended. But our RootSkillCounter might have been preserved in some scheduled delays
 		return ret;
+	}
+
+// Reforged Functions
+	q.onSkillsUpdated = @(__original) function()
+	{
+		// Feat: streamline handling for immunities which prevent this effect
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		foreach (immunityKey in this.m.HD_PreventedByProperties)
+		{
+			if (properties[immunityKey])
+			{
+				this.removeSelf();
+				return;
+			}
+		}
+
+		__original();
 	}
 });
 
