@@ -1,6 +1,6 @@
 ::Hardened.HooksMod.hook("scripts/skills/perks/perk_rf_offhand_training", function(q) {
 	// Public
-	q.m.ActionPointModifier <- -1;	// Tool skill AP Cost is reduced by this
+	q.m.ToolActionPointModifier <- -1;
 
 	// Private
 	q.m.IsStaggerSpent <- true;
@@ -86,7 +86,7 @@
 		{
 			if (this.isSkillValid(skill))
 			{
-				skill.m.ActionPointCost = ::Math.max(0, skill.m.ActionPointCost + this.m.ActionPointModifier);
+				skill.m.ActionPointCost = ::Math.max(0, skill.m.ActionPointCost + this.m.ToolActionPointModifier);
 			}
 		}
 	}
