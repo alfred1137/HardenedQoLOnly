@@ -5,5 +5,6 @@
 		this.m.Name = "Poisoned (Goblin)";		// Vanilla: Poisoned
 
 		this.m.HD_IsPoison = true;
+		this.m.HD_PreventedByProperties = ["IsImmuneToPoison"];
 	}
 });

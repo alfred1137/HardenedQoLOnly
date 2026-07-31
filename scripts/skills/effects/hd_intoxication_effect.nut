@@ -23,6 +23,8 @@ this.hd_intoxication_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 
 		this.m.Stacks = this.m.DefaultStacks;
+
+		this.m.HD_PreventedByProperties = ["IsImmuneToPoison"];
 	}
 
 	function getName()
@@ -51,22 +53,8 @@ this.hd_intoxication_effect <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAdded()
-	{
-		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToPoison)
-		{
-			this.removeSelf();
-		}
-	}
-
 	function onRefresh()
 	{
-		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToPoison)
-		{
-			this.removeSelf();
-			return;
-		}
-
 		this.addStacks(this.m.DefaultStacks);
 	}
 
@@ -90,15 +78,6 @@ this.hd_intoxication_effect <- ::inherit("scripts/skills/skill", {
 		else
 		{
 			this.addStacks(this.m.StacksGainedPerIdleRound);
-		}
-	}
-
-	function onUpdate( _properties )
-	{
-		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToPoison)
-		{
-			this.removeSelf();
-			return;
 		}
 	}
 

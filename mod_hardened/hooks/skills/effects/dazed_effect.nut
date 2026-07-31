@@ -3,6 +3,9 @@
 	q.m.DamageTotalMult <- 0.8;		// Vanilla: 0.75
 	q.m.InitiativeMult <- 0.75;		// Vanilla: 0.75
 
+	// Vanilla Fix: Ensure that self-removal due to present immunity is done using removeSelf() instead of adjusting the value directly
+	q.m.HD_PreventedByProperties = ["IsImmuneToDaze"];
+
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();

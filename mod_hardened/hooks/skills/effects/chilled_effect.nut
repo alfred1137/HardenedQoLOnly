@@ -1,5 +1,6 @@
 ::Hardened.HooksMod.hook("scripts/skills/effects/chilled_effect", function(q) {
 	q.m.HD_LastsForTurns = 2;	// Just so that this effect looks correct when viewed in tooltips
+	q.m.HD_PreventedByProperties = ["HD_ImmuneToChilled"];
 
 // Public
 	q.m.DamageTotalPctPerStack <- -0.1;
@@ -54,16 +55,10 @@
 	// Overwrite, because we replace the vanilla turn handling and we disable the sprite overlay
 	q.onAdded = @() function()
 	{
-		local actor = this.getContainer().getActor();
-		if (actor.getCurrentProperties().HD_ImmuneToChilled)
-		{
-			this.removeSelf();
-			return;
-		}
-
 		this.m.HD_LastsForTurns = this.getDefaultTurns();
 
 		// Similar to vanilla, we hijack the "dirt" sprite to display a custom chilled overlay
+		local actor = this.getContainer().getActor();
 		if (actor.hasSprite("dirt"))
 		{
 			local chilled = actor.getSprite("dirt");

@@ -10,6 +10,7 @@
 
 		this.m.HD_LastsForTurns = this.m.DurationInTurns;
 		this.m.HD_IsPoison = true;
+		this.m.HD_PreventedByProperties = ["IsImmuneToPoison"];
 	}
 
 	// Overwrite, because we prefer a static description

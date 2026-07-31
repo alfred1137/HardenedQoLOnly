@@ -8,6 +8,7 @@
 
 // Hardened
 	q.m.HD_IsBleed = true;
+	q.m.HD_PreventedByProperties = ["IsImmuneToBleeding"];
 
 	q.applyDamage = @(__original) function()
 	{

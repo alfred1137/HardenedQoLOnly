@@ -1,4 +1,7 @@
 ::Hardened.HooksMod.hook("scripts/skills/effects/disarmed_effect", function(q) {
+	// Vanilla Fix: Ensure that self-removal due to present immunity is done using removeSelf() instead of adjusting the value directly
+	q.m.HD_PreventedByProperties = ["IsImmuneToDisarm"];
+
 	q.create = @(__original) function()
 	{
 		__original();
