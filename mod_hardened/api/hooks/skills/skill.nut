@@ -233,6 +233,22 @@
 		return rangeString;
 	}
 
+	// Spawn an overlay icon if various conditions are met, indicating that this skill was newly added to a character
+	q.HD_spawnOnAddedIcon <- function()
+	{
+		// Vanilla Fix: Spawn no overlay Icon, if the skill has been removed during its own onAdded
+		if (this.isGarbage()) return;
+		if (this.m.Overlay == "") return;
+		if (this.isHidden()) return;	// Vanilla Fix: Use isHidden() instead of reading the member directly
+		if (!this.isType(::Const.SkillType.StatusEffect)) return;	// Todo: move check into subfunction to allow better mod compatibility?
+
+		local container = this.getContainer();
+		if (container == null) return;
+		if (!container.getActor().isPlacedOnMap()) return;
+
+		this.spawnIcon(this.m.Overlay, container.getActor().getTile());
+	}
+
 // New Getter
 	q.isOnCooldown <- function()
 	{
@@ -498,6 +514,9 @@
 
 		__original();
 		this.getContainer().onOtherSkillAdded(this);
+
+		// Feat: display overlay icon for newly added effects only after onAdded, so that the skill itself or others have time to prevent the addition and, in turn, this overlay icon
+		this.HD_spawnOnAddedIcon();
 	}
 
 	q.onCombatFinished = @(__original) function()
