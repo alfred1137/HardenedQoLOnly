@@ -1,4 +1,11 @@
 ::Hardened.HooksMod.hook("scripts/skills/skill_container", function(q) {
+// Public
+	q.m.HD_MaximumUpdateRepeats <- 5;	// update() will not be repeated more times than this
+
+// Private
+	q.m.HD_CurrentUpdateRepeats <- 0;
+	q.m.HD_HasSkillBeenGarbaged <- false;	// If flipped to true during update(), then an additional update() is triggered directly after
+
 	// Overwrite, because we change some behavior of this function
 	q.querySortedByItems = @() function( _filter, _notFilter = 0 )
 	{
@@ -38,6 +45,25 @@
 		// Vanilla sorts ::Const.ItemSlot.Free entry here but we need no sorting, because this.m.Skills was sorted by default
 
 		return ret;
+	}
+
+	q.update = @(__original) function()
+	{
+		this.m.HD_HasSkillBeenGarbaged = false;
+
+		__original();
+
+		// Feat: repeat skill container updates, if a skill has been removed (using removeSelf()) during the previous update
+		// This will allow skills to be marked as IsGarbage during onSkillsUpdated without their effects lingering still lingering around
+		if (this.m.HD_HasSkillBeenGarbaged && this.m.HD_CurrentUpdateRepeats < this.m.HD_MaximumUpdateRepeats)
+		{
+			++this.m.HD_CurrentUpdateRepeats;
+			this.update();
+		}
+		else
+		{
+			this.m.HD_CurrentUpdateRepeats = 0;
+		}
 	}
 
 // New Events
