@@ -33,14 +33,6 @@ this.hd_wait_effect <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAdded()
-	{
-		if (this.getContainer().hasSkill("perk.relentless"))
-		{
-			this.removeSelf();
-		}
-	}
-
 	function onUpdate( _properties )
 	{
 		_properties.InitiativeMult *= 0.75;

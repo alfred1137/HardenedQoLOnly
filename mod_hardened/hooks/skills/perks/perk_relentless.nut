@@ -15,4 +15,13 @@
 			}
 		}
 	}
+
+// Hardened Events
+	q.onOtherSkillAdded = @(__original) function( _otherSkill )
+	{
+		if (_otherSkill.getID() == "effects.hd_wait")
+		{
+			_otherSkill.removeSelf();
+		}
+	}
 });
