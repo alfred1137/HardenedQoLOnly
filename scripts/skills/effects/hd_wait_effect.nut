@@ -35,7 +35,7 @@ this.hd_wait_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.InitiativeMult *= 0.75;
+		_properties.InitiativeMult *= this.m.InitiativeMultiplier;
 	}
 
 	function onTurnStart()
