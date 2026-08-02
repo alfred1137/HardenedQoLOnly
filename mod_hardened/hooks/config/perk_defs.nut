@@ -233,6 +233,8 @@ hybridizationPerkDef.IconDisabled = "ui/perks/perk_hd_toolbox_sw.png";	// Give T
 ::Const.Perks.findById("perk.rf_dismantle").IconDisabled = "ui/perks/perk_13_sw.png";
 ::Const.Perks.findById("perk.rf_phalanx").Icon = "ui/perks/perk_hd_phalanx.png";
 ::Const.Perks.findById("perk.rf_phalanx").IconDisabled = "ui/perks/perk_hd_phalanx_sw.png";
+::Const.Perks.findById("perk.rf_iron_sights").Icon = "ui/perks/perk_hd_iron_sights.png";
+::Const.Perks.findById("perk.rf_iron_sights").IconDisabled = "ui/perks/perk_hd_iron_sights_sw.png";
 
 ::Const.Perks.findById("perk.rf_sanguinary").Icon = "ui/perks/perk_rf_mauler.png";
 ::Const.Perks.findById("perk.rf_sanguinary").IconDisabled = "ui/perks/perk_rf_mauler_sw.png";
