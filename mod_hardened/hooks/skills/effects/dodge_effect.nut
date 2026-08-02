@@ -44,13 +44,13 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseValue, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]"),
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseValue, {AddSign = true}) + " [$ $|Concept.MeleeDefense]"),
 				},
 				{
 					id = 11,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseValue, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]"),
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseValue, {AddSign = true}) + " [$ $|Concept.RangeDefense]"),
 				}
 			]);
 		}
@@ -65,7 +65,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.BaseFraction) + " (" + ::MSU.Text.colorPositive(baseBonus) + ") of this character\'s current [Initiative|Concept.Initiative] as a bonus to [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense]"),
+					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.BaseFraction) + " (" + ::MSU.Text.colorPositive(baseBonus) + ") of this character\'s current [$ $|Concept.Initiative] as a bonus to [$ $|Concept.MeleeDefense] and [$ $|Concept.RangeDefense]"),
 				});
 			}
 
@@ -75,7 +75,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.FractionPerEmptyTile) + " (" + ::MSU.Text.colorPositive(bonusPerTile) + ") of this character\'s current [Initiative|Concept.Initiative] as a bonus to [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] for every adjacent empty tile."),
+					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.FractionPerEmptyTile) + " (" + ::MSU.Text.colorPositive(bonusPerTile) + ") of this character\'s current [$ $|Concept.Initiative] as a bonus to [$ $|Concept.MeleeDefense] and [$ $|Concept.RangeDefense] for every adjacent empty tile."),
 				});
 			}
 		}

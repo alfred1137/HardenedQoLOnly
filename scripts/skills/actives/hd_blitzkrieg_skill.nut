@@ -25,7 +25,7 @@ this.hd_blitzkrieg_skill <- this.inherit("scripts/skills/actives/rf_blitzkrieg_s
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Target a tile. All allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tile(s) of that target gain the [Adrenaline|Skill+adrenaline_effect] effect until they start their turn in the next round");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Target a tile. All allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tile(s) of that target gain [$ $|Skill+adrenaline_effect] until they start their turn in the next round");
 			}
 		}
 

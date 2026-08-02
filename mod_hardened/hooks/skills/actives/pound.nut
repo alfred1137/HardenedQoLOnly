@@ -31,7 +31,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive(this.m.HD_HeadshotStunChance + "%") + " chance to [stun|Skill+stunned_effect] on [hit to the head|Concept.ChanceToHitHead]"),
+				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive(this.m.HD_HeadshotStunChance + "%") + " chance to [stun|Skill+stunned_effect] on a [hit to the head|Concept.ChanceToHitHead]"),
 			});
 		}
 

@@ -12,12 +12,12 @@
 			if (entry.id == 7 && entry.icon == "ui/icons/melee_defense.png")
 			{
 				// Adjust the tooltip mentioning the Stamina Multiplier
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.HD_MeleeDefenseMult) + " [Melee Defense|Concept.MeleeDefense]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.HD_MeleeDefenseMult) + " [$ $|Concept.MeleeDefense]");
 			}
 			else if (entry.id == 7 && entry.icon == "ui/icons/initiative.png")
 			{
 				// Adjust the tooltip mentioning the Stamina Multiplier
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.HD_InitiativeMult) + " [Initiative|Concept.Initiative]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.HD_InitiativeMult) + " [$ $|Concept.Initiative]");
 			}
 		}
 

@@ -24,7 +24,7 @@ this.hd_reload_disorientation_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedSkillModifier, {AddSign = true}) + " [Ranged Skill|Concept.RangeSkill]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedSkillModifier, {AddSign = true}) + " [$ $|Concept.RangeSkill]"),
 			});
 		}
 
@@ -34,7 +34,7 @@ this.hd_reload_disorientation_effect <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + " [Ranged Defense|Concept.RangeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + " [$ $|Concept.RangeDefense]"),
 			});
 		}
 

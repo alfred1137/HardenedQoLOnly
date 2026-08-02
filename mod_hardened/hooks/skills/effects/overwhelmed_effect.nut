@@ -12,11 +12,11 @@
 		{
 			if (entry.id == 10 && entry.icon == "ui/icons/melee_skill.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getMeleeSkillMult()) + " [Melee Skill|Concept.MeleeSkill]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getMeleeSkillMult()) + " [$ $|Concept.MeleeSkill]");
 			}
 			else if (entry.id == 11 && entry.icon == "ui/icons/ranged_skill.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getRangedSkillMult()) + " [Ranged Skill|Concept.RangeSkill]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getRangedSkillMult()) + " [$ $|Concept.RangeSkill]");
 			}
 		}
 

@@ -11,7 +11,7 @@
 		{
 			if (entry.id == 10 && entry.icon == "ui/icons/health.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorizePct(this.m.HD_RecoveredHitpointPct) + " of Maximum [Hitpoints|Concept.Hitpoints]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorizePct(this.m.HD_RecoveredHitpointPct) + " of Maximum [$ $|Concept.Hitpoints]");
 				break;
 			}
 		}

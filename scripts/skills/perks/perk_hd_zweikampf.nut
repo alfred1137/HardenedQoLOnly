@@ -30,7 +30,7 @@ this.perk_hd_zweikampf <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorizeValue(this.m.BraveryModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery]"),
+				text = ::MSU.Text.colorizeValue(this.m.BraveryModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery]"),
 			});
 		}
 
@@ -40,7 +40,7 @@ this.perk_hd_zweikampf <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative]"),
+				text = ::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative]"),
 			});
 		}
 

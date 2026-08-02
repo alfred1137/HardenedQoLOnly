@@ -18,7 +18,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Move to an tile of an adjacent enemy you just killed, ignoring [Zone of Control|Concept.ZoneOfControl] and [Spearwall|Skill+spearwall_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Move to an tile of an adjacent enemy you just killed, ignoring [$ $|Concept.ZoneOfControl] and [Spearwall|Skill+spearwall_effect]"),
 		});
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)

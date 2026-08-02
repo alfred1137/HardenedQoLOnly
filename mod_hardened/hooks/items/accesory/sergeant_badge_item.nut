@@ -22,7 +22,7 @@
 			if (entry.id == 10)
 			{
 				entry.icon = "ui/tooltips/warning.png";
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Grants " + ::MSU.Text.colorizeValue(this.m.ResolveModifier, {AddSign = true}) + " [Resolve|Concept.Bravery] if you have [Rally|Perk+perk_rally_the_troops]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Grants " + ::MSU.Text.colorizeValue(this.m.ResolveModifier, {AddSign = true}) + " [$ $|Concept.Bravery] if you have [Rally|Perk+perk_rally_the_troops]");
 			}
 		}
 

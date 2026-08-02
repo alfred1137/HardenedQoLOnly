@@ -53,7 +53,7 @@
 					}
 
 					entry.text = ::MSU.Text.colorizeValue(hitchance, {AddPercent = true});
-					entry.text += ::Reforged.Mod.Tooltips.parseString(" [Hitchance|Concept.Hitchance]");
+					entry.text += ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Hitchance]");
 					if (uncappedHitchance != null) entry.text += " (" + ::MSU.Text.colorizeValue(uncappedHitchance, {AddPercent = true}) + ")";
 				}
 				break;

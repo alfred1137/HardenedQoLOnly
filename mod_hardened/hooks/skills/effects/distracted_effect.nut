@@ -18,7 +18,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Does not exert [Zone of Control|Concept.ZoneOfControl]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Does not exert [$ $|Concept.ZoneOfControl]"),
 		});
 
 		return ret;

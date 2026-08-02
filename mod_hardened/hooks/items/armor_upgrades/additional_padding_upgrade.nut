@@ -44,7 +44,7 @@
 				}
 				else
 				{
-					entry.text = ::Reforged.Mod.Tooltips.parseString("Take " + ::MSU.Text.colorizeMultWithText(directDamageReceivedMult, {InvertColor = true}) + " [Armor Penetration|Concept.ArmorPenetration] damage from Body Attacks");
+					entry.text = ::Reforged.Mod.Tooltips.parseString("Take " + ::MSU.Text.colorizeMultWithText(directDamageReceivedMult, {InvertColor = true}) + " [$ $|Concept.ArmorPenetration] damage from Body Attacks");
 				}
 				break;
 			}

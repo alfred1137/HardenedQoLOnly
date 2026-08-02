@@ -61,7 +61,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Immune to Stun|Skill+stunned_effect]"),
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [$ $|Skill+stunned_effect]"),
 			});
 		}
 

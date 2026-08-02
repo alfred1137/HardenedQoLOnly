@@ -7,7 +7,7 @@
 		{
 			if (entry.id == 11 && entry.icon == "ui/icons/bravery.png")
 			{
-				entry.text = ::MSU.Text.colorizeMultWithText(this.m.BraveryMult) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery] during your [turn|Concept.Turn]");
+				entry.text = ::MSU.Text.colorizeMultWithText(this.m.BraveryMult) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery] during your [turn|Concept.Turn]");
 				break;
 			}
 		}

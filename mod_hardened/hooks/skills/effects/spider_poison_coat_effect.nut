@@ -27,7 +27,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_received.png",
-			text = "Your Weapon Attacks, which deal at least " + ::MSU.Text.colorNeutral(this.m.HitpointDamageThreshold) + ::Reforged.Mod.Tooltips.parseString(" [Hitpoint|Concept.Hitpoints] damage, apply [Poisoned (Spider)|Skill+spider_poison_effect]"),
+			text = "Your Weapon Attacks, which deal at least " + ::MSU.Text.colorNeutral(this.m.HitpointDamageThreshold) + ::Reforged.Mod.Tooltips.parseString(" [Hitpoint|Concept.Hitpoints] damage, apply [$ $|Skill+spider_poison_effect]"),
 			children = this.createSpiderPoisonEffect().getTooltipWithoutChildren().slice(2),
 		});
 
@@ -80,7 +80,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/damage_received.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will apply [Poisoned (Spider)|Skill+spider_poison_effect], when dealing at least ") + ::MSU.Text.colorNeutral(this.m.HitpointDamageThreshold) + ::Reforged.Mod.Tooltips.parseString(" [Hitpoint|Concept.Hitpoints] damage"),
+				text = ::Reforged.Mod.Tooltips.parseString("Will apply [$ $|Skill+spider_poison_effect], when dealing at least ") + ::MSU.Text.colorNeutral(this.m.HitpointDamageThreshold) + ::Reforged.Mod.Tooltips.parseString(" [Hitpoint|Concept.Hitpoints] damage"),
 			});
 		}
 	}

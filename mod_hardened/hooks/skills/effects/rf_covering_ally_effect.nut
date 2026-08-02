@@ -21,7 +21,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorizeValue(meleeDefenseModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Melee Defense|Concept.MeleeDefense]"),
+				text = ::MSU.Text.colorizeValue(meleeDefenseModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.MeleeDefense]"),
 			});
 		}
 
@@ -32,7 +32,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorizeValue(rangedDefenseModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Ranged Defense|Concept.RangeDefense]"),
+				text = ::MSU.Text.colorizeValue(rangedDefenseModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.RangeDefense]"),
 			});
 		}
 
@@ -47,7 +47,7 @@
 			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you get [stunned|Skill+stunned_effect], start [fleeing|Skill+hd_dummy_morale_state_fleeing] or move away from your target"),
+			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you gain [$ $|Skill+stunned_effect], start [fleeing|Skill+hd_dummy_morale_state_fleeing] or move away from your target"),
 		});
 
 		return ret;

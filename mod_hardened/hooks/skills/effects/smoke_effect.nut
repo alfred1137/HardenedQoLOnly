@@ -9,7 +9,7 @@
 			if (entry.id == 10 && entry.icon == "ui/icons/ranged_skill.png")
 			{
 				// We replace a single line of the vanilla tooltip without touching the rest
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedSkillMult) + " [Ranged Skill|Concept.RangeSkill]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedSkillMult) + " [$ $|Concept.RangeSkill]");
 				break;
 			}
 		}

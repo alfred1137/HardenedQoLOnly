@@ -34,7 +34,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/kills.png",
-				text = ::MSU.Text.colorizeValue(threatModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Threat|Concept.Threat]"),
+				text = ::MSU.Text.colorizeValue(threatModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Threat]"),
 			});
 		}
 

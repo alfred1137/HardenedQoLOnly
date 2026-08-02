@@ -15,7 +15,7 @@
 				}
 				else
 				{
-					entry.text =  ::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative]");
+					entry.text =  ::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative]");
 				}
 
 				break;
@@ -39,7 +39,7 @@
 				}
 				else
 				{
-					entry.text =  ::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative]");
+					entry.text =  ::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative]");
 				}
 
 				break;

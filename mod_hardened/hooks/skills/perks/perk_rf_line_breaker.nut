@@ -42,14 +42,14 @@
 				id = 100,
 				type = "text",
 				icon = ::Const.Perks.findById(this.getID()).Icon,
-				text = ::MSU.Text.colorizeValue(this.m.KnockBackMeleeSkillBonus, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Hitchance|Concept.Hitchance]"),
+				text = ::MSU.Text.colorizeValue(this.m.KnockBackMeleeSkillBonus, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Hitchance]"),
 			});
 
 			_tooltip.push({
 				id = 101,
 				type = "text",
 				icon = ::Const.Perks.findById(this.getID()).Icon,
-				text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target on a hit")
+				text = ::Reforged.Mod.Tooltips.parseString("Apply [$ $|Skill+staggered_effect] on a hit")
 			});
 		}
 	}

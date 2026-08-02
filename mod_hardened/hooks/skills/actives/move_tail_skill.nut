@@ -13,7 +13,7 @@
 		{
 			if (entry.id == 10 && entry.icon == "ui/icons/special.png")	// Reforged currently still displays this tooltip even if the bonus is 0
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Move next to your head ignoring [zone of control|Concept.ZoneOfControl]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Move next to your head ignoring [$ $|Concept.ZoneOfControl]");
 				break;
 			}
 		}

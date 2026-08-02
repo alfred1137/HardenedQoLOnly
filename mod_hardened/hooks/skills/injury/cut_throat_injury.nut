@@ -22,7 +22,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_received.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorDamage(this.m.HD_BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when you receive this injury during combat"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorDamage(this.m.HD_BleedStacks) + " stacks of [$ $|Skill+bleeding_effect] when you receive this injury during combat"),
 		});
 
 		return ret;

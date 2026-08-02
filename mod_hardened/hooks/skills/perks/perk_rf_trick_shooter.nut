@@ -25,7 +25,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = format("All Bow Skills that you have not used yet this battle, have %s %s", ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}), ::Reforged.Mod.Tooltips.parseString("[Hitchance|Concept.Hitchance]")),
+			text = format("All Bow Skills that you have not used yet this battle, have %s %s", ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}), ::Reforged.Mod.Tooltips.parseString("[$ $|Concept.Hitchance]")),
 		});
 
 		if (this.m.UsedSkills.len() != 0)
@@ -122,7 +122,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" [Hitchance|Concept.Hitchance] because of " + ::Reforged.NestedTooltips.getNestedSkillName(this, extraData)),
+				text = ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Hitchance] because of " + ::Reforged.NestedTooltips.getNestedSkillName(this, extraData)),
 			});
 		}
 	}

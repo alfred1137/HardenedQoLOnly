@@ -41,7 +41,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorizeValue(this.getInitiativeModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative]"),
+				text = ::MSU.Text.colorizeValue(this.getInitiativeModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative]"),
 			});
 		}
 
@@ -51,7 +51,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative]"),
+				text = ::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative]"),
 			});
 		}
 

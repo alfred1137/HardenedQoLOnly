@@ -44,7 +44,7 @@
 				}
 
 				// We overwrite the vanilla smoke tooltip making shorter and linking to the smoke effect via a nested tooltip
-				tile.Properties.Effect.Tooltip = ::Reforged.Mod.Tooltips.parseString("Dense smoke covers the area, granting [Covered by Smoke|Skill+smoke_effect] to anyone inside");
+				tile.Properties.Effect.Tooltip = ::Reforged.Mod.Tooltips.parseString("Dense smoke covers the area, granting [$ $|Skill+smoke_effect] to anyone inside");
 			}
 		}
 	}

@@ -20,7 +20,7 @@
 				id = 13,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorizeValue(this.getBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery]"),
+				text = ::MSU.Text.colorizeValue(this.getBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery]"),
 			});
 		}
 

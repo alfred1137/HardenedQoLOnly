@@ -23,7 +23,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Riposte Effect|Skill+riposte_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain [Riposte|Skill+riposte_effect]"),
 		});
 
 		return ret;

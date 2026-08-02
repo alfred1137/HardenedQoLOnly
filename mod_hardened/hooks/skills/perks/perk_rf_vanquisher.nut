@@ -33,7 +33,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Immune to [Displacement|Concept.Displacement]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Immune to [$ $|Concept.Displacement]"),
 		});
 
 		ret.push({

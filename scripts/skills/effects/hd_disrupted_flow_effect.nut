@@ -37,7 +37,7 @@ this.hd_disrupted_flow_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + " [Initiative|Concept.Initiative]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + " [$ $|Concept.Initiative]"),
 			});
 		}
 

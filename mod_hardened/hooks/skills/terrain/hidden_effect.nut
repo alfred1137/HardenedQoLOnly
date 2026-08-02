@@ -17,7 +17,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedDefenseModifier, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedDefenseModifier, {AddSign = true}) + " [$ $|Concept.RangeDefense]"),
 			});
 		}
 

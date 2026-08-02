@@ -22,7 +22,7 @@ this.hd_goblin_racial <- this.inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/sturdiness.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can use [Shieldwall|Skill+shieldwall] with any shield"),
+			text = ::Reforged.Mod.Tooltips.parseString("Unlock [$ $|Skill+shieldwall] with any shield"),
 		});
 
 		if (this.m.ShieldMeleeDefensePct != 0)
@@ -31,7 +31,7 @@ this.hd_goblin_racial <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.ShieldMeleeDefensePct) + " more [Melee Defense|Concept.MeleeDefense] from equipped shield"),
+				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.ShieldMeleeDefensePct) + " more [$ $|Concept.MeleeDefense] from equipped shield"),
 			});
 		}
 
@@ -41,7 +41,7 @@ this.hd_goblin_racial <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.ShieldRangedDefensePct) + " more [Ranged Defense|Concept.RangeDefense] from equipped shield"),
+				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizePct(this.m.ShieldRangedDefensePct) + " more [$ $|Concept.RangeDefense] from equipped shield"),
 			});
 		}
 

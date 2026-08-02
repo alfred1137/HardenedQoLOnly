@@ -30,7 +30,7 @@ this.perk_hd_parry <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizeValue(meleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense] against Weapon Attacks"),
+				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizeValue(meleeDefenseModifier, {AddSign = true}) + " [$ $|Concept.MeleeDefense] against Weapon Attacks"),
 			});
 		}
 
@@ -40,7 +40,7 @@ this.perk_hd_parry <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMultWhenEngaged) + " [Ranged Defense|Concept.RangeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMultWhenEngaged) + " [$ $|Concept.RangeDefense]"),
 			});
 		}
 

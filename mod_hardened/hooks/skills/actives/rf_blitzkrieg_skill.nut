@@ -17,7 +17,7 @@
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("You and allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tiles gain the [Adrenaline|Skill+adrenaline_effect] effect until they start their turn in the next round");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("You and allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tiles gain [$ $|Skill+adrenaline_effect] until they start their turn in the next round");
 			}
 			else if (entry.id == 21)
 			{

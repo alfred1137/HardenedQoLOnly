@@ -20,7 +20,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Move to an adjacent tile, ignoring [Zone of Control|Concept.ZoneOfControl] and [Spearwall|Skill+spearwall_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Move to an adjacent tile, ignoring [$ $|Concept.ZoneOfControl] and [$ $|Skill+spearwall_effect]"),
 		});
 
 		ret.push({

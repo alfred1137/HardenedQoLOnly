@@ -26,7 +26,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(resolveModifier, {AddSign = true}) + " [Resolve|Concept.Bravery]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(resolveModifier, {AddSign = true}) + " [$ $|Concept.Bravery]"),
 			});
 		}
 
@@ -37,7 +37,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rangedDefenseModifier, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rangedDefenseModifier, {AddSign = true}) + " [$ $|Concept.RangeDefense]"),
 			});
 		}
 
@@ -48,7 +48,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(rangedSkillMult) + " [Ranged Skill|Concept.RangeSkill]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(rangedSkillMult) + " [$ $|Concept.RangeSkill]"),
 			});
 		}
 

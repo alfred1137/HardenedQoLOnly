@@ -18,7 +18,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.MeleeSkillMult) + " [Melee Skill|Concept.MeleeSkill]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.MeleeSkillMult) + " [$ $|Concept.MeleeSkill]"),
 			});
 		}
 
@@ -28,7 +28,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedSkillMult) + " [Ranged Skill|Concept.RangeSkill]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedSkillMult) + " [$ $|Concept.RangeSkill]"),
 			});
 		}
 
@@ -38,7 +38,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.MeleeDefenseMult) + " [Melee Defense|Concept.MeleeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.MeleeDefenseMult) + " [$ $|Concept.MeleeDefense]"),
 			});
 		}
 
@@ -48,7 +48,7 @@
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + " [Ranged Defense|Concept.RangeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + " [$ $|Concept.RangeDefense]"),
 			});
 		}
 
@@ -58,7 +58,7 @@
 				id = 14,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + " [Initiative|Concept.Initiative]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + " [$ $|Concept.Initiative]"),
 			});
 		}
 
@@ -68,7 +68,7 @@
 				id = 15,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Does not exert [Zone of Control|Concept.ZoneOfControl]"),
+				text = ::Reforged.Mod.Tooltips.parseString("Does not exert [$ $|Concept.ZoneOfControl]"),
 			});
 		}
 

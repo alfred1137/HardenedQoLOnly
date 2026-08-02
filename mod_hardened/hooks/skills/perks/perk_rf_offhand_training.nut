@@ -31,7 +31,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Your next hit will [stagger|Skill+staggered_effect] your target"),
+				text = ::Reforged.Mod.Tooltips.parseString("Your next hit applies [$ $|Skill+staggered_effect] on a hit"),
 			}
 
 			if (!this.isEnabledForStagger())

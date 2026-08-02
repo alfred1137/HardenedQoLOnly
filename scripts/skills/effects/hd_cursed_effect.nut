@@ -24,7 +24,7 @@ this.hd_cursed_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/chance_to_hit_head.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can resurrect even after a receiving a [Fatality|Concept.Fatality]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Can resurrect even after a receiving a [$ $|Concept.Fatality]"),
 		});
 
 		return tooltip;

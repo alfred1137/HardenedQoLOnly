@@ -22,7 +22,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Take " + ::MSU.Text.colorizeMultWithText(directDamageReceivedMult, {InvertColor = true}) + " [Armor Penetration|Concept.ArmorPenetration] damage from Attacks"),
+				text = ::Reforged.Mod.Tooltips.parseString("Take " + ::MSU.Text.colorizeMultWithText(directDamageReceivedMult, {InvertColor = true}) + " [$ $|Concept.ArmorPenetration] damage from Attacks"),
 			});
 		}
 

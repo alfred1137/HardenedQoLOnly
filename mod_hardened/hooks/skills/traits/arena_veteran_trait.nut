@@ -58,7 +58,7 @@
 						id = 10,
 						type = "text",
 						icon = "ui/icons/bravery.png",
-						text = ::MSU.Text.colorizeValue(this.HD_getChampionBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery]"),
+						text = ::MSU.Text.colorizeValue(this.HD_getChampionBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery]"),
 					}],
 				});
 			}
@@ -81,7 +81,7 @@
 					id = 11,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = ::MSU.Text.colorizeValue(this.HD_getArenaBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery]"),
+					text = ::MSU.Text.colorizeValue(this.HD_getArenaBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery]"),
 				});
 			}
 			else
@@ -90,7 +90,7 @@
 					id = 11,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = ::MSU.Text.colorizeValue(this.HD_getArenaBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery] while fighting in the Arena"),
+					text = ::MSU.Text.colorizeValue(this.HD_getArenaBraveryModifier(), {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery] while fighting in the Arena"),
 				});
 			}
 		}

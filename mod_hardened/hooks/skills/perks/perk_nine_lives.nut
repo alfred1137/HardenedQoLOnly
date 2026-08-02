@@ -20,7 +20,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Survive the next time you would receive fatal damage and recover " + ::MSU.Text.colorPositive(this.m.MinHP + "-" + this.m.MaxHP) + ::Reforged.Mod.Tooltips.parseString(" [Hitpoints|Concept.Hitpoints]"),
+			text = "Survive the next time you would receive fatal damage and recover " + ::MSU.Text.colorPositive(this.m.MinHP + "-" + this.m.MaxHP) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Hitpoints]"),
 		});
 
 		ret.push({

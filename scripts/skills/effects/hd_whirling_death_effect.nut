@@ -53,7 +53,7 @@ this.hd_whirling_death_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [$ $|Concept.MeleeDefense]"),
 			});
 		}
 
@@ -61,7 +61,7 @@ this.hd_whirling_death_effect <- this.inherit("scripts/skills/skill", {
 			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you get [disarmed|Skill+disarmed_effect], [stunned|Skill+stunned_effect], start [fleeing|Skill+hd_dummy_morale_state_fleeing]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you gain [$ $|Skill+disarmed_effect], [$ $|Skill+stunned_effect] or start [fleeing|Skill+hd_dummy_morale_state_fleeing]"),
 		});
 
 		return ret;

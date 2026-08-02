@@ -44,7 +44,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bag.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Weight|Concept.Weight]: ") + ::MSU.Text.colorNegative(this.getWeight()),
+				text = ::Reforged.Mod.Tooltips.parseString("[$ $|Concept.Weight]: ") + ::MSU.Text.colorNegative(this.getWeight()),
 			});
 		}
 

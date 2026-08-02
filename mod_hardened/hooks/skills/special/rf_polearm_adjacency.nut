@@ -16,7 +16,7 @@
 		{
 			if ("icon" in entry && entry.icon == "ui/icons/hitchance.png")
 			{
-				entry.text = ::MSU.String.replace(entry.text, "chance to hit", ::Reforged.Mod.Tooltips.parseString("[Hitchance|Concept.Hitchance]"));
+				entry.text = ::MSU.String.replace(entry.text, "chance to hit", ::Reforged.Mod.Tooltips.parseString("[$ $|Concept.Hitchance]"));
 
 				if (entry.id == 10)		// For the tooltip about enemies, we also remove the lower reach
 				{

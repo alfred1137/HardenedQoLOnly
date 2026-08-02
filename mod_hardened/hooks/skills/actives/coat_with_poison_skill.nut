@@ -13,7 +13,7 @@
 		{
 			if (entry.id == 7 && entry.icon == "ui/icons/special.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Gain [Coated in Goblin Poison|Skill+poison_coat_effect]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+poison_coat_effect]");
 				// Maybe include children
 				break;
 			}

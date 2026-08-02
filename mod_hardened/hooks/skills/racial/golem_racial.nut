@@ -31,7 +31,7 @@
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorizeValue(initiativeModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Initiative|Concept.Initiative] (" + ::MSU.Text.colorizeValue(this.m.InitiativeBonusPerAdjacentAlly, {AddSign = true}) + " for each adjacent ally)"),
+				text = ::MSU.Text.colorizeValue(initiativeModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Initiative] (" + ::MSU.Text.colorizeValue(this.m.InitiativeBonusPerAdjacentAlly, {AddSign = true}) + " for each adjacent ally)"),
 			});
 		}
 

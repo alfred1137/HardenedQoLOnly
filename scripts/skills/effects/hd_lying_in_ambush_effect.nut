@@ -30,21 +30,21 @@ this.hd_lying_in_ambush_effect <- this.inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [$ $|Concept.MeleeDefense]"),
 		});
 
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedDefenseModifier, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RangedDefenseModifier, {AddSign = true}) + " [$ $|Concept.RangeDefense]"),
 		});
 
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [$ $|Concept.Initiative]"),
 		});
 
 		if (this.m.TileAlertRadius > 0)

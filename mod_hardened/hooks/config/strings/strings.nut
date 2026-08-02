@@ -65,7 +65,7 @@ local newPerks = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"Gain " + ::MSU.Text.colorPositive("+10") + " [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] against Attacks for every tile between the attacker and you",
+						"Gain " + ::MSU.Text.colorPositive("+10") + " [$ $|Concept.MeleeDefense] and [$ $|Concept.RangeDefense] against Attacks for every tile between the attacker and you",
 					],
 				},
 			],
@@ -81,8 +81,8 @@ local newPerks = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Once per [round|Concept.Round], swapping two weapons with no shared Weapon Type becomes a free action",
-						"Gain " + ::MSU.Text.colorPositive("+10") + " [Melee Defense|Concept.MeleeDefense], if you have at least " + ::MSU.Text.colorPositive("70") + " [Base|Concept.BaseAttribute] [Ranged Skill|Concept.RangeSkill]",
-						"Gain " + ::MSU.Text.colorPositive("+10") + " [Ranged Defense|Concept.RangeDefense], if you have at least " + ::MSU.Text.colorPositive("70") + " [Base|Concept.BaseAttribute] [Melee Skill|Concept.MeleeSkill]",
+						"Gain " + ::MSU.Text.colorPositive("+10") + " [$ $|Concept.MeleeDefense], if you have at least " + ::MSU.Text.colorPositive("70") + " [Base|Concept.BaseAttribute] [$ $|Concept.RangeSkill]",
+						"Gain " + ::MSU.Text.colorPositive("+10") + " [$ $|Concept.RangeDefense], if you have at least " + ::MSU.Text.colorPositive("70") + " [Base|Concept.BaseAttribute] [$ $|Concept.MeleeSkill]",
 					],
 				},
 			],
@@ -98,8 +98,8 @@ local newPerks = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"Take " + ::MSU.Text.colorPositive("40%") + " less [Hitpoint|Concept.Hitpoints] damage from Attacks to the Head, while you have the [Shieldwall effect|Skill+shieldwall_effect]",
-						"Take " + ::MSU.Text.colorPositive("40%") + " less [Hitpoint|Concept.Hitpoints] damage from Attacks to the Body, while you don\'t have the [Shieldwall effect|Skill+shieldwall_effect]",
+						"Take " + ::MSU.Text.colorPositive("40%") + " less [Hitpoint|Concept.Hitpoints] damage from Attacks to the Head, while you have [$ $|Skill+shieldwall_effect]",
+						"Take " + ::MSU.Text.colorPositive("40%") + " less [Hitpoint|Concept.Hitpoints] damage from Attacks to the Body, while you don\'t have [$ $|Skill+shieldwall_effect]",
 					],
 				},
 			],
@@ -115,15 +115,15 @@ local newPerks = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"Gain [Melee Defense|Concept.MeleeDefense] equal to your [Base|Concept.BaseAttribute] [Ranged Defense|Concept.RangeDefense] against Weapon Attacks",
-						"Have " + ::MSU.Text.colorNegative("70%") + " less [Ranged Defense|Concept.RangeDefense] while adjacent to an enemy wielding a Melee Weapon",
-						"Does not work with shields. Does not work while [disarmed|Skill+disarmed_effect], [stunned|Skill+stunned_effect] or [fleeing|Skill+hd_dummy_morale_state_fleeing]",
+						"Gain [$ $|Concept.MeleeDefense] equal to your [Base|Concept.BaseAttribute] [$ $|Concept.RangeDefense] against Weapon Attacks",
+						"Have " + ::MSU.Text.colorNegative("70%") + " less [$ $|Concept.RangeDefense] while adjacent to an enemy wielding a Melee Weapon",
+						"Does not work with shields. Does not work while [$ $|Skill+disarmed_effect], [$ $|Skill+stunned_effect] or [$ $|Skill+hd_dummy_morale_state_fleeing]",
 					],
 				},
 				{
 					Type = ::UPD.EffectType.Clarification,
 					Description = [
-						"The [Melee Defense|Concept.MeleeDefense] scales off of a [Base Attribute|Concept.BaseAttribute] and is therefore unaffected by any modifiers to that Attribute, including this perk\'s own penalty",
+						"The [$ $|Concept.MeleeDefense] scales off of a [$ $|Concept.BaseAttribute] and is therefore unaffected by any modifiers to that Attribute, including this perk\'s own penalty",
 					],
 				},
 			],
@@ -170,7 +170,7 @@ local newPerks = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorPositive("3%") + " [Hitpoints|Concept.Hitpoints] for each adjacent obstacle that is a tree",
+						"At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorPositive("3%") + " [$ $|Concept.Hitpoints] for each adjacent obstacle that is a tree",
 					],
 				},
 			],
@@ -234,7 +234,7 @@ local newPerks = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"While adjacent to exactly one character, gain " + ::MSU.Text.colorPositive("+20") + " [Resolve|Concept.Bravery], " + ::MSU.Text.colorPositive("+20") + " [Initiative|Concept.Initiative] and take " + ::MSU.Text.colorPositive("25%") + " less Damage from adjacent characters",
+						"While adjacent to exactly one character, gain " + ::MSU.Text.colorPositive("+20") + " [$ $|Concept.Bravery], " + ::MSU.Text.colorPositive("+20") + " [$ $|Concept.Initiative] and take " + ::MSU.Text.colorPositive("25%") + " less Damage from adjacent characters",
 					],
 				},
 			],

@@ -18,7 +18,7 @@
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tiles gain the [Onslaught|Skill+rf_onslaught_effect] effect for two [rounds|Concept.Round]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tiles gain [$ $|Skill+rf_onslaught_effect]");
 			}
 			else if (entry.id == 21)
 			{

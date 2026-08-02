@@ -28,7 +28,7 @@
 					id = 13,
 					type = "text",
 					icon = "ui/icons/morale.png",
-					text = ::Reforged.Mod.Tooltips.parseString(format("[Rally|Concept.Rally] the target with a bonus of %s%s of your [Resolve|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.CommandBonusPct), actualResolveBonus)),
+					text = ::Reforged.Mod.Tooltips.parseString(format("[Rally|Concept.Rally] the target with a bonus of %s%s of your [$ $|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.CommandBonusPct), actualResolveBonus)),
 				});
 				break;	// Otherwise we enter an infinite loop, where the next object is always id 10
 			}

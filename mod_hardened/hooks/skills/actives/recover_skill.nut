@@ -13,7 +13,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Waiting|Skill+hd_wait_effect] effect"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+hd_wait_effect]"),
 		});
 
 		ret.push({

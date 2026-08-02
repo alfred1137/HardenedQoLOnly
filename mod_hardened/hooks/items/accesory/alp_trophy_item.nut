@@ -14,7 +14,7 @@
 		{
 			if (entry.id == 10 && entry.icon == "ui/icons/bravery.png")
 			{
-				entry.text = ::MSU.Text.colorizeValue(this.m.HD_BraveryModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Resolve|Concept.Bravery]");
+				entry.text = ::MSU.Text.colorizeValue(this.m.HD_BraveryModifier, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Bravery]");
 			}
 		}
 

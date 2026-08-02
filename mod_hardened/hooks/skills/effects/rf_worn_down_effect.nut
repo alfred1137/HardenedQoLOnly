@@ -18,7 +18,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorizeMultWithText(this.m.MeleeDefenseMult) + ::Reforged.Mod.Tooltips.parseString(" [Melee Defense|Concept.MeleeDefense]"),
+				text = ::MSU.Text.colorizeMultWithText(this.m.MeleeDefenseMult) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.MeleeDefense]"),
 			});
 		}
 
@@ -28,7 +28,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + ::Reforged.Mod.Tooltips.parseString(" [Ranged Defense|Concept.RangeDefense]"),
+				text = ::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.RangeDefense]"),
 			});
 		}
 

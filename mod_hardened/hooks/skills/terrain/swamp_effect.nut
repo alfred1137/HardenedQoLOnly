@@ -31,7 +31,7 @@
 			if (entry.id == 10 && entry.icon == "/ui/icons/melee_skill.png")
 			{
 				entry.icon = "ui/icons/initiative.png";
-				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + " [Initiative|Concept.Initiative]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + " [$ $|Concept.Initiative]");
 				break;
 			}
 		}

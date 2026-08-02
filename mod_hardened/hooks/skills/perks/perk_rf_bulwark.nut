@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.getBonus()) + " [Resolve|Concept.Bravery]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.getBonus()) + " [$ $|Concept.Bravery]"),
 		});
 
 		return ret;

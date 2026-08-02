@@ -11,7 +11,7 @@
 		{
 			if (entry.id == 8 && entry.icon == "ui/icons/special.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to [stagger|Skill+staggered_effect] on hit");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to apply [$ $|Skill+staggered_effect] on hit");
 			}
 			else if (entry.id == 9 && entry.icon == "ui/icons/special.png")
 			{

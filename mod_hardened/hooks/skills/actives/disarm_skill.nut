@@ -20,7 +20,7 @@
 		{
 			if (entry.id == 7 && entry.icon == "ui/icons/special.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Apply [disarmed|Skill+disarmed_effect] on a hit");	// We improve vanillas tooltip by making it shorter and featuring a nested tooltip
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Apply [$ $|Skill+disarmed_effect] on a hit");	// We improve vanillas tooltip by making it shorter and featuring a nested tooltip
 				break;
 			}
 		}

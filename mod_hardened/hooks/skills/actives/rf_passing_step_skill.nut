@@ -25,7 +25,7 @@
 			if (entry.id == 10 && entry.icon == "ui/icons/special.png")
 			{
 				// We rewrite the first bullet point to mention that the targeted tile must be adjacent to an enemy
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Move to an adjacent tile that is adjacent to an enemy, ignoring [Zone of Control|Concept.ZoneOfControl] and [Spearwall|Skill+spearwall_effect]")
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Move to an adjacent tile that is adjacent to an enemy, ignoring [$ $|Concept.ZoneOfControl] and [$ $|Skill+spearwall_effect]")
 			}
 		}
 

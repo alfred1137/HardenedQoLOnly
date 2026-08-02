@@ -21,7 +21,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorizePct(this.m.HD_RecoveredHitpointPct) + " of Maximum [Hitpoints|Concept.Hitpoints]"),
+			text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], recover " + ::MSU.Text.colorizePct(this.m.HD_RecoveredHitpointPct) + " of Maximum [$ $|Concept.Hitpoints]"),
 		});
 
 		ret.push({

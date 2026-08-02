@@ -7,7 +7,7 @@
 		{
 			if (entry.id == 7 && entry.icon == "ui/icons/special.png")
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Gain [Coated in Spider Poison|Skill+spider_poison_coat_effect]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+spider_poison_coat_effect]");
 			}
 		}
 

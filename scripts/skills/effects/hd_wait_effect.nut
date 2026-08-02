@@ -20,7 +20,7 @@ this.hd_wait_effect <- this.inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMultiplier) + " [Initiative|Concept.Initiative]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMultiplier) + " [$ $|Concept.Initiative]"),
 		});
 
 		ret.push({

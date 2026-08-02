@@ -17,14 +17,14 @@
 					else
 					{
 						entry.icon = "ui/icons/bag.png";
-						entry.text = ::Reforged.Mod.Tooltips.parseString("[Weight|Concept.Weight]: ") + ::MSU.Text.colorNegative(this.getWeight());
+						entry.text = ::Reforged.Mod.Tooltips.parseString("[$ $|Concept.Weight]: ") + ::MSU.Text.colorNegative(this.getWeight());
 					}
 					break;
 				}
 				else if (entry.text.find("[/color] Maximum Fatigue") != null)	// Weight tooltip line for attachments
 				{
 					entry.icon = "ui/icons/bag.png";
-					entry.text = ::MSU.Text.colorNegative("+" + this.getWeight()) + ::Reforged.Mod.Tooltips.parseString(" [Weight|Concept.Weight]");
+					entry.text = ::MSU.Text.colorNegative("+" + this.getWeight()) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Weight]");
 					break;
 				}
 			}

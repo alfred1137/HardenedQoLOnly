@@ -33,14 +33,14 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/hd_toxic_damage.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Once per [round|Concept.Round], when you [wait|Concept.Wait] or end your [turn|Concept.Turn], take " + ::MSU.Text.colorNegative(this.m.Damage) + " Toxic Damage to [Hitpoints|Concept.Hitpoints]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Once per [round|Concept.Round], when you [wait|Concept.Wait] or end your [turn|Concept.Turn], take " + ::MSU.Text.colorNegative(this.m.Damage) + " Toxic Damage to [$ $|Concept.Hitpoints]"),
 		});
 
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/damage_received.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Recover " + ::MSU.Text.colorizeMultWithText(this.m.HitpointRecoveryMult) + " [Hitpoints|Concept.Hitpoints]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Recover " + ::MSU.Text.colorizeMultWithText(this.m.HitpointRecoveryMult) + " [$ $|Concept.Hitpoints]"),
 		});
 
 		return ret;

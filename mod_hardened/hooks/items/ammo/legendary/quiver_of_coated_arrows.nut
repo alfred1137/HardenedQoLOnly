@@ -16,7 +16,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/damage_received.png",
-			text = "Inflicts " + ::MSU.Text.colorDamage(this.m.BleedDamage / 5) + ::Reforged.Mod.Tooltips.parseString(" stacks of [Bleeding|Skill+bleeding_effect]"),
+			text = "Inflicts " + ::MSU.Text.colorDamage(this.m.BleedDamage / 5) + ::Reforged.Mod.Tooltips.parseString(" stacks of [$ $|Skill+bleeding_effect]"),
 		});
 
 		return ret;

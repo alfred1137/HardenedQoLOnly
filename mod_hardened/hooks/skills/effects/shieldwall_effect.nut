@@ -18,19 +18,19 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::MSU.Text.colorizeMultWithText(2.0) + ::Reforged.Mod.Tooltips.parseString(" [Melee Defense|Concept.MeleeDefense] from equipped shield"),
+					text = ::MSU.Text.colorizeMultWithText(2.0) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.MeleeDefense] from equipped shield"),
 				},
 				{
 					id = 11,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = ::MSU.Text.colorizeMultWithText(2.0) + ::Reforged.Mod.Tooltips.parseString(" [Ranged Defense|Concept.RangeDefense] from equipped shield"),
+					text = ::MSU.Text.colorizeMultWithText(2.0) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.RangeDefense] from equipped shield"),
 				},
 				{
 					id = 12,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Gain " + ::MSU.Text.colorPositive("+5")+ ::Reforged.Mod.Tooltips.parseString(" [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] for each adjacent ally from your faction with the [Shieldwall effect|Skill+shieldwall_effect]"),
+					text = "Gain " + ::MSU.Text.colorPositive("+5")+ ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.MeleeDefense] and [$ $|Concept.RangeDefense] for each adjacent ally from your faction with [$ $|Skill+shieldwall_effect]"),
 				},
 			]);
 

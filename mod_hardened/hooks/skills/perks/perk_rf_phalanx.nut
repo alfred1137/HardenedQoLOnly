@@ -31,7 +31,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Shieldwall|Skill+shieldwall_effect] will not expire at the start of your [turn|Concept.Turn] as you are next to an ally with [Shieldwall|Skill+shieldwall_effect]"),
+				text = ::Reforged.Mod.Tooltips.parseString("[$ $|Skill+shieldwall_effect] will not expire at the start of your [turn|Concept.Turn] as you are next to an ally with [$ $|Skill+shieldwall_effect]"),
 			});
 		}
 

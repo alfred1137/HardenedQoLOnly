@@ -35,7 +35,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + " [Initiative|Concept.Initiative]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.getInitiativeMult()) + " [$ $|Concept.Initiative]"),
 			});
 		}
 
@@ -50,7 +50,7 @@
 			id = 22,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Lose all stacks when you use [Recover|Skill+recover_skill], get [stunned|Skill+stunned_effect], or [staggered|Skill+staggered_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Lose all stacks when you use [$ $|Skill+recover_skill], gain [$ $|Skill+stunned_effect] or gain [$ $|Skill+staggered_effect]"),
 		});
 
 		return ret;

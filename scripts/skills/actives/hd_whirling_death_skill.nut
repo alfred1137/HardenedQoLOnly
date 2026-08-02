@@ -36,7 +36,7 @@ this.hd_whirling_death_skill <- this.inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain [Whirling Stance|Skill+hd_whirling_death_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+hd_whirling_death_effect]"),
 			children = whirlingDeathEffect.getTooltip().slice(2),	// Remove name and description tooltip lines
 		});
 
@@ -44,7 +44,7 @@ this.hd_whirling_death_skill <- this.inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeValue(this.m.ActionPointModifierOnRepeat, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints] while you have [Whirling Stance|Skill+hd_whirling_death_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeValue(this.m.ActionPointModifierOnRepeat, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints] while you have [$ $|Skill+hd_whirling_death_effect]"),
 		});
 
 		return ret;

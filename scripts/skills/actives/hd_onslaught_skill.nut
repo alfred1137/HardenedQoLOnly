@@ -25,7 +25,7 @@ this.hd_onslaught_skill <- this.inherit("scripts/skills/actives/rf_onslaught_ski
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Target a tile. All allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tile(s) of that target gain the [$ $|Skill+rf_onslaught_effect] effect for two [rounds|Concept.Round]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Target a tile. All allies of your faction within " + ::MSU.Text.colorPositive(this.m.HD_Radius) + " tile(s) of that target gain [$ $|Skill+rf_onslaught_effect]");
 			}
 		}
 

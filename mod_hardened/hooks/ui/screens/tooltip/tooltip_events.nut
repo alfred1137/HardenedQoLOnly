@@ -10,7 +10,7 @@
 				local desc = "Medical Supplies consist of bandages, herbs, salves and the like, and are used to heal the more severe injuries sustained by your men in battle.";	// Fluff
 				desc += "\n\nEvery Injury requires " + ::MSU.Text.colorPositive(::Const.World.Assets.MedicinePerInjuryDay) + " Medical Supplies each day to improve and ultimately heal."	// Vanilla Mechanic
 				desc += "\nIf you run out of medicine supplies, Injuries have only a " + ::MSU.Text.colorNegative("50%") + " chance to improve each day.";	// New Hardened mechanic
-				desc += ::Reforged.Mod.Tooltips.parseString("\nLost [Hitpoints|Concept.Hitpoints] heal on their own.");	// Vanilla info
+				desc += ::Reforged.Mod.Tooltips.parseString("\nLost [$ $|Concept.Hitpoints] heal on their own.");	// Vanilla info
 
 				local heal = ::World.Assets.getHealingRequired();
 				if (heal.MedicineMin > 0)
@@ -112,7 +112,7 @@
 						id = 10,
 						type = "text",
 						icon = "ui/icons/melee_defense.png",
-						text = "Your characters have " + ::MSU.Text.colorizeValue(retreatDefenseBonus, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [Melee Defense|Concept.MeleeDefense] during Auto-Retreat"),
+						text = "Your characters have " + ::MSU.Text.colorizeValue(retreatDefenseBonus, {AddSign = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.MeleeDefense] during Auto-Retreat"),
 					});
 				}
 
@@ -415,7 +415,7 @@
 						// We add an explanation about the softcap and emphasize that this stat also helps against animals and two-tile attacks
 						entry.text = ::Reforged.Mod.Tooltips.parseString(
 							"Determines the likelihood of striking an enemy's head instead of their body.\n\n" +
-							"A hit to the head deals " + ::MSU.Text.colorizeMult(::Const.CharacterProperties.DamageAgainstMult[::Const.BodyPart.Head], {AddSign = true}) + " [Critical Damage|Concept.CriticalDamage].\n\n" +
+							"A hit to the head deals " + ::MSU.Text.colorizeMult(::Const.CharacterProperties.DamageAgainstMult[::Const.BodyPart.Head], {AddSign = true}) + " [$ $|Concept.CriticalDamage].\n\n" +
 							"The default chance to hit the head is " + ::MSU.Text.colorPositive(::Const.CharacterProperties.HitChance[::Const.BodyPart.Head] + "%") + ", but this can be modified by perks or specific attacks.\n\n" +
 							"Some enemies [lack a head|Skill+hd_headless_effect], resulting in all attacks hitting the body."
 						);
@@ -584,7 +584,7 @@
 					id = 200,
 					type = "text",
 					// icon = "ui/icons/hitchance.png",
-					text = ::Reforged.Mod.Tooltips.parseString("You are not in an enemy [Zone of Control|Concept.ZoneOfControl]"),
+					text = ::Reforged.Mod.Tooltips.parseString("You are not in an enemy [$ $|Concept.ZoneOfControl]"),
 				});
 			}
 			else
@@ -606,7 +606,7 @@
 						type = "text",
 						icon = "ui/orientation/" + tile.getEntity().getOverlayImage() + ".png",
 						children = aooSkill.getHitFactors(_entity.getTile()),
-						text = ::MSU.Text.colorNegative(chanceToBeHit + "%") + ::Reforged.Mod.Tooltips.parseString(" [Chance to be hit|Concept.ZoneOfControl] by " + ::Const.UI.getColorizedEntityName(tile.getEntity())),
+						text = ::MSU.Text.colorNegative(chanceToBeHit + "%") + ::Reforged.Mod.Tooltips.parseString(" [Chance to be hit|Concept.Hitchance] by " + ::Const.UI.getColorizedEntityName(tile.getEntity())),
 					});
 				}
 

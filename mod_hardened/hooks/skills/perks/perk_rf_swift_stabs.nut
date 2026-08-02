@@ -25,13 +25,13 @@ local hookDaggerAttack = function( _o )
 				id = 30,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of 2 tiles, move next to the target, before attacking, ignoring [Zone of Control|Concept.ZoneOfControl]"),
+				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of 2 tiles, move next to the target, before attacking, ignoring [$ $|Concept.ZoneOfControl]"),
 			},
 			{
 				id = 31,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of 2 tiles, after hitting your target, move back to your original tile, ignoring [Zone of Control|Concept.ZoneOfControl]"),
+				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of 2 tiles, after hitting your target, move back to your original tile, ignoring [$ $|Concept.ZoneOfControl]"),
 			}
 		]);
 

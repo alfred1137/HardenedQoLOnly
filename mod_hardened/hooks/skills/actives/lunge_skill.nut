@@ -30,7 +30,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Move next to your target before attacking, ignoring [Zone of Control|Concept.ZoneOfControl]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Move next to your target before attacking, ignoring [$ $|Concept.ZoneOfControl]"),
 		});
 
 		if (this.m.HD_DamageTotalPctPerInitiative != 0.0)
@@ -39,14 +39,14 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizePct(this.m.HD_DamageTotalPctPerInitiative) + " more Damage for every [Initiative|Concept.Initiative] you have above " + ::MSU.Text.colorPositive(this.m.HD_InitiativeBaseValue) + ", up to a maximum of " + ::MSU.Text.colorizeMultWithText(this.m.HD_DamageTotalMultMax)),
+				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizePct(this.m.HD_DamageTotalPctPerInitiative) + " more Damage for every [$ $|Concept.Initiative] you have above " + ::MSU.Text.colorPositive(this.m.HD_InitiativeBaseValue) + ", up to a maximum of " + ::MSU.Text.colorizeMultWithText(this.m.HD_DamageTotalMultMax)),
 			});
 
 			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizePct(this.m.HD_DamageTotalPctPerInitiative, {InvertColor = true}) + " less Damage for every [Initiative|Concept.Initiative] you have below " + ::MSU.Text.colorPositive(this.m.HD_InitiativeBaseValue) + ", down to a minimum of " + ::MSU.Text.colorizeMultWithText(this.m.HD_DamageTotalMultMin)),
+				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizePct(this.m.HD_DamageTotalPctPerInitiative, {InvertColor = true}) + " less Damage for every [$ $|Concept.Initiative] you have below " + ::MSU.Text.colorPositive(this.m.HD_InitiativeBaseValue) + ", down to a minimum of " + ::MSU.Text.colorizeMultWithText(this.m.HD_DamageTotalMultMin)),
 			});
 		}
 
@@ -54,7 +54,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" [Hitchance|Concept.Hitchance]"),
+			text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" [$ $|Concept.Hitchance]"),
 		});
 
 		return ret;

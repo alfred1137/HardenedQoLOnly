@@ -36,7 +36,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::MSU.Text.colorizeValue(this.m.StunChance, {AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" chance to [Stun|Skill+stunned_effect] the target for " + ::MSU.Text.colorPositive(this.m.HD_StunDuration) + " [turn(s)|Concept.Turn] on a hit"),
+				text = ::MSU.Text.colorizeValue(this.m.StunChance, {AddPercent = true}) + ::Reforged.Mod.Tooltips.parseString(" chance to apply [$ $|Skill+stunned_effect] for " + ::MSU.Text.colorPositive(this.m.HD_StunDuration) + " [turn(s)|Concept.Turn] on a hit"),
 			});
 		}
 
