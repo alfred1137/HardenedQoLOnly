@@ -513,7 +513,12 @@
 		}
 
 		__original();
-		this.getContainer().onOtherSkillAdded(this);
+
+		// This skill might have additional conditions that invalidate itself. In those cases we trigger no additional events
+		if (this.isGarbage())
+		{
+			this.getContainer().onOtherSkillAdded(this);
+		}
 
 		// Feat: display overlay icon for newly added effects only after onAdded, so that the skill itself or others have time to prevent the addition and, in turn, this overlay icon
 		this.HD_spawnOnAddedIcon();
