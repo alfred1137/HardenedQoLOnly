@@ -36,7 +36,7 @@ this.hd_whirling_death_skill <- this.inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Whirling Stance|Skill+hd_whirling_death_effect] effect"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain [Whirling Stance|Skill+hd_whirling_death_effect]"),
 			children = whirlingDeathEffect.getTooltip().slice(2),	// Remove name and description tooltip lines
 		});
 
@@ -65,7 +65,15 @@ this.hd_whirling_death_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.getContainer().add(::new("scripts/skills/effects/hd_whirling_death_effect"));
+		local existingSkill = this.getContainer().getSkillByID("effects.hd_whirling_death");
+		if (existingSkill == null)
+		{
+			this.getItem().addSkill(::new("scripts/skills/effects/hd_whirling_death_effect"));
+		}
+		else
+		{
+			existingSkill.onRefresh();
+		}
 
 		if (!_user.isHiddenToPlayer())
 		{

@@ -61,24 +61,10 @@ this.hd_whirling_death_effect <- this.inherit("scripts/skills/skill", {
 			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you get [disarmed|Skill+disarmed_effect], [stunned|Skill+stunned_effect], start [fleeing|Skill+hd_dummy_morale_state_fleeing] or swap your weapon"),
+			text = ::Reforged.Mod.Tooltips.parseString("Is removed when you get [disarmed|Skill+disarmed_effect], [stunned|Skill+stunned_effect], start [fleeing|Skill+hd_dummy_morale_state_fleeing]"),
 		});
 
 		return ret;
-	}
-
-	function onPayForItemAction( _skill, _items )
-	{
-		foreach (item in _items)
-		{
-			if (item == null) continue;
-
-			if (item.getCurrentSlotType() == ::Const.ItemSlot.Mainhand)	// Any swap involving our mainhand is considered "swapping your weapon"
-			{
-				this.removeSelf();
-				break;
-			}
-		}
 	}
 
 	function onRefresh()
