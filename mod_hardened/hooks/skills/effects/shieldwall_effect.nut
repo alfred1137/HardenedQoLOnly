@@ -1,4 +1,11 @@
 ::Hardened.HooksMod.hook("scripts/skills/effects/shieldwall_effect", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+
+		this.m.Name = "Shieldwalling";		// Vanilla: Shieldwall
+	}
+
 	q.getTooltip = @(__original) function()
 	{
 		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
