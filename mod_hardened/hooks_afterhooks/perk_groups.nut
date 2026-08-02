@@ -68,7 +68,8 @@ local changePerkTier = function( _perkGroup, _perkID, _newTier )
 
 	{	// Knave Group
 		local pgKnaveGroup = ::DynamicPerks.PerkGroups.findById("pg.rf_knave");
-		changePerkTier(pgKnaveGroup, "perk.rf_cheap_trick", 1);			// Move "Cheap Trick" to Tier 1 (down from Tier 2)
+		pgKnaveGroup.removePerk("perk.rf_cheap_trick");
+		pgKnaveGroup.addPerk("perk.hd_play_for_time", 2);
 		changePerkTier(pgKnaveGroup, "perk.rf_tricksters_purses", 3);		// Move "Tricksters Purses" to Tier 3 (up from Tier 1)
 		changePerkTier(pgKnaveGroup, "perk.rf_ghostlike", 5);				// Move "Ghostlike" to Tier 5 (up from Tier 4)
 		pgKnaveGroup.getPerkGroupMultiplier = function( _groupID, _perkTree )

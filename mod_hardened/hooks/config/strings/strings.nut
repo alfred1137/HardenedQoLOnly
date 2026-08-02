@@ -193,6 +193,21 @@ local newPerks = [
 		}),
 	},
 	{
+		Key = "HD_PlayForTime",
+		Name = "Play for Time",
+		Description = ::UPD.getDescription({
+			Fluff = "Time favors those who can afford to wait.",
+			Effects = [
+				{
+					Type = ::UPD.EffectType.Passive,
+					Description = [
+						"Gain " + ::MSU.Text.colorPositive("+15") + " [$ $|Concept.MeleeDefense] and [$ $|Concept.RangeDefense] against characters that are [$ $|Skill+bleeding_effect] or poisoned",
+					],
+				},
+			],
+		}),
+	},
+	{
 		Key = "HD_Precise",
 		Name = "Precise",
 		Description = ::UPD.getDescription({
