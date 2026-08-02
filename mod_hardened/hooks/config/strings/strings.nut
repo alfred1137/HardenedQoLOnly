@@ -57,6 +57,22 @@ local newPerks = [
 		}),
 	},
 	{
+		Key = "HD_Copycat",
+		Name = "Copycat",
+		Description = ::UPD.getDescription({
+			Fluff = "Every fighter has something worth copying.",
+			Effects = [
+				{
+					Type = ::UPD.EffectType.Passive,
+					Description = [
+						"At the start of your turn, choose a random weapon type, from a random adjacent character\'s equipped weapon, which belongs to a weapon perk group"
+						"Gain [$ $|Skill+hd_imitating_effect], targeting that weapon type",
+					],
+				},
+			],
+		}),
+	},
+	{
 		Key = "HD_Ethereal",
 		Name = "Ethereal",
 		Description = ::UPD.getDescription({
@@ -187,6 +203,22 @@ local newPerks = [
 					Description = [
 						::MSU.Text.colorPositive("+5%") + " [Hitchance|Concept.Hitchance]",
 						::MSU.Text.colorPositive("+5%") + " maximum [Hitchance|Concept.Hitchance]",
+					],
+				},
+			],
+		}),
+	},
+	{
+		Key = "HD_SetUp",
+		Name = "Set Up",
+		Description = ::UPD.getDescription({
+			Fluff = "Good timing can make all the difference.",
+			Effects = [
+				{
+					Type = ::UPD.EffectType.Passive,
+					Description = [
+						"Using Wait delays your turn by 6 turns, instead of until the end of the current round",
+						"When you use [Wait|Concept.Wait], gain [$ $|Skill+hd_payoff_effect]",
 					],
 				},
 			],

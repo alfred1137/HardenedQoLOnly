@@ -17,6 +17,14 @@
 		IconDisabled = "ui/perks/perk_hd_brace_for_impact_sw.png",		// Edited (desatured) version of existing unused vanilla art
 	},
 	{
+		ID = "perk.hd_copycat",
+		Script = "scripts/skills/perks/perk_hd_copycat",
+		Name = ::Const.Strings.PerkName.HD_Copycat,
+		Tooltip = ::Const.Strings.PerkDescription.HD_Copycat,
+		Icon = "ui/perks/perk_hd_copycat.png",
+		IconDisabled = "ui/perks/perk_hd_copycat_sw.png",
+	},
+	{
 		ID = "perk.hd_ethereal",
 		Script = "scripts/skills/perks/perk_hd_ethereal",
 		Name = ::Const.Strings.PerkName.HD_Ethereal,
@@ -79,6 +87,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.HD_Precise,
 		Icon = "ui/perks/perk_rf_swordmaster_precise.png",
 		IconDisabled = "ui/perks/perk_rf_swordmaster_precise_sw.png",
+	},
+	{
+		ID = "perk.hd_set_up",
+		Script = "scripts/skills/perks/perk_hd_set_up",
+		Name = ::Const.Strings.PerkName.HD_SetUp,
+		Tooltip = ::Const.Strings.PerkDescription.HD_SetUp,
+		Icon = "ui/perks/perk_hd_set_up.png",
+		IconDisabled = "ui/perks/perk_hd_set_up_sw.png",
 	},
 	{
 		ID = "perk.hd_versatile",
