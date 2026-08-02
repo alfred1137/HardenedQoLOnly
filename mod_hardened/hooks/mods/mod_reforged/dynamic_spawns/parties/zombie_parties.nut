@@ -71,5 +71,16 @@
 	local necromancerSouthernParty = ::Reforged.Spawns.Parties["NecromancerSouthern"];
 	necromancerSouthernParty.Variants.filter(function(_item, _weight) {
 		_item.IdealSizeMult <- ::Hardened.Global.FactionIdealSizeMult.Zombies;
+		if (_item.ID == "NecromancerSouthern_0")
+		{
+			foreach (unitBlock in _item.DynamicDefs.UnitBlocks)
+			{
+				if (unitBlock.BaseID == "UnitBlock.RF.Hollenhund")
+				{
+					// We prevent Hollenhunds from appearing in southern necromancer parties
+					unitBlock.RatioMax <- 0.0;
+				}
+			}
+		}
 	});
 }
