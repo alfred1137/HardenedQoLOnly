@@ -1,46 +1,51 @@
 ::Hardened.HooksMod.hook("scripts/skills/traits/impatient_trait", function(q) {
-	q.m.InitiativeForTurnOrderAdditional = 0;	// Reforged: 20
+	q.m.HD_InitiativeModifier <- 15;
+	q.m.HD_MeleeDefenseModifier <- -5;
+	q.m.HD_RangedDefenseModifier <- -5;
 
+	// Overwrite, because we grant a completely different effect
 	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Using [Wait|Concept.Wait] delays your [turn|Concept.Turn] by 6 [turns|Concept.Turn] instead of until the end of the current [round|Concept.Round]"),
-		});
+		if (this.m.HD_InitiativeModifier != 0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.HD_InitiativeModifier, {AddSign = true}) + " [$ $|Concept.Initiative]"),
+			});
+		}
+
+		if (this.m.HD_MeleeDefenseModifier != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.HD_MeleeDefenseModifier, {AddSign = true}) + " [$ $|Concept.MeleeDefense]"),
+			});
+		}
+
+		if (this.m.HD_RangedDefenseModifier != 0)
+		{
+			ret.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.HD_RangedDefenseModifier, {AddSign = true}) + " [$ $|Concept.RangeDefense]"),
+			});
+		}
 
 		return ret;
 	}}.getTooltip;
 
-	q.onWaitTurn = @(__original) function()
-	{
-		__original();
-
-		// We were only pushed back at most 6 positions. We don't need to do anything
-		if (::Tactical.TurnSequenceBar.m.CurrentEntities.len() <= ::Tactical.TurnSequenceBar.m.MaxVisibleEntities)
-		{
-			return;
-		}
-
-		::Tactical.TurnSequenceBar.m.CurrentEntities.pop();
-		local actor = this.getContainer().getActor();
-		::Tactical.TurnSequenceBar.m.CurrentEntities.insert(::Tactical.TurnSequenceBar.m.MaxVisibleEntities - 1, actor);
-
-		local entityToAddIndex = ::Math.min(::Tactical.TurnSequenceBar.m.CurrentEntities.len() - 1, ::Tactical.TurnSequenceBar.m.MaxVisibleEntities - 1);
-		local mockObject;
-		mockObject = ::Hardened.mockFunction(::Tactical.TurnSequenceBar, "convertEntityToUIData", function( _entity, _isLastEntity = false ) {
-			if (_entity.getID() == actor.getID())
-			{
-				return { done = true, value = mockObject.original(actor, true) };
-			}
-		});
-		// We have no chance to manually clean up from inside this skill
-		// But we don't need to clean up, because "convertEntityToUIData" is guaranteed to run, directly after the onWaitTurn event triggers and then the mockObject cleans up itself
-	}
-
 	// Overwrite, because we want to disable both the Vanilla and Reforged effects
-	q.onUpdate = @() function( _properties ) {}
+	q.onUpdate = @() function( _properties )
+	{
+		_properties.Initiative += this.m.HD_InitiativeModifier;
+		_properties.MeleeDefense += this.m.HD_MeleeDefenseModifier;
+		_properties.RangedDefense += this.m.HD_RangedDefenseModifier;
+	}
 });
