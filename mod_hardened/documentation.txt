@@ -30,6 +30,57 @@
 
 # Changelog
 
+1.22.0
+	- Add new **Keep it Simple** perk for Tier 1 of **Laborer**: It grants +10 Melee Skill, +10 Ranged Skill, -5 Melee Defense and -5 Ranged Defense
+	- Add new **Play for Time** perk for Tier 2 of **Knave**: Gain +15 Melee Defense and +15 Ranged Defense against characters that are bleeding or poisoned
+	- Add new **Set Up** perk for Tier 5 of **Entertainer** (new perk group): Using Wait delays your turn by 6 turns, instead of until the end of the current round. When you use Wait, gain **Payoff**
+		- **Payoff** grants +20 Melee Skill, +20 Ranged Skill, +20% Armor Penetration and lasts until the end of your turn
+	- Add new **Copycat** perk for Tier 7 of **Entertainer** (new perk group): At the start of your turn, choose a random weapon type from a random adjacent character's equipped weapon, which belongs to a weapon perk group. Gain **Imitating**, targeting that weapon type
+		- **Imitating** grants your mainhand weapon the chosen weapontype and grants you all perks from the perk group related to that weapon type. If you have not unlocked the weapon mastery from that perk group, you lose 10% Hithance
+	- Add new **Entertainer** perk group. It always appears on **Minstrels**, **Jugglers** and **Belly Dancers**. It can sometimes appear on **Indebted**
+	- **Cheap Trick** moves from **Knave** to Tier 1 of **Entertainer**
+	- **Adrenaline** effect is now called **Adrenaline Rush**
+	- **Charm** (from **Hexen**) is completely reworked. It now triggers 3 Mental Attacks (up from 2) with an additional difficulty of 20 (down from 35) and charms the target, if any has succeeded (instead of all of them). The charm duration is now equal to the amount of successful Mental Attacks (instead of always 2). A charmed character is now also stunned for 1 turn
+	- **Charmed Effect** no longer grants **Resilient**
+	- **Decapitation** (from **Executioners Sword**) is now called **Behead**. It now costs 25 Fatigue (up from 20). It no longer deals bonus damage the lower the targets hitpoints are. It now has a 100% chance to hit the head
+	- **Impatient** is completely reworked. It now grants +15 Initiative, -5 Melee Defense and -5 Ranged Defense
+	- **Recover** no longer sets the remaining Action Points of the character to 0
+	- **Shieldwall** effect is now called **Shieldwalling**
+	- **Weave Web** (from **Webknechts**) no longer has a cooldown
+	- **Executioners Sword** now deals 130-140 Damage (up from 95-110), has 120% Armor Damage (up from 90%), 25% Armor Penetration (down from 35%), 32 Shield Damage (up from 16) and 26 Weight (up from 12). It now has -15% Hitchance at all times.
+	- All named shields now always have a base cost of 4x their base item
+	- Change inventory sound of **Adrenaline Gland** to match the one used by **Unhold Heart**
+	- **Necrosavants** and **Necrosavant Lords** lose **Bloodlust** and gain **Play for Time**
+	- Lategame **Direwolf**, **Nachzehrer** and **Spider** parties now have a 10% chance to also contain a single **Hexe**
+	- Prevent southern zombie nomad parties from spawning **Hollenhunds**
+	- Temporarily charmed characters are now 50% less likely to be targeted by AI. If they are also stunned, they are instead 90% less likely to be targeted
+	- Display warning on effects, if they are connected to an item, causing them to be removed, if that item is unequipped
+	- Add new icon for **Iron Sights** perk
+	- Slightly increase size of regular **Webknechts** and always generate a white mark on their back
+	- Make **Webknechts** spawned from **Spider Eggs** never spawn with white marks on their back
+	- Improve skill description of **Recover**
+	- Spawn combat log with the amount of fatigue recovered by **Recover**
+	- Remove redundant perk description from some perks which grant active skills
+	- Display in the name of **Charmed Effect**, how many turns it has left
+	- Fix(Vanilla): newly added effects triggering an overlay animation and initial effect, even if they are removed immediately (e.g. due to an existing immunity)
+	- Fix(Vanilla): trigger addition
+	- Fix **Frostbound** being permanently removed if a character entered combat with a temporary immunity to chilled
+	- Fix **Frostbound** still affecting characters who gain immunity to chill during combat
+	- Fix Hitchance preview, when moving out of zone of control, not showing up correctly
+	- Fix `skill::onOtherSkillAdded` triggering if the skill was removed during `skill::onAdded`
+	- Fix typos in Rally and Mood concept tooltip
+	- Slightly improve wording in duration bullet points for effects
+	- Improve the direct damage limiter to look at the `IsIgnoringArmorOnAttack` property of a skill, instead of at its `getDirectDamage()` value
+	- Add `weapon::HD_getWeaponTypesAsArray()` which returns an array of all individual weapon types on the weapon, excluding `None`
+	- Add `item::HD_addConnectedBuff(_skill)` for adding connected buffs to an item, which will survive Item Refreshes
+	- Add `item::HD_refreshItem()` for refreshing (unequipping and re-equipping) an item, without removing connected buffs
+	- Trigger up to 5 additional `skill_container::update()´, if any skill was marked as `IsGarbage` during any of those updates
+	- Add `skill::m.HD_PreventedByProperties = []`, which can be used to define keys of boolean values from `::Const.CharacterProperties`. If any of those is `true`, then this skill will be prevented from being added to this character and deleted, if already present
+	- Add `skill::m.HD_IsBleed = false`, which needs to be set to `true` for any skill that identifies as a bleed. This flag is turned on for `bleeding_effect` and `rf_sanguine_curse_effect`
+	- Add `actor::HD_isBleeding()`, which checks for the existance on any skill on the actor with `HD_IsBleed == true`
+	- Add `skill::m.HD_IsPoison = false`, which needs to be set to `true` for any skill that identifies as a poison. This flag is turned on for `goblin_poison_effect` and `spider_poison_effect`
+	- Add `actor::HD_isPoisoned()`, which checks for the existance on any skill on the actor with `HD_IsPoison == true`
+
 1.21.3
 	- Fix **Castigate** never triggering more than one attack per use
 	- Fix(Vanilla): downwards offset for accessory and ammo items images on paperdoll

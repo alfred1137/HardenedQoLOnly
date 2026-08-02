@@ -1,7 +1,7 @@
 // Caps the direct damage of an attacker to this.m.Max
 this.hd_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 	m = {
-		Max = 0.9999
+		Max = 0.9999,
 	},
 	function create()
 	{

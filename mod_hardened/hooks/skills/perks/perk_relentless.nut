@@ -1,7 +1,9 @@
 ::Hardened.HooksMod.hook("scripts/skills/perks/perk_relentless", function(q) {
 // MSU Events
-	q.onQueryTooltip <- function( _skill, _tooltip )
+	q.onQueryTooltip = @(__original) function( _skill, _tooltip )
 	{
+		__original(_skill, _tooltip);
+
 		// Remove mention about the waiting debuff
 		if (_skill.getID() == "actives.recover")
 		{
