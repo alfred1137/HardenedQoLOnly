@@ -6,7 +6,7 @@ this.perk_hd_precise <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "perk.hd_precise";
-		this.m.Name = ::Const.Strings.PerkName.HD_Versatile;
+		this.m.Name = ::Const.Strings.PerkName.HD_Precise;
 		this.m.Icon = "ui/perks/perk_rf_swordmaster_versatile_swordsman.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
