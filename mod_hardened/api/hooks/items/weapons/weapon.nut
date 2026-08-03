@@ -108,6 +108,19 @@
 	{
 		return this.m.AmmoWeight;
 	}
+
+	q.HD_getWeaponTypesAsArray <- function()
+	{
+		local weaponTypes = [];
+		foreach (weaponType in ::Const.Items.WeaponType)
+		{
+			if (weaponType == ::Const.Items.WeaponType.None) continue;
+			if (!this.isWeaponType(weaponType)) continue;
+
+			weaponTypes.push(weaponType);
+		}
+		return weaponTypes;
+	}
 });
 
 ::Hardened.HooksMod.hookTree("scripts/items/weapons/weapon", function(q) {
