@@ -107,7 +107,7 @@
 		this.getSkills().add(::new("scripts/skills/perks/perk_dodge"));
 		this.getSkills().add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.getSkills().add(::new("scripts/skills/perks/perk_nine_lives"));
-		this.getSkills().add(::new("scripts/skills/perks/perk_rf_bloodlust"));
+		this.getSkills().add(::new("scripts/skills/perks/perk_hd_play_for_time"));
 
 		// Generic Actives
 		this.getSkills().add(::new("scripts/skills/actives/rf_vampire_bite_skill"));
