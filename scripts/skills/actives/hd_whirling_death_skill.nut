@@ -68,7 +68,7 @@ this.hd_whirling_death_skill <- this.inherit("scripts/skills/skill", {
 		local existingSkill = this.getContainer().getSkillByID("effects.hd_whirling_death");
 		if (existingSkill == null)
 		{
-			this.getItem().addSkill(::new("scripts/skills/effects/hd_whirling_death_effect"));
+			this.getItem().HD_addConnectedBuff(::new("scripts/skills/effects/hd_whirling_death_effect"));
 		}
 		else
 		{
