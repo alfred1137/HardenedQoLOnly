@@ -36,6 +36,23 @@
 	{
 	}
 
+	q.onSpawn = @(__original) function( _tile )
+	{
+		local oldCount = this.m.Count;
+
+		__original(_tile);
+
+		if (this.m.Count != oldCount)	// A spider was spawned
+		{
+			if (!::MSU.isNull(::Hardened.Private.LastSpawnedActor))
+			{
+				// Feat: Streamline all "young" spiders from spider eggs to only come in the variant 4, which has no white symbol on its back
+				local body = ::Hardened.Private.LastSpawnedActor.getSprite("body");
+				body.setBrush("bust_spider_body_04");	// Vanilla: 1-4;
+			}
+		}
+	}
+
 // Reforged Events
 	q.onSpawned = @(__original) function()
 	{
