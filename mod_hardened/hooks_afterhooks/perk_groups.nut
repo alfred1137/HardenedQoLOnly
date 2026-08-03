@@ -44,6 +44,11 @@ local changePerkTier = function( _perkGroup, _perkID, _newTier )
 		changePerkTier(pgCleaverGroup, "perk.rf_sanguinary", 6);	// Move Sanguinary to Tier 6 (up from Tier 2)
 	}
 
+	{	// Entertainer Group
+		// We introduce a new Entertainer group
+		::DynamicPerks.PerkGroups.add(::new("scripts/mods/mod_hardened/perk_groups/pg_hd_entertainer"));
+	}
+
 	{	// Fast Group
 		local pgFastGroup = ::DynamicPerks.PerkGroups.findById("pg.rf_fast");
 		pgFastGroup.removePerk("perk.rf_dynamic_duo");					// Remove Dynamic Duo from Fast group as it moved to agile group

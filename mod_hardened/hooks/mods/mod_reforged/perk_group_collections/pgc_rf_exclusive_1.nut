@@ -3,6 +3,7 @@
 	{
 		__original();
 
+		this.m.Groups.push("pg.hd_entertainer");
 		this.m.Groups.push("pg.hd_swordmaster");
 	}
 });

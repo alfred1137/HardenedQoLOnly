@@ -7,11 +7,12 @@
 				"pgc.rf_exclusive_1": @(_perkTree) [
 					::MSU.Class.WeightedContainer([
 						[20, "pg.rf_knave"],
-						[20, "pg.rf_laborer"],
-						[20, "pg.rf_raider"],
+						[15, "pg.rf_laborer"],
+						[15, "pg.rf_raider"],
 						[10, "pg.rf_militia"],
 						[10, "pg.rf_trapper"],
 						[10, "pg.rf_soldier"],
+						[10, "pg.hd_entertainer"],
 						[5, "pg.rf_wildling"],
 						[4, "pg.rf_noble"],
 						[1, "pg.hd_swordmaster"],
