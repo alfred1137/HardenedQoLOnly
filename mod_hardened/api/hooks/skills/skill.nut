@@ -29,6 +29,7 @@
 	q.m.HD_RoundLastUsed <- null;	// This is set to the current round whenever the skills onUse is called
 	q.m.HD_Temp_IsFree <- false;	// Ignore fatigue and action point cost during isAffordable check
 	q.m.HD_ForFree <- false;		// Is always set to the _forFree value of the last skill::use call of this skill. We use it to access this value in our onUse hook
+	q.m.HD_IsConnectedBuff <- false;	// If true, then this skill will not be removed from this item, if it was unequipped during a weapon refresh
 
 	q.attackEntity = @(__original) { function attackEntity( _user, _targetEntity, _allowDiversion = true )
 	{
