@@ -311,12 +311,9 @@
 				itemTags += "Weapon (";
 				local invisibleBreakTag = "[wbr][/wbr]";
 
-				foreach (weaponType in ::Const.Items.WeaponType)
+				foreach (weaponType in item.HD_getWeaponTypesAsArray())
 				{
-					if (item.isWeaponType(weaponType))
-					{
-						itemTags += ::Const.Items.getWeaponTypeName(weaponType) + "/" + invisibleBreakTag;
-					}
+					itemTags += ::Const.Items.getWeaponTypeName(weaponType) + "/" + invisibleBreakTag;
 				}
 				itemTags = itemTags.slice(0, -invisibleBreakTag.len());
 				itemTags += "), ";
