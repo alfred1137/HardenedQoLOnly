@@ -78,7 +78,7 @@
 		"Mood states above Neutral grant an increasing chance that the character begins battles with [$ $|Skill+hd_dummy_morale_state_confident] morale.\n" +
 		"Mood states below Neutral reduce the maximum possible morale state of the character during battle.\n" +
 		"A character who is Angry might desert you and leave your company.\n\n" +
-		"The default mood value is " + ::MSU.Text.colorNeutral(3.15) + ". Every hour, each character's mood shifts toward this value by at least " + ::MSU.Text.colorPositive(::Const.MoodChange.RecoveryPerHour) + ".\n\n" +
+		"The default mood value is " + ::MSU.Text.colorNeutral(3.15) + ". Every hour, each character\'s mood shifts toward this value by at least " + ::MSU.Text.colorPositive(::Const.MoodChange.RecoveryPerHour) + ".\n\n" +
 		"Mood is typically gained from:\n" +
 		"- Visiting a city (" + ::MSU.Text.colorizeValue(::Const.MoodChange.NearCity, {AddSign = true}) + ")\n" +
 		"- Winning a battle (" + ::MSU.Text.colorizeValue(::Const.MoodChange.BattleWon, {AddSign = true}) + ")\n" +
@@ -126,7 +126,7 @@
 	)),
 	Rally = ::MSU.Class.BasicTooltip("Rally", ::Reforged.Mod.Tooltips.parseString(
 		"Rallying is a type of positive [Morale Check|Concept.Morale] that can only occur on a character who is currently [fleeing|Skill+hd_dummy_morale_state_fleeing]\n\n" +
-		"A successful rally immediately raises the character's [Morale|Concept.Morale] to [$ $|Skill+hd_dummy_morale_state_wavering] but removes " + ::MSU.Text.colorNegative(::Math.abs(::Hardened.Global.ActionPointChangeOnRally)) + " [Action Points|Concept.ActionPoints] from them.\n\n" +
+		"A successful rally immediately raises the character\'s [Morale|Concept.Morale] to [$ $|Skill+hd_dummy_morale_state_wavering] but removes " + ::MSU.Text.colorNegative(::Math.abs(::Hardened.Global.ActionPointChangeOnRally)) + " [Action Points|Concept.ActionPoints] from them.\n\n" +
 		"Characters will automatically attempt to rally at the start of their [turn|Concept.Turn], as long as they are not [Engaged in Melee|Concept.ZoneOfControl]."
 	)),
 	Recently = ::MSU.Class.BasicTooltip("Recently", ::Reforged.Mod.Tooltips.parseString(
