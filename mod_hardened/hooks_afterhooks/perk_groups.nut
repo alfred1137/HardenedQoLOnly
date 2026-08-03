@@ -86,7 +86,7 @@ local changePerkTier = function( _perkGroup, _perkID, _newTier )
 
 	{	// Laborer Group
 		local pgLaborerGroup = ::DynamicPerks.PerkGroups.findById("pg.rf_laborer");
-		pgLaborerGroup.removePerk("perk.bags_and_belts");	// Remove Bags and Belts
+		pgLaborerGroup.addPerk("perk.hd_keep_it_simple", 1);
 	}
 
 	{	// Light Armor Group

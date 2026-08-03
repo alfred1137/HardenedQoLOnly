@@ -41,6 +41,14 @@
 		IconDisabled = "ui/perks/perk_rf_hybridization_sw.png",
 	},
 	{
+		ID = "perk.hd_keep_it_simple",
+		Script = "scripts/skills/perks/perk_hd_keep_it_simple",
+		Name = ::Const.Strings.PerkName.HD_KeepItSimple,
+		Tooltip = ::Const.Strings.PerkDescription.HD_KeepItSimple,
+		Icon = "ui/perks/perk_hd_keep_it_simple.png",
+		IconDisabled = "ui/perks/perk_hd_keep_it_simple_sw.png",
+	},
+	{
 		ID = "perk.hd_one_with_the_shield",
 		Script = "scripts/skills/perks/perk_hd_one_with_the_shield",
 		Name = ::Const.Strings.PerkName.HD_OneWithTheShield,

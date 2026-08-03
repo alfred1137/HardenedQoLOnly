@@ -105,6 +105,24 @@ local newPerks = [
 		}),
 	},
 	{
+		Key = "HD_KeepItSimple",
+		Name = "Keep it Simple",
+		Description = ::UPD.getDescription({
+			Fluff = "Not every problem needs a clever solution.",
+			Effects = [
+				{
+					Type = ::UPD.EffectType.Passive,
+					Description = [
+						::MSU.Text.colorPositive("+10") + " [$ $|Concept.MeleeSkill]",
+						::MSU.Text.colorPositive("+10") + " [$ $|Concept.RangeSkill]",
+						::MSU.Text.colorNegative("-5") + " [$ $|Concept.MeleeDefense]",
+						::MSU.Text.colorNegative("-5") + " [$ $|Concept.RangeDefense]",
+					],
+				},
+			],
+		}),
+	},
+	{
 		Key = "HD_OneWithTheShield",
 		Name = "One with the Shield",
 		Description = ::UPD.getDescription({
