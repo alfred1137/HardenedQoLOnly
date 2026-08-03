@@ -5,15 +5,30 @@
 		this.m.Order = ::Const.SkillOrder.BeforeLast;	// We want this skill to be sorted very late in the skill bar as it is rarely used and shouldnt replace important hotkeys
 	}}.create;
 
-	q.getTooltip = @(__original) function()
+	// Overwrite, because we change too many tooltips
+	q.getTooltip = @() { function getTooltip()
 	{
-		local ret = __original();
+		local ret = this.skill.getTooltip();
+
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Recover " + ::MSU.Text.colorPositive("50%") + " of your [Fatigue|Concept.Fatigue]"),
+		});
+
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+hd_wait_effect]"),
+		});
 
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain [$ $|Skill+hd_wait_effect]"),
+			text = ::Reforged.Mod.Tooltips.parseString("End your [$ $|Concept.Turn]"),
 		});
 
 		ret.push({
@@ -23,8 +38,27 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Never costs more than your maximum [Action Points|Concept.ActionPoints]"),
 		});
 
+		if (this.m.HasMovedOrUsedSkill)
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Cannot be used because you moved or have used a skill this [$ $|Concept.Turn]"),
+			});
+		}
+		else
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/unlocked_small.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Cannot be used if you moved or have used a skill this [$ $|Concept.Turn]"),
+			});
+		}
+
 		return ret;
-	}
+	}}.getTooltip;
 
 	q.onAfterUpdate = @(__original) function( _properties )
 	{
@@ -34,13 +68,18 @@
 		this.m.ActionPointCost = ::Math.min(this.m.ActionPointCost, _properties.ActionPoints);
 	}
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	// Overwrite, because we no longer set the remaining action points to 0 and we produce a combat logs with the fatigue recovered
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{
-		local ret = __original(_user, _targetTile);
-		if (ret)
+		_user.HD_recoverFatigue(this.getFatigueRecovered());
+		_user.getSkills().add(::new("scripts/skills/effects/hd_wait_effect"));	// This will remove itself if it detects the presence of Relentless
+		_user.m.IsTurnDone = true;
+
+		if (!_user.isHiddenToPlayer())
 		{
-			this.getContainer().add(::new("scripts/skills/effects/hd_wait_effect"));	// This will remove itself if it detects the presence of Relentless
+			_user.playSound(::Const.Sound.ActorEvent.Fatigue, ::Const.Sound.Volume.Actor * _user.getSoundVolume(::Const.Sound.ActorEvent.Fatigue));
 		}
-		return ret;
-	}
+
+		return true;
+	}}.onUse;
 });
