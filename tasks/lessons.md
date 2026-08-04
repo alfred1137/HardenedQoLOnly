@@ -42,3 +42,11 @@ Session log of mistakes/patterns to avoid. Review at session start.
 - **MSU wrap warnings = signature mismatch signal.** "wrapping function X with more required parameters than before" = wrapper declares params vanilla doesn't pass. Fix signature to match, don't add params.
 - **JS trailing commas break BB's CEF** (`function ( _a, )` → SyntaxError, whole file fails to load). Scan shipped JS for `,\s*\)` and `,$` before next-line `)` before building.
 - **Log analysis:** game log is time/tag/text triplets; CSS line pollutes naive greps — exclude line 1 before searching. 791 warnings, 526 ours (all onEquip), rest MSU-own (optional-param, benign).
+
+## 2026-08-04 — Campaign-load crash (user test #2)
+
+- **Crash-sweep must cover ALL removed-API shapes, not just `::Hardened.*`.** Missed `::Const.World.Spawn.HD_AttachedProduction` (deleted with dynamic_spawns human_parties.nut) and actor method `getStamina` (deleted with api/hooks/entity/tactical/actor.nut). Rule: after purge, grep kept files for every removed symbol family: `::Const.*.HD_*`, non-prefixed actor methods (getStamina), HD_StaminaMin etc.
+- **Gate-strip verdicts can be partially executed.** attached_location.nut triage said "strip raidable/rebuild/loot" but the strip never happened — file shipped with the whole Feat + removed Const. Rule: after GATE file, verify the strip actually removed the balance parts, not just left the file.
+- **Cascade errors hide root cause.** 47x `Scale` (vanilla onAfterInit) + 1x `setBrush` were downstream of 47x getStamina init crash. Fix root; cascades resolve. Get per-error counts (65/47/47/1) to spot the root.
+- **Edit tool flakiness is real.** Failed silently on the JS file AND risk on others — always `git diff --stat` + re-grep removed refs after editing.
+- **Vanilla actor lacks getStamina** (only actor_properties.getStamina exists); Hardened defined it via API for the stamina rework. Any kept caller breaks without it.
