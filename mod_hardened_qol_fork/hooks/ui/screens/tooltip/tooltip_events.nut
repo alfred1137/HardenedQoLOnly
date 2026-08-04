@@ -591,7 +591,7 @@
 		if (entity == null || entity == ::MSU.getDummyPlayer()) return ret;
 
 		local baseValue = entity.getBaseProperties().getStamina();
-		local currentValue = entity.getStamina();
+		local currentValue = entity.getFatigueMax();
 		foreach (entry in ret)
 		{
 			if (entry.id == 3)

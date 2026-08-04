@@ -27,12 +27,6 @@
 		}
 	}
 
-	// Overwrite because we don't want the Vanilla way of calculating
-	q.getFatigueMax = @() function()
-	{
-		return this.getStamina();
-	}
-
 	// Vanilla Fix: We add a "roundToDec" into the calculation, because multiplications like 120 * 1.05 produce 125.999992, which is falsely floored to 15 then
 	q.getHitpointsMax = @() function()
 	{

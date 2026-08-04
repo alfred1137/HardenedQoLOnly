@@ -203,6 +203,9 @@
 	{
 		// Fix Reforged Projection: Reforged uses actor.getStamina as basis for projected attributes, but that function always includes Weight
 		// As a solution we briefly switcheroo how that function works by redirecting it into the getStamina from currentProperties
+		// Note: actor.getStamina only exists if a mod defines it (Hardened's stamina rework did). In this fork it does not, so we pass through.
+		if (!("getStamina" in this)) return __original();
+
 		local oldGetStamina = this.getStamina;
 		this.getStamina = function() { return this.getCurrentProperties().getStamina(); }
 
