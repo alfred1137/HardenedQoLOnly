@@ -110,5 +110,5 @@ Domains:
 
 ## Review / Lessons
 
-- [ ] Record review section here when done.
-- [ ] Update `tasks/lessons.md` with mistakes/patterns.
+- [x] Record review section here when done.
+- [x] Update `tasks/lessons.md` with mistakes/patterns.
