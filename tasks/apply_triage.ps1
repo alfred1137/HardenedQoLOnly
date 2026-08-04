@@ -92,8 +92,7 @@ Remove-DirRecursive "scripts/skills/racial" "DELETE: custom HD racials"
 Remove-DirRecursive "scripts/skills/injury" "DELETE: custom HD injury"
 Remove-DirRecursive "scripts/skills/items" "DELETE: custom HD item skill"
 Remove-DirExcept "scripts/skills/special" @(
-	"scripts/skills/special/hd_bag_item_silhouettes.nut",
-	"scripts/skills/special/hd_bag_item_manager.nut",
+"scripts/skills/special/hd_bag_item_silhouettes.nut",
 	"scripts/skills/special/hd_frenzy_eyes_manager.nut",
 	"scripts/skills/special/hd_dummy_morale_state.nut",
 	"scripts/skills/special/hd_dummy_morale_state_breaking.nut",

@@ -65,13 +65,6 @@
 		return __original();
 	}
 
-	q.onInit = @(__original) function()
-	{
-		__original();
-
-		this.getSkills().add(::new("scripts/skills/special/hd_bag_item_manager"));
-	}
-
 	q.onTurnEnd = @(__original) function()
 	{
 		__original();

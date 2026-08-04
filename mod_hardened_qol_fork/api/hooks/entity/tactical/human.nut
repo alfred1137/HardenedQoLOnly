@@ -34,6 +34,8 @@
 });
 
 ::Hardened.HooksMod.hookTree("scripts/entity/tactical/human", function(q) {
+	q.m.HD_BagSlotSpriteName <- "HD_BagSlotSprite_";	// Prefix for the bag item silhouette sprites added in onInit
+
 	q.onInit = @(__original) function()
 	{
 		__original();
