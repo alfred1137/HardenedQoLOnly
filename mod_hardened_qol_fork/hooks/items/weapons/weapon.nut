@@ -107,12 +107,12 @@
 		this.m.Condition = this.m.ConditionMax;		// We do this here so that it doesn't have to be done in the individual weapon scripts anymore
 	}
 
-	q.onEquip = @(__original) function( _item )
+	q.onEquip = @(__original) function()
 	{
 		if (!("IsLoaded" in this)) return __original();
 
 		local oldIsLoaded = this.m.IsLoaded;
-		if (_item.isWeaponType(::Const.Items.WeaponType.Crossbow) || _item.isWeaponType(::Const.Items.WeaponType.Firearm))
+		if (this.isWeaponType(::Const.Items.WeaponType.Crossbow) || this.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
 			// Setting this to true prevents Vanilla and any mod from adding an additional redundant reload_bolt skill to this actor
 			this.m.IsLoaded = true;

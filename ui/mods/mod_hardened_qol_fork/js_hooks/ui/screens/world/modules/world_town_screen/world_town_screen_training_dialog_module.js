@@ -2,7 +2,7 @@
 Hardened.Hooks.WorldTownScreenTrainingDialogModule_createDIV =
   WorldTownScreenTrainingDialogModule.prototype.createDIV;
 WorldTownScreenTrainingDialogModule.prototype.createDIV = function (
-  _parentDiv,
+  _parentDiv
 ) {
   // We switcheroo the jquery createList function as that is the simplest way to switch out the high vanilla delta with a smaller one
   var oldCreateList = $.fn.createList;
@@ -12,7 +12,7 @@ WorldTownScreenTrainingDialogModule.prototype.createDIV = function (
 
   Hardened.Hooks.WorldTownScreenTrainingDialogModule_createDIV.call(
     this,
-    _parentDiv,
+    _parentDiv
   );
 
   $.fn.createList = oldCreateList;
