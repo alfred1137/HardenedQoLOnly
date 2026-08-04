@@ -34,3 +34,11 @@ Session log of mistakes/patterns to avoid. Review at session start.
 - **brainstorming.txt was never tracked** (git ls-files empty) — deleting it is a no-op for git. Verify with git ls-files before expecting a D entry.
 - **gfx pngs are all tracked despite .gitignore `gfx/*.png`.** The rule only matches gfx/ root; all 66 files live in subdirs covered by `!gfx/*/.png`. Inert but harmless — user said keep.
 - **Docs-only changes don't need a rebuild** (documentation.txt is packaged text, brainstorming.txt wasn't packaged-visible to git anyway).
+
+## 2026-08-04 — Test-log fixes (user load test #1)
+
+- **Edit/Write tools silently failed on one JS file** (reported success, file unchanged; attr = Archive, not read-only). Bash Set-Content persisted. Rule: after ANY edit of packaged files, verify on-disk bytes (Get-Content or git diff), don't trust tool success.
+- **Upstream onEquip bug is real and the naive fix was wrong.** Hardened wrote `function()` but used `_item` (undefined; vanilla passes 0 args) → crash on crossbow/firearm equip. Fork's "fix" (adding `_item` param) doesn't help — nothing passes it, and it tripped 526 MSU wrap warnings. Correct: `function()` + use `this` (the weapon).
+- **MSU wrap warnings = signature mismatch signal.** "wrapping function X with more required parameters than before" = wrapper declares params vanilla doesn't pass. Fix signature to match, don't add params.
+- **JS trailing commas break BB's CEF** (`function ( _a, )` → SyntaxError, whole file fails to load). Scan shipped JS for `,\s*\)` and `,$` before next-line `)` before building.
+- **Log analysis:** game log is time/tag/text triplets; CSS line pollutes naive greps — exclude line 1 before searching. 791 warnings, 526 ours (all onEquip), rest MSU-own (optional-param, benign).
