@@ -50,3 +50,11 @@ Session log of mistakes/patterns to avoid. Review at session start.
 - **Cascade errors hide root cause.** 47x `Scale` (vanilla onAfterInit) + 1x `setBrush` were downstream of 47x getStamina init crash. Fix root; cascades resolve. Get per-error counts (65/47/47/1) to spot the root.
 - **Edit tool flakiness is real.** Failed silently on the JS file AND risk on others — always `git diff --stat` + re-grep removed refs after editing.
 - **Vanilla actor lacks getStamina** (only actor_properties.getStamina exists); Hardened defined it via API for the stamina rework. Any kept caller breaks without it.
+
+## 2026-08-04 — Campaign-load crash #2 (bag-slot infra)
+
+- **Kept feature can depend on a deleted balance property.** hd_bag_item_manager (kept) read `_properties.BagSlots`, a Hardened property defined in deleted config/character.nut (`BagSlots <- 2` = balance normalization 4->2). Manager threw onAfterUpdate -> property update aborted -> 47x Scale + 1x setBrush cascade. Rule: when a kept script reads a `_properties.X` or `::Const.*.X` that purge removed, decide KEEP-feature vs STRIP-feature; don't restore the balance property.
+- **Bag-slot normalization is balance, silhouettes are QoL.** Manager (clamps slots to 2) = balance -> deleted. hd_bag_item_silhouettes (visual display) = QoL -> kept. Split features along balance/QoL line.
+- **Cascade confirmed by error ordering.** Log showed strict `BAG SCALE BAG SCALE...` interleave = 1:1 cascade, not independent. Fix root, cascades vanish.
+- **Member defs deleted with their file.** `q.m.HD_BagSlotSpriteName` lived in deleted hooks/entity/tactical/human.nut; kept api human.nut used it. Restore the member def in the kept file, don't recreate the deleted file.
+- **git add -A sweeps test logs.** User drops HTML logs in tasks/; `git add -A` commits them. Use targeted `git add <paths>` for code commits.
