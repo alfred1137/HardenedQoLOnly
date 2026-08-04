@@ -2,4 +2,4 @@
 brushes/
 gfx/*.png
 !gfx/*/.png
-.bbbuilder/
+.bbbuilder/tasks/test-*-log.html
