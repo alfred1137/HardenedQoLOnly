@@ -1,6 +1,6 @@
 # build.ps1 - Package HardenedQoLOnly into a Battle Brothers submod zip.
 # Usage:  pwsh ./build.ps1
-# Output: mod_hardened_<version>.zip at repo root (gitignored via *.zip).
+# Output: mod_hardened_qol_fork_<version>.zip at repo root (gitignored via *.zip).
 #
 # Packages the same top-level dirs a release zip contains. Run from repo root.
 
@@ -11,7 +11,7 @@ Set-Location $Root
 
 # Directories that go into the mod zip (bootstrap + hooks + MSU + UI + assets).
 $PackDirs = @(
-	"mod_hardened",   # Squirrel hooks, MSU settings, api, reforged integration
+	"mod_hardened_qol_fork",   # Squirrel hooks, MSU settings, api, reforged integration
 	"scripts",        # bootstrap main_hardened.nut + mod-owned scripts
 	"ui",             # JS/CSS UI hooks
 	"gfx",            # textures/brushes
@@ -28,12 +28,12 @@ foreach ($d in $PackDirs) {
 }
 
 # Read version from the bootstrap.
-$bootstrap = Get-Content -Raw -LiteralPath "scripts/!mods_preload/main_hardened.nut"
+$bootstrap = Get-Content -Raw -LiteralPath "scripts/!mods_preload/main_hardened_qol_fork.nut"
 $m = [regex]::Match($bootstrap, 'Version\s*=\s*"([^"]+)"')
 if (-not $m.Success) { throw "Could not parse ::Hardened.Version from bootstrap" }
 $Version = $m.Groups[1].Value
 
-$ZipName = "mod_hardened_$Version.zip"
+$ZipName = "mod_hardened_qol_fork_$Version.zip"
 $ZipPath = Join-Path $Root $ZipName
 
 if (Test-Path -LiteralPath $ZipPath) {

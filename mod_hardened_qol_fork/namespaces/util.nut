@@ -1,0 +1,487 @@
+// Namespace for generic global utility functions
+::Hardened.util <- {};
+
+// If the offhand item worn by _entity is equal to any of the IDs inside _existingShieldIDArray, then it is unEquipped and instead _newShieldPath is added
+// If _existingShieldIDArray is not given/null, the ID check is ignored and the offhand is always replaced
+/// @param _entity the entity, whose equipment we are replacing
+/// @param _newShieldPath full script path to the new item that we want to equip to the entity. If null, then the old item is only unequipped
+/// @param _existingShieldIDArray array of IDs that we want to replace. If null, then we replace anything at the slot
+// Returns true if the offhand item was replaced, return false otherwise
+::Hardened.util.replaceOffhand <- function( _entity, _newShieldPath = null, _existingShieldIDArray = null )
+{
+	local shield = _entity.getOffhandItem();
+	if (shield != null)
+	{
+		if (_existingShieldIDArray == null)
+		{
+			_entity.getItems().unequip(shield);
+			if (_newShieldPath != null) _entity.getItems().equip(::new(_newShieldPath));
+			return true;
+		}
+		else
+		{
+			foreach (existingShieldID in _existingShieldIDArray)
+			{
+				if (shield.getID() == existingShieldID)
+				{
+					_entity.getItems().unequip(shield);
+					if (_newShieldPath != null) _entity.getItems().equip(::new(_newShieldPath));
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+// If the mainhand item worn by _entity is equal to any of the IDs inside _existingIDArray, then it is unEquipped and instead _newItemPath is added
+// If _existingIDArray is not given/null, the ID check is ignored and the mainhand is always replaced
+// Returns true if the offhand item was replaced, return false otherwise
+::Hardened.util.replaceMainhand <- function( _entity, _newItemPath, _existingIDArray = null )
+{
+	local mainHandItem = _entity.getMainhandItem();
+	if (mainHandItem != null)
+	{
+		if (_existingIDArray == null)
+		{
+			_entity.getItems().unequip(mainHandItem);
+			_entity.getItems().equip(::new(_newItemPath));
+			return true;
+		}
+		else
+		{
+			foreach (existingItemID in _existingIDArray)
+			{
+				if (mainHandItem.getID() == existingItemID)
+				{
+					_entity.getItems().unequip(mainHandItem);
+					_entity.getItems().equip(::new(_newItemPath));
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+// If there is a bag item on the character equal to any of the IDs inside _existingIDArray, then it is removed and _newItemPath is added to the first empty slot
+// This function will replaces all bag items found
+// Returns true if any bag item was replaced, return false otherwise
+::Hardened.util.replaceBagItem <- function( _entity, _newItemPath, _existingIDArray )
+{
+	local replacedSomething = false;
+
+	local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
+	foreach (item in items)
+	{
+		if (_existingIDArray.find(item.getID()) != null)
+		{
+			_entity.getItems().removeFromBag(item);
+			_entity.getItems().addToBag(::new(_newItemPath));
+			replacedSomething = true;
+		}
+	}
+
+	return replacedSomething;
+}
+
+// Share _experience equally among all brothers in the player roster, never giving any singular brother more than _maximumXPFractionPerBrother
+// @return experience given to every single brother
+// _excludedBrotherIDs - array of brother id's which are meant to be excluded from receiving XP
+::Hardened.util.shareExperience <- function( _experience, _maximumXPFractionPerBrother, _excludedBrotherIDs = [] )
+{
+	local roster = ::World.getPlayerRoster().getAll();
+	local brotherCount = roster.len() - _excludedBrotherIDs.len();
+	if (brotherCount == 0) return;
+
+	local maximumXP = _experience * _maximumXPFractionPerBrother;
+	local xpPerBrother = ::Math.min(maximumXP, _experience / brotherCount);
+
+	foreach (otherBro in roster)
+	{
+		if (_excludedBrotherIDs.find(otherBro.getID()) == null)		// Skip every brother that was meant to be excluded from the xp receiving
+		{
+			otherBro.addXP(xpPerBrother, false);	// This xp does not scale with other modifiers. It already scaled with them when it was first acquired
+			otherBro.updateLevel();
+		}
+	}
+
+	return xpPerBrother;
+}
+
+::Hardened.util.intToHex <- function( _unsignedInteger )
+{
+	local ret = format("%x", _unsignedInteger);
+	if (ret.len() == 1) ret = "0" + ret;
+	return ret;
+}
+
+// Check, whether _startTile and _targetTile are on the same axis
+// @return true, if they are on the same axis, or false otherwise
+::Hardened.util.isOnSameAxis <- function( _startTile, _targetTile )
+{
+	if (_startTile.X == _targetTile.X) return true;
+	if (_startTile.Y == _targetTile.Y) return true;
+	if (_startTile.X + _startTile.Y == _targetTile.X + _targetTile.Y) return true;
+	return false;
+}
+
+// Look for an empty tile, to knock the target back to
+// Knocking back someone over multiple times must have a natural path of empty, non-hill tiles in between
+// Note: This function employs recursion. With a high _knockBackDistance or many potential targets, it might require some performance power
+// @param _userTile the tile of the user
+// @param _targetTile the tile of the target
+// @param _knockBackDistance the distance, we want to knock the target back to
+// @param _originalTargetTile is a reference to the original _targetTile. It must be kept at null. Its important to make sure we push the enemy away from the origin each time
+// @return refence to the tile, that was found for the knocking back
+// @return null, if no tile was found
+::Hardened.util.findTileToKnockBackTo <- function( _userTile, _targetTile, _knockBackDistance = 1, _originalTargetTile = null )
+{
+	if (_knockBackDistance <= 0) return null;
+	if (_originalTargetTile == null) _originalTargetTile = _targetTile;
+
+	local distanceToTarget = _userTile.getDistanceTo(_targetTile);
+	local potentialTargets = [];
+	foreach (potentialTile in ::MSU.Tile.getNeighbors(_targetTile))
+	{
+		if (!potentialTile.IsEmpty) continue;	// We can't push enemies into, or over object
+		if (_userTile.getDistanceTo(potentialTile) <= distanceToTarget) continue;	// Knock Back destinations must further away than initial target
+
+		local levelDifference = potentialTile.Level - _targetTile.Level;
+		if (levelDifference > 1) continue;		// We can't knock back targets 2 levels upwards or through heights that are more than 2 levels upwards
+
+		// Knock Backs on the same axis always have priority. That's why we potentially return early and disregard the neighbor options
+		if (::Hardened.util.isOnSameAxis(_userTile, potentialTile))
+		{
+			if (_knockBackDistance == 1)
+			{
+				return potentialTile;
+			}
+			else
+			{
+				local ret = this.findTileToKnockBackTo(_userTile, potentialTile, _knockBackDistance - 1, _originalTargetTile);
+				if (ret != null)
+				{
+					return ret;
+				}
+			}
+		}
+
+		potentialTargets.push(potentialTile);
+	}
+
+	::MSU.Array.shuffle(potentialTargets);
+	foreach (target in potentialTargets)
+	{
+		if (_knockBackDistance == 1)
+		{
+			return target;
+		}
+		else
+		{
+			local ret = this.findTileToKnockBackTo(_userTile, target, _knockBackDistance - 1, _originalTargetTile);
+			if (ret != null) return ret;
+		}
+	}
+
+	// We checked all our 2-3 options, but none of them were valid
+	if (_targetTile.isSameTileAs(_originalTargetTile))
+	{
+		return null;	// We couldn't push _targetTile away even a single time
+	}
+	else
+	{
+		return _targetTile;	// We couldn't push _targetTile any further, so _targetTile as the destination has to do
+	}
+}
+
+// Look for a ranged weapon in the bag and if found, swap it with the equipped melee weapon
+// This can be used before the fight to make sure the enemy does not waste quickhands on their first turn to swap to the ranged weapon
+// @param _actor instance of actor whose weapons we want to swap
+// @return true if a swap happened or false, if not
+::Hardened.util.preSwapRangedWeapon <- function( _actor )
+{
+	local mainhandItem = _actor.getMainhandItem();
+	if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) return false;	// We already have a ranged weapon equipped
+
+	local rangedBagItem = null;
+	foreach (bagItem in _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
+	{
+		if (bagItem.isItemType(::Const.Items.ItemType.RangedWeapon))
+		{
+			rangedBagItem = bagItem;
+			break;
+		}
+	}
+	if (rangedBagItem == null) return false;	// There is no ranged weapon to swap to
+
+	if (mainhandItem == null)
+	{
+		_actor.getItems().removeFromBag(rangedBagItem);
+		_actor.getItems().equip(rangedBagItem);
+	}
+	else
+	{
+		_actor.getItems().swap(mainhandItem, rangedBagItem);
+	}
+
+	return true;
+}
+
+// Return the corpse name of _corpse in a color, depending on whether it was a player corpse or a non-player one
+// This function works similar to
+::Hardened.util.getColorizedCorpseName <- function( _corpse )
+{
+	local color = _corpse.IsPlayer ? "#1e468f" : "#8f1e1e";		// Same color scheme as the vanilla ::Const.UI.getColorizedEntityName function
+
+	return ::MSU.Text.color(color, _corpse.CorpseName);
+}
+
+// Make _sourceHelmet appear as if it was actually _targetHelmetScript
+// Needs to be called during create of _sourceHelmet
+::Hardened.util.impersonateHelmet <- function( _sourceHelmet, _targetHelmetScript )
+{
+	local newHelmet = ::new(_targetHelmetScript);
+
+	// Adjust stats
+	_sourceHelmet.m.Value = newHelmet.m.Value;
+	_sourceHelmet.m.ConditionMax = newHelmet.m.ConditionMax;
+	_sourceHelmet.m.StaminaModifier = newHelmet.m.StaminaModifier;
+	_sourceHelmet.m.Vision = newHelmet.m.Vision;
+
+	// Adjust visual appearance
+	_sourceHelmet.m.Name = newHelmet.m.Name;
+	_sourceHelmet.m.Description = newHelmet.m.Description;
+	_sourceHelmet.m.Variant = newHelmet.m.Variant;
+	_sourceHelmet.m.VariantString = newHelmet.m.VariantString;
+	_sourceHelmet.updateVariant();
+
+	// Overwrite Functions, so that changing color behaves as if this was the new helmet
+	if ("setPlainVariant" in newHelmet) _sourceHelmet.setPlainVariant <- newHelmet.setPlainVariant;
+	if ("onPaint" in newHelmet) _sourceHelmet.onPaint <- newHelmet.onPaint;
+}
+
+// Find a PlayerBanner that is used by neither the player nor another world party and return it
+::Hardened.util.findUnusedMercenaryBanner <- function()
+{
+	local possibleBanners = clone ::Const.PlayerBanners;
+
+	// Remove PlayerBanner
+	::MSU.Array.removeByValue(possibleBanners, ::World.Assets.getBanner());
+
+	foreach (worldParty in ::Hardened.util.getAllWorldEntities())
+	{
+		::MSU.Array.removeByValue(possibleBanners, "banner_" + worldParty.getBannerID());
+	}
+
+	foreach (location in ::World.EntityManager.getLocations())
+	{
+		::MSU.Array.removeByValue(possibleBanners, "banner_" + location.getBannerID());
+	}
+
+	if (possibleBanners.len() == 0)
+	{
+		::logWarning("Hardened::findUnusedPlayerBanner: No unused mercenary banner was found. PlayerBanner is returned instead.");
+		return ::World.Assets.getBanner();
+	}
+
+	return ::MSU.Array.rand(possibleBanners);
+}
+
+// Generate and return a random name from ::Const.Strings.MercenaryCompanyNames, which is not used by any world party
+// Replace %randomname% with a random name from ::Const.Strings.CharacterNames
+::Hardened.util.findUnusedMercenaryName <- function()
+{
+	local unusedNames = [];
+
+	local randName = ::MSU.Array.rand(::Const.Strings.CharacterNames);
+	foreach (mercName in ::Const.Strings.MercenaryCompanyNames)
+	{
+		mercName = ::MSU.String.replace(mercName, "%randomname%", randName);
+		if (mercName == ::World.Assets.getName()) continue;
+
+		local skipName = false;
+		foreach (worldParty in ::Hardened.util.getAllWorldEntities())
+		{
+			if (mercName == worldParty.getName())
+			{
+				skipName = true;
+				break;
+			}
+		}
+		if (skipName) continue;
+
+		unusedNames.push(mercName);
+	}
+
+	return ::MSU.Array.rand(unusedNames);
+}
+
+::Hardened.util.getAllWorldEntities <- function()
+{
+	return ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 9000000);
+}
+
+/// Remove spawnables from _spawnableIdArray from _party, until there are _maximumAmount or less spawnables from _spawnableIdArray left there
+/// This can be used to make sure, not too many special units or blocks are present in a party at once
+::Hardened.util.enforceFlexSpawnable <- function( _party, _spawnableIdArray, _maximumAmount )
+{
+	if (::MSU.isNull(_party)) return;
+
+	local flexObjects = [];
+	foreach (spawnableID in _spawnableIdArray)
+	{
+		local obj = _party.getSpawnable(spawnableID);
+		if (obj != null) flexObjects.push(obj);
+	}
+
+	while (flexObjects.len() > _maximumAmount)
+	{
+		local removedFlexObject = ::MSU.Array.rand(flexObjects);
+		_party.removeSpawnable(removedFlexObject.getID());
+		::MSU.Array.removeByValue(flexObjects, removedFlexObject);
+	}
+}
+
+/// Calculate and return the estimated chance to dodge all attacks, when leaving zone of control
+/// @return 100, if not in zone of control
+/// Note that the return value is a float so you need to ::Math.round it if you wanna display it anywhere
+::Hardened.util.getChancetoDodgeLeavingTile <- function( _actor )
+{
+	local expectedChanceToDodge = 100;
+	local tile = _actor.getTile();
+	foreach (nextTile in ::MSU.Tile.getNeighbors(tile))
+	{
+		if (!nextTile.IsOccupiedByActor) continue;
+		if (!nextTile.getEntity().onMovementInZoneOfControl(_actor, false)) continue;		// The entity in that tile does not exert zone of control onto us
+
+		local aooSkill = nextTile.getEntity().getSkills().getAttackOfOpportunity();
+		if (!aooSkill.onVerifyTarget(nextTile, tile)) continue;	// The aooSkill found can actually hit us (this will cover cases of tile height difference being too large)
+
+		local chanceToBeHit = aooSkill.getHitchance(_actor);
+		expectedChanceToDodge *= (100.0 - chanceToBeHit) / 100.0;
+	}
+
+	return expectedChanceToDodge;
+}
+
+::Hardened.util.willBeAttackedLeavingZoneOfControl <- function( _actor )
+{
+	local tile = _actor.getTile();
+	if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "smoke") return false;
+
+	foreach (nextTile in ::MSU.Tile.getNeighbors(tile))
+	{
+		if (!nextTile.IsOccupiedByActor) continue;
+		if (!nextTile.getEntity().onMovementInZoneOfControl(_actor, false)) continue;		// The entity in that tile does not exert zone of control onto us
+
+		local aooSkill = nextTile.getEntity().getSkills().getAttackOfOpportunity();
+		if (!aooSkill.onVerifyTarget(nextTile, tile)) continue;	// The aooSkill found can actually hit us (this will cover cases of tile height difference being too large)
+
+		return true;
+	}
+
+	return false;
+}
+
+/// Remove one, or all bullet points from _tooltip, for which _filter( _entry ) returns true
+/// @param _function function, that takes exactly one argument, the bullet point table, currently viewed
+/// @return true, if at least one bullet point was found and removed
+::Hardened.util.HD_deleteBulletPoint <- function( _tooltip, _filter, _all = true )
+{
+	if (typeof _filter != "function")
+	{
+		::logError("Hardened: _filter must be of type function");
+		::MSU.Log.printStackTrace();
+		return false;
+	}
+
+	local removedEntry = false;
+	for (local i = _tooltip.len() - 1; i >= 0; --i)
+	{
+		local entry = _tooltip[i];
+		// Not every tooltip line has an icon defined, so we temporarily add one, to make the checks on the caller side easier to do
+		if (!("icon" in entry)) entry.icon <- "HD_TempDummyIcon";
+		if (_filter(entry))
+		{
+			_tooltip.remove(i);
+			if(!_all) return true;
+			removedEntry = true;
+		}
+		if (entry.icon == "HD_TempDummyIcon") delete entry.icon;
+	}
+	return removedEntry;
+}
+
+/// Return _numberOfTiles tiles, starting with _targetTile, and going _clockWise around our _pivot
+/// This is useful when implementing round-swing like skills with a non-standard amount of total tiles hit
+/// @param _pivot center of the circle
+/// @param _targetTile first tile and start of the half-circle
+/// @param _numberOfTiles total amount of tiles we are looking to be returned
+/// @param _clockWise direction in which we look for tiles
+/// @return array with all tiles that we found, including _targetTile as the first element
+::Hardened.util.getAllTilesHalfMoon <- function( _pivot, _targetTile, _numberOfTiles, _clockWise = false )
+{
+	if (_numberOfTiles <= 0) return [];
+
+	local circleTiles = [];
+	local distance = _pivot.getDistanceTo(_targetTile);
+	::Tactical.queryTilesInRange(_pivot, distance, distance, false, [], function( _tile, _result ) { _result.push(_tile) }, circleTiles);
+
+	local startingIndex = null;
+	foreach (index, tile in circleTiles)
+	{
+		if (tile.ID != _targetTile.ID) continue;
+
+		startingIndex = index;
+		break;
+	}
+	if (startingIndex == null) return [_targetTile];
+
+	local ret = [];
+	local remainingTiles = _numberOfTiles;
+	for (local index = startingIndex; remainingTiles > 0; _clockWise ? ++index : --index)
+	{
+		if (index < 0) index = circleTiles.len() - 1;
+		if (index >= circleTiles.len()) index = 0;
+
+		ret.push(circleTiles[index]);
+
+		--remainingTiles;
+	}
+
+	return ret;
+}
+
+/// Save an arbitruary piece of data persistently across savegames
+/// Using the same _name will overwrite previous data
+/// Each call will cause a write to harddrive action. So this function should be called sparingly
+/// @param _name must be a unique key
+/// @param _data any type of data
+::Hardened.util.savePersistentData <- function( _name, _data )
+{
+	::Hardened.Private.PersistentData[_name] <- _data;
+	::Hardened.Mod.PersistentData.createFile("Data", ::Hardened.Private.PersistentData);
+}
+
+::Hardened.util.hasPersistentData <- function( _name )
+{
+	return _name in ::Hardened.Private.PersistentData;
+}
+
+::Hardened.util.getPersistentData <- function( _name )
+{
+	return ::Hardened.Private.PersistentData[_name];
+}
+
+::Hardened.util.addNewDamageType <- function( _id, _name, _bodyInjuries = [], _headInjuries = [] )
+{
+	local newType = ::Const.Damage.DamageType.len();
+
+	::Const.Damage.DamageType[_id] <- newType;
+	::Const.Damage.DamageTypeName.push(_name);
+	::Const.Damage.DamageTypeInjuries.push({
+			Head = _bodyInjuries,
+			Body = _headInjuries,
+	});
+}

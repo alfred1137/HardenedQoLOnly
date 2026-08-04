@@ -1,0 +1,41 @@
+# Requirements
+
+- Reforged (>= 0.9.0)
+- MSU
+- Dynamic Spawns (>= 0.5.0)
+
+# Documentation for Codebase
+
+## API:
+- Backend features that don't change anything by themselves
+- Re-writes of vanilla features/properties. This might sometimes slightly change how they behave
+- API stuff will usually not touch any leaf-scripts
+## Non-API:
+- Everything else
+
+# Scope of this fork
+
+This is a **QoL-only fork** of Hardened. All of Hardened's balance and mechanic
+overhauls (perk reworks, item/unit/party rebalances, economy/price changes,
+stamina/initiative/weight rework, world/contract/faction difficulty scaling,
+new perks, reach overhaul) were removed. The game balance equals Reforged.
+
+Only QoL improvements and bug fixes are kept. See `README.md` for the list of
+retained features. The full upstream changelog lives at
+https://github.com/Darxo/Hardened — the entries there mostly describe changes
+that do NOT exist in this fork.
+
+# Known Issues
+
+- Hitchances of Lunge-Like attacks can be inaccurate, as the act of moving next to your target can enable/disable various effects
+- Removing or adding the mod on an existing save is generally safe, because no balance data is baked into the save; verify on a test save first
+
+# Compatibility
+
+- Safe to remove from- and add to any existing savegames (verify on a test save)
+- Coexists with upstream Hardened (distinct mod ID `mod_hardened_qol_fork`)
+
+# Changelog
+
+See `README.md` and https://github.com/Darxo/Hardened (upstream). This fork
+tracks upstream release 1.22.0 minus all balance/mechanic overhauls.

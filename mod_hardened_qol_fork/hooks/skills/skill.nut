@@ -1,0 +1,399 @@
+::Hardened.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.use = @(__original) function( _targetTile, _forFree = false )
+	{
+		if (!this.HD_isPrintingUseLog(_targetTile, _forFree)) return __original(_targetTile, _forFree);
+
+		local actor = this.getContainer().getActor();
+		// Feat: We display a combat log, whenever anyone uses a Non-Attack with at least a certain AP cost. Vanilla only prints combat use-logs for Attacks
+
+		local useText = ::Const.UI.getColorizedEntityName(actor) + " uses " + this.getName();
+		if (_targetTile.IsOccupiedByActor && !_targetTile.isSameTileAs(actor.getTile()))
+		{
+			useText += " targeting " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity());
+		}
+		::Tactical.EventLog.log(useText);
+
+		// Now we snipe the very next log, if it was a hard-coded "uses"-log. Vanilla has done this for a few skills
+		local skillName = this.getName();
+		local mockObject = ::Hardened.mockFunction(::Tactical.EventLog, "log", function( _text ) {
+			if (_text.find(" uses ") != null && _text.find(skillName) != null)
+			{
+				return { done = true, value = null };
+			}
+			return { done = true };		// In any case we only ever look at the next log
+		});
+
+		local ret = __original(_targetTile, _forFree);
+
+		mockObject.cleanup();
+
+		return ret;
+	}
+
+	q.getHitFactors = @(__original) function( _targetTile )
+	{
+		local ret = __original(_targetTile);
+		if (!_targetTile.IsOccupiedByActor) return ret;
+
+		local target = _targetTile.getEntity();
+		local properties = this.getContainer().buildPropertiesForUse(this, target);
+
+		// Remove Entries
+		{
+			local phrasesToRemove = [];
+			if (this.isAttack())
+			{
+				// Feat: remove headshot chance added by reforged, as we replace it later
+				phrasesToRemove.extend([
+					"chance to hit head",
+				]);
+			}
+			else
+			{
+				// Feat: remove attack-related hitfactor tooltips, when aiming with non-attacks
+				phrasesToRemove.extend([
+					"Distance of",
+					"Height Advantage",
+					"Height Disadvantage",
+					"Surrounded",
+					"Too close",
+				]);
+			}
+
+			for (local index = (ret.len() - 1); index >= 0; index--)
+			{
+				local entry = ret[index];
+				foreach (phrase in phrasesToRemove)
+				{
+					if (entry.text.find(phrase) == null) continue;
+
+					ret.remove(index);
+					break;
+				}
+			}
+		}
+
+		// New Entries
+		{
+			if (this.isAttack())
+			{
+				// Feat: We add a hyperlinked one-liner hitfactor about headshot chance, that is accurately calculated
+				local headshotChance = properties.getHeadHitchance(::Const.BodyPart.Head, this.getContainer().getActor(), this, target);
+				ret.insert(0, {
+					icon = "ui/icons/chance_to_hit_head.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(headshotChance, {AddPercent = true}) + " [Headshot chance|Concept.ChanceToHitHead]"),
+				});
+			}
+		}
+
+		return ret;
+	}
+
+// Modular Vanilla Functions
+	 q.MV_getDiversionTarget = @(__original) { function MV_getDiversionTarget( _user, _targetEntity, _propertiesForUse = null )
+	 {
+		if (!::Hardened.Mod.ModSettings.getSetting("ShowCoverCombatLogs").getValue())
+		{
+			return __original(_user, _targetEntity, _propertiesForUse);
+		}
+
+		local divertedTarget
+		local roll = 0;
+		local chance = 0;
+		local aboutToRoll = false;
+
+		local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(_user.getTile(), _targetEntity.getTile(), _user.getFaction());
+		if (blockedTiles.len() == 0)	// Target is not in cover
+		{
+			return __original(_user, _targetEntity, _propertiesForUse);
+		}
+
+		local aboutToRollObject;
+		aboutToRollObject = ::Hardened.mockFunction(::Const.Tactical.Common, "getBlockedTiles", function( _userTile, _targetTile, _userFaction ) {
+			local ret = aboutToRollObject.original(_userTile, _targetTile, _userFaction);
+			aboutToRoll = true;
+			return { done = true, value = ret };
+		});
+
+		local rollMockObject;
+		rollMockObject = ::Hardened.mockFunction(::Math, "rand", function(...) {
+			if (aboutToRoll && vargv.len() == 2 && vargv[0] == 1 && vargv[1] == 100)
+			{
+				roll = rollMockObject.original(vargv[0], vargv[1]);
+				return { done = true, value = roll };
+			}
+		});
+
+		local chanceMockObject;
+		chanceMockObject = ::Hardened.mockFunction(::Math, "ceil", function( _value ) {
+			if (aboutToRoll)
+			{
+				chance = chanceMockObject.original(_value);
+				return { done = true, value = chance };
+			}
+		});
+
+		local ret = __original(_user, _targetEntity, _propertiesForUse);
+		aboutToRollObject.cleanup();
+		rollMockObject.cleanup();
+		chanceMockObject.cleanup();
+
+		// roll and chance are reversed in the vanilla check, so we invert them to be in line with regular hitchance logs
+		roll = 100 - roll;
+		chance = 100 - chance;
+
+		// Now we build a log message to describe how the cover influenced our hitchance and target
+		local logMessage = ::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " uses " + this.getName() + " and ";
+		if (ret == null)	// Cover is avoided and main target will be hit
+		{
+			logMessage += ::MSU.Text.colorPositive("bypasses") + " the cover (Chance: " + chance + ", Rolled: " + roll + ")";
+		}
+		else	// The cover (object in ret) is hit instead
+		{
+			local newTarget = ::MSU.isKindOf(ret, "actor") ? ::Const.UI.getColorizedEntityName(ret) : ::MSU.Text.colorNeutral(ret.getName());
+			logMessage += ::MSU.Text.colorNegative("fails to bypass") + " the cover (Chance: " + chance + ", Rolled: " + roll + "). The shot diverts to " + newTarget + " instead of " + ::Const.UI.getColorizedEntityName(_targetEntity);
+		}
+		::Tactical.EventLog.log(logMessage);
+
+		return ret;
+	 }}.MV_getDiversionTarget;
+
+// MSU Functions
+	q.verifyTargetAndRange = @(__original) function( _targetTile, _userTile = null )
+	{
+		// Feat: make MSUs verify function also respect tile visibility, just like the vanilla `isUsableOn` function does
+		// 	but only do so, if this skills owner is the active entity. Otherwise it's fine to ignore that condition as it would be incorrect
+		if (this.m.IsVisibleTileNeeded && this.getContainer().getActor().isActiveEntity() && !_targetTile.IsVisibleForEntity) return false;
+
+		return __original(_targetTile, _userTile);
+	}
+
+// New Functions
+	// Call several functions to make sure that other entities/factions know about the action this skill just did, if they see the action
+	// Important: this.getContainer().getActor() must be placed on a tile, so do make sure that is the case before caling this function
+	q.revealUser <- function( _targetedTile )
+	{
+		local user = this.getContainer().getActor();
+
+		if (_targetedTile.IsVisibleForPlayer && !user.getTile().IsVisibleForPlayer)
+		{
+			if (!user.m.HD_IsDiscovered) user.setDiscovered(true);	// If the user was not discovered before by the player, they will be discovered now
+			// We always reveal the user-tile, when it's targeting a tile already visible to the player, allowing the player to see the entity on top of it
+			user.getTile().addVisibilityForFaction(::Const.Faction.Player);
+		}
+
+		if (!_targetedTile.IsOccupiedByActor) return;
+
+		local target = _targetedTile.getEntity();
+		if (target.getAttackers().find(user.getID()) == null)
+		{
+			target.getAttackers().push(user.getID());
+		}
+
+		if (!target.isPlayerControlled())
+		{
+			user.getTile().addVisibilityForFaction(target.getFaction());
+			target.onActorSighted(user);
+
+			foreach (targetAlly in ::Tactical.Entities.getInstancesOfFaction(target.getFaction()))
+			{
+				if (targetAlly.getID() != target.getID() && targetAlly.isAlive())
+				{
+					targetAlly.onActorSighted(user);
+					// Maybe also add user to getAttackers of any ally?
+				}
+			}
+		}
+	}
+
+	// Generate an array of tags which describe this skill
+	q.HD_getSkillTags <- function()
+	{
+		local itemTags = "";
+		if (this.isAttack())
+		{
+			itemTags += "Attack, ";
+			if (this.isRanged())
+			{
+				itemTags += "Ranged, ";
+			}
+			else
+			{
+				itemTags += "Melee, ";
+			}
+		}
+		else itemTags += "Non-Attack, ";
+
+		if (this.isAOE()) itemTags += "AoE, ";
+
+		local item = this.getItem();
+		if (!::MSU.isNull(item))
+		{
+			if (item.isItemType(::Const.Items.ItemType.Weapon))
+			{
+				itemTags += "Weapon (";
+				local invisibleBreakTag = "[wbr][/wbr]";
+
+				foreach (weaponType in item.HD_getWeaponTypesAsArray())
+				{
+					itemTags += ::Const.Items.getWeaponTypeName(weaponType) + "/" + invisibleBreakTag;
+				}
+				itemTags = itemTags.slice(0, -invisibleBreakTag.len());
+				itemTags += "), ";
+			}
+
+			if (item.isItemType(::Const.Items.ItemType.Shield)) itemTags += "Shield, ";
+			if (item.isItemType(::Const.Items.ItemType.Tool)) itemTags += "Tool, ";
+			if (item.isItemType(::Const.Items.ItemType.OneHanded)) itemTags += "One-Handed, ";
+			if (item.isItemType(::Const.Items.ItemType.TwoHanded)) itemTags += "Two-Handed, ";
+		}
+
+		if (this.m.DamageType.len() != 0 && !this.m.DamageType.contains(::Const.Damage.DamageType.None))
+		{
+			foreach (d in this.m.DamageType.toArray())
+			{
+				local probability = ::Math.round(this.m.DamageType.getProbability(d) * 100);
+				if (probability < 100)
+				{
+					itemTags += probability + "% ";
+				}
+
+				itemTags += ::Const.Damage.getDamageTypeName(d) + " Damage, ";
+			}
+		}
+
+		if (itemTags != "") itemTags = itemTags.slice(0, -2);
+
+		return ::MSU.Text.color("#1e468f", "Tags: ") + itemTags;
+	}
+
+	q.HD_isPrintingUseLog <- function( _targetTile, _forFree )
+	{
+		if (_forFree) return false;
+		if (this.isAttack()) return false;	// Attacks are already covered with vanilla combat logs
+
+		local actor = this.getContainer().getActor();
+		if (!_targetTile.IsVisibleForPlayer && actor.isHiddenToPlayer()) return false;
+
+		if (this.getActionPointCost() < ::Hardened.Mod.ModSettings.getSetting("CombatLogForNonAttackUse").getValue()) return false;
+
+		return true;
+	}
+});
+
+::Hardened.HooksMod.hookTree("scripts/skills/skill", function(q) {
+	if (q.contains("create"))	// The base skill class does not contain a create function
+	{
+		q.create = @(__original) function()
+		{
+			__original();
+			this.m.IsAudibleWhenHidden = false;		// In Hardened you will never hear skills if the user is hidden to you
+		}
+	}
+
+	// Fix: display the actual minimum armor penetration (ignoring remaining armor reduction) as the minimum value for weapon skills instead of hard-coded 0
+	// Some skills do some custom calculation and show slightly different tooltip value (e.g. Split Man) and need to be handled
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		if (!this.getContainer().getActor().isPlayerControlled())
+		{
+			// Feat: hide tooltip about remaining ammo for NPCs, as they use infinite ammo anyways
+			::Hardened.util.HD_deleteBulletPoint(ret, function(_entry) {
+				return _entry.text.find("[/color] bolts left") != null;
+			});
+			::Hardened.util.HD_deleteBulletPoint(ret, function(_entry) {
+				return _entry.text.find("[/color] arrows left") != null;
+			});
+			::Hardened.util.HD_deleteBulletPoint(ret, function(_entry) {
+				return _entry.text.find("[/color] shots left") != null;
+			});
+		}
+
+		local hasRangeTooltip = false;
+		foreach (entry in ret)
+		{
+			if (entry.id == 4 && entry.type == "text" && entry.icon == "ui/icons/regular_damage.png")
+			{
+				local p = this.getContainer().buildPropertiesForUse(this, null);
+				local damage_regular_min = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
+				local damage_direct_min = ::Math.floor(damage_regular_min * ::Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd)));
+				entry.text = ::MSU.String.replace(entry.text, "of which [color=" + ::Const.UI.Color.DamageValue + "]0[/color]", "of which " + ::MSU.Text.colorDamage(damage_direct_min));
+			}
+			else if (!hasRangeTooltip && "icon" in entry && entry.icon == "ui/icons/vision.png" && entry.text.find("Has a range of ") != null)
+			{
+				hasRangeTooltip = true;
+				entry.text = this.HD_generateRangeTooltipString();
+			}
+		}
+
+		if (!hasRangeTooltip && this.isTargeted())
+		{
+			ret.push({
+				id = 15,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = this.HD_generateRangeTooltipString(),
+			});
+		}
+
+		return ret;
+	}
+
+	q.onUse = @(__original) function( _user, _targetTile )
+	{
+		// We make sure everyone who needs to know, now knows about the action we just did onto _targetTile, no matter what kind of skill we used
+		this.revealUser(_targetTile);
+
+		return __original(_user, _targetTile);
+	}
+
+	// We need to do hookTree, because some skills (mostly vanilla) overwrite the getDescription function to deliver dynamic descriptions
+	q.getDescription = @(__original) function()
+	{
+		// Feat: Active Skills may now display a selection of skill tags, if the respective setting has been turned on
+		if (this.isActive() && ::Hardened.Mod.ModSettings.getSetting("DisplaySkillTags").getValue())
+		{
+			// We switcheroo ExpandedSkillTooltips to false, so that MSU does not add their damage types, because we add those now within our tag system
+			local oldExpandedSkillTooltipsSetting = ::MSU.Mod.ModSettings.getSetting("ExpandedSkillTooltips").getValue();
+			::MSU.Mod.ModSettings.getSetting("ExpandedSkillTooltips").Value = false;
+			local ret = this.HD_getSkillTags() + "\n\n" + __original();
+			::MSU.Mod.ModSettings.getSetting("ExpandedSkillTooltips").Value = oldExpandedSkillTooltipsSetting;
+
+			return ret
+		}
+		else
+		{
+			return __original();
+		}
+	}
+
+	// Feat: replace every occurence of "Max Fatigue" or "Maximum Fatigue" in any skill tooltip into "Stamina"
+	// Better for performance would be going into each individual effect replacing the term there
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		if (ret != null)
+		{
+			foreach (entry in ret)
+			{
+				if (!("text" in entry)) continue;
+				entry.text = ::MSU.String.replace(entry.text, "Max Fatigue", ::Reforged.Mod.Tooltips.parseString("[Stamina|Concept.MaximumFatigue]"), true);
+				entry.text = ::MSU.String.replace(entry.text, " Maximum Fatigue", ::Reforged.Mod.Tooltips.parseString(" [Stamina|Concept.MaximumFatigue]"), true);
+				entry.text = ::MSU.String.replace(entry.text, "Maximum Fatigue", "Stamina", true);	// This covers nested tooltips from Reforged
+			}
+		}
+
+		return ret;
+	}
+
+// Hardened Functions
+	// Overwrite, because we use our new centralized function and support the HD_KnockBackDistance member
+	// Vanilla implements this for various skills. In order to overwrite those implementations, we require hookTree
+	q.findTileToKnockBackTo = @() function( _userTile, _targetTile )
+	{
+		return ::Hardened.util.findTileToKnockBackTo(_userTile, _targetTile, this.m.HD_KnockBackDistance);
+	}
+});

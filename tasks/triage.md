@@ -252,10 +252,10 @@ Keep: `getTooltip`, `onMissed`, `onDamageReceived`, `onDiscovered`, `onFactionCh
 * namespaces/flagged_perks.nut → DELETE — custom-perk serialization (only feeds discarded perks)
 * msu/msu_settings.nut → KEEP — all settings QoL; no balance-gated settings found
 * msu/vanilla_settings.nut, msu/text.nut, msu/tooltips.nut, msu/tile.nut, msu/colorize.nut → all KEEP
-* scripts/mods/mod_hardened/global.nut → GATE — STRIP: ContractScaling*, WorldScaling*, negotiation tweaks, FactionDifficulty/FactionExperience, Dynamic-Spawns scaling, getWorldDifficultyMult/getWorldContractMult, addTemporaryEntity/addEntityFallback/switchWorldTroops*, MinimumVision, WeaponSpecFatigueMult, ActionPointChangeOnRally. KEEP: LabelBackgroundAlpha.
-* scripts/mods/mod_hardened/const.nut → GATE — STRIP: SettlementsSpaceModifier, ResourceTierMult/ExperienceTierMult. KEEP: getAmmoType/AmmoType (only if ammo QoL kept).
-* scripts/mods/mod_hardened/ai/world/bounty_hunter_manager.nut → DELETE
-* scripts/mods/mod_hardened/perk_groups/** → DELETE (pg_hd_*, pg_special_hd_*)
+* scripts/mods/mod_hardened_qol_fork/global.nut → GATE — STRIP: ContractScaling*, WorldScaling*, negotiation tweaks, FactionDifficulty/FactionExperience, Dynamic-Spawns scaling, getWorldDifficultyMult/getWorldContractMult, addTemporaryEntity/addEntityFallback/switchWorldTroops*, MinimumVision, WeaponSpecFatigueMult, ActionPointChangeOnRally. KEEP: LabelBackgroundAlpha.
+* scripts/mods/mod_hardened_qol_fork/const.nut → GATE — STRIP: SettlementsSpaceModifier, ResourceTierMult/ExperienceTierMult. KEEP: getAmmoType/AmmoType (only if ammo QoL kept).
+* scripts/mods/mod_hardened_qol_fork/ai/world/bounty_hunter_manager.nut → DELETE
+* scripts/mods/mod_hardened_qol_fork/perk_groups/** → DELETE (pg_hd_*, pg_special_hd_*)
 
 ## scripts/ (Hardened's own content)
 

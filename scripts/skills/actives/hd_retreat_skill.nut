@@ -73,4 +73,3 @@ this.hd_retreat_skill <- this.inherit("scripts/skills/skill", {
 		return false;
 	}
 });
-
