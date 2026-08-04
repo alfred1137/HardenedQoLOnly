@@ -5,7 +5,7 @@
 Fork of **Hardened** (a submod for the Battle Brothers overhaul mod **Reforged**). This codespace is now a **QoL-only fork**: Reforged perk/mechanic overhauls and Hardened's world/contract/faction scaling subsystem are removed; QoL improvements and bug fixes are retained. Identity: **`mod_hardened_qol_fork`** (distinct ID/folder from upstream so both can coexist in a Mods folder).
 
 - Working branch: `develop` (most commits land here).
-- Upstream reference: `https://github.com/Darxo/Hardened`; this fork tracks its `develop` (upstream release `1.22.0`).
+- Upstream reference: `https://github.com/Darxo/Hardened`; this fork tracks its `develop` (base upstream release `1.22.0`, incorporates upstream `1.22.1` null-guard fixes).
 - Code is **Squirrel (.nut)** for game hooks + **JavaScript** for UI hooks.
 - Transformation state/triage: `tasks/triage.md`, `tasks/apply_triage.ps1`, `tasks/todo.md`, `tasks/lessons.md`.
 

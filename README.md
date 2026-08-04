@@ -7,8 +7,19 @@ This fork strips Hardened's balance and mechanic overhauls — the Reforged perk
 ## Identity
 
 - Mod ID: **`mod_hardened_qol_fork`** (distinct from upstream `mod_hardened`, so both can be installed side by side)
-- Tracks upstream Hardened `develop` (release `1.22.0`)
+- Tracks upstream Hardened `develop` (base release `1.22.0`; incorporates upstream `1.22.1` bug fixes)
 - Requires: **MSU**, **Reforged >= 0.9.0**, **Dynamic Spawns >= 0.5.0**
+
+## Attribution & Support
+
+This fork builds on the success of [Hardened](https://github.com/Darxo/Hardened) and upstream's
+continuing maintenance. Credit for the underlying ideas and bug fixes belongs to the upstream
+author (Darxo); this fork repackages their QoL and bug-fix work without the balance/mechanic
+overhauls. We incorporated upstream fixes through release `1.22.1`.
+
+This fork is provided **as-is**: we make **no commitment** to maintaining it. Upstream may move on,
+and this fork may fall behind, diverge, or be abandoned without notice. Install and use at your
+own discretion.
 
 ## What was removed
 
