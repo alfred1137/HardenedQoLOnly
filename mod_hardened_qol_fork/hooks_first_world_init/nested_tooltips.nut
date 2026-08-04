@@ -1,7 +1,10 @@
 // Modified Reforged Concepts
+// Guard: Reforged versions differ on ::Reforged.Reach.ReachAdvantageMult (some rename it).
+// A missing index here used to abort the entire file, leaving every other Concept below unregistered.
+local reachAdvantageMultText = ::MSU.Text.colorizeMultWithText(("Reach" in ::Reforged && "ReachAdvantageMult" in ::Reforged.Reach) ? ::Reforged.Reach.ReachAdvantageMult : 1.0);
 ::Reforged.NestedTooltips.Tooltips.Concept.Reach = ::MSU.Class.BasicTooltip("Reach", ::Reforged.Mod.Tooltips.parseString(
 	"Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n" +
-	"Gain " + ::MSU.Text.colorizeMultWithText(::Reforged.Reach.ReachAdvantageMult) + " [$ $|Concept.MeleeSkill] when attacking someone with shorter reach.\n\n" +
+	"Gain " + reachAdvantageMultText + " [$ $|Concept.MeleeSkill] when attacking someone with shorter reach.\n\n" +
 	"Characters who are [stunned|Skill+stunned_effect], [fleeing|Skill+hd_dummy_morale_state_fleeing], or without a viable [Attack of Opportunity|Concept.ZoneOfControl] skill have no Reach."
 ));
 ::Reforged.NestedTooltips.Tooltips.Concept.ReachAdvantage = ::MSU.Class.BasicTooltip("Reach Advantage", ::Reforged.Mod.Tooltips.parseString(
