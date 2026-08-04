@@ -27,3 +27,10 @@ Session log of mistakes/patterns to avoid. Review at session start.
 - **Bootstrap filename must differ too.** `scripts/!mods_preload/main_hardened.nut` is a shared virtual path — upstream + fork zips both mounting it collide. Fork uses `main_hardened_qol_fork.nut`.
 - **Regex lookahead gotcha:** `mod_hardened(?![_a-z0-9])` correctly protects `mod_hardened_qol_fork` but ALSO skips `mod_hardened_$Version` (underscore counts as identifier char) — verify build.ps1/other filename-building lines manually after a string-replace rename.
 - **Remove upstream GitHub update-source in forks.** `Registry.setUpdateSource` pointing at upstream would offer upstream zips (different mod ID) as "updates" for the fork. Delete the Registry lines + GitHubURL.
+
+## 2026-08-04 — Docs + commit (phase 7)
+
+- **Upstream changelog in a fork is factually wrong, not just stale.** documentation.txt claimed ~95% balance changes that were deleted. Rewrote to fork-accurate scope + upstream pointer. Never leave removed-feature changelogs shipping in a zip.
+- **brainstorming.txt was never tracked** (git ls-files empty) — deleting it is a no-op for git. Verify with git ls-files before expecting a D entry.
+- **gfx pngs are all tracked despite .gitignore `gfx/*.png`.** The rule only matches gfx/ root; all 66 files live in subdirs covered by `!gfx/*/.png`. Inert but harmless — user said keep.
+- **Docs-only changes don't need a rebuild** (documentation.txt is packaged text, brainstorming.txt wasn't packaged-visible to git anyway).
