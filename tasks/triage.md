@@ -278,7 +278,7 @@ Keep: `getTooltip`, `onMissed`, `onDamageReceived`, `onDiscovered`, `onFactionCh
 1. **Knockback unit** (util.findTileToKnockBackTo + api/skill.nut findTileToKnockBackTo + hooks/skills/skill.nut + fling_back_skill + gore/repel/knock_back/shatter/kingfisher) — either keep all (fix infra) or drop all. Recommend KEEP.
 2. **Ranged/ammo unit** (ranged_weapon_hooks + reload_bolt/reload_handgonne + getRangedWeaponInfo + no_ammo_warning + ammo + const.AmmoType) — keep QoL slices only.
 3. **snipe_hooks.nut** — deletes Reforged→vanilla reversions. As QoL-only Reforged submod we want base Reforged, not vanilla: DELETE confirmed.
-4. **config/character.nut + faction_greenskins.nut** — user verdict DELETE (loses roundToDec/spawnlist fixes).
+4. **config/character.nut + faction_greenskins.nut** — user verdict DELETE (loses roundToDec/spawnlist fixes). **REVERSED 2026-08-04 (config/character only):** recreated with 6 QoL-supporting `::Const.CharacterProperties` defaults kept hooks read (ShowFrenzyEyes, HD_HitChanceMax, CanExertZoneOfControl, ShieldDamageMult/ReceivedMult, WeaponDurabilityLossMult). Balance members (BagSlots, Weight*, Reach*, HD_ImmuneToChilled, Headshot*) + fn overrides remain purged. faction_greenskins stays DELETE.
 5. **hd_dummy_morale_state*** + silhouettes + frenzy-eyes live inside mixed api actor/human hooks — preserve the `add(...)` lines when pruning those files.
 
 ## Verification

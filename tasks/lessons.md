@@ -58,3 +58,11 @@ Session log of mistakes/patterns to avoid. Review at session start.
 - **Cascade confirmed by error ordering.** Log showed strict `BAG SCALE BAG SCALE...` interleave = 1:1 cascade, not independent. Fix root, cascades vanish.
 - **Member defs deleted with their file.** `q.m.HD_BagSlotSpriteName` lived in deleted hooks/entity/tactical/human.nut; kept api human.nut used it. Restore the member def in the kept file, don't recreate the deleted file.
 - **git add -A sweeps test logs.** User drops HTML logs in tasks/; `git add -A` commits them. Use targeted `git add <paths>` for code commits.
+
+## 2026-08-04 — Campaign-load crash #3 (CharacterProperties member seeds)
+
+- **Purged config/character.nut was a member-seed file, not just balance.** `::Const.CharacterProperties.X <- default` lines seed EVERY character's cloned properties. KEPT hooks reading purged members throw "the index 'X' does not exist" on the read path. Deleting the file silently creates landmines across every kept feature that consumed its seeds.
+- **Reach timing varies:** ShowFrenzyEyes (read every spawn via hd_frenzy_eyes_manager onAfterUpdate) crashed immediately at loadCampaign; HD_HitChanceMax / CanExertZoneOfControl / ShieldDamage* / WeaponDurabilityLossMult crash only when combat/UI/tooltip paths run — latent, would have been next crash. Grep sweep (`git grep` upstream file members vs kept reads) found them all in one pass.
+- **Fix class not instance:** restoring all 6 QoL-supporting seeds in one recreated hooks/config/character.nut beats fixing one crash per test cycle. Exclude balance members + function overrides (vanilla fns already exist).
+- **`<-` in Squirrel = create-or-replace; `=` = assign.** Upstream config/character.nut used `<-` for Hardened-added members (vanilla-absent) vs `=` for overrides of vanilla members. Member reads = crash risk; fn overrides = silent behavior change.
+- **Frenzy-eyes is QoL, not balance:** kept killing_frenzy_effect + berserker_mushrooms_effect setters + ShowGlowingEyes setting + sprite add all survived purge; only the property seed died. Restore seed, not the effects.
