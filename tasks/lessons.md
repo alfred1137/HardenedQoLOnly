@@ -79,3 +79,7 @@ Session log of mistakes/patterns to avoid. Review at session start.
 
 - **A kept hook can serialize a purged system.** world_state.onSerialize still called ::World.EntityManager.m.HD_BountyHunterManager.onSerialize(); the bounty-hunter manager (balance) + its entity_manager member def died in purge -> 'HD_BountyHunterManager does not exist' on save. When stripping a system, also sweep kept files for serialization (onSerialize/onDeserialize) of its members.
 - **Banner load errors (banner_104/1822.png) not ours:** fork ships NO gfx/ui/banners dir; high banner IDs come from other installed mods. Verify asset ownership before chasing cosmetic load warnings.
+
+## 2026-08-05 — Tooltip Range:0 regression
+
+- **QoL tooltip synthesis must bail on zero-range skills.** hooks/skills/skill.nut.getTooltip pushed a synthetic Range bullet for any `isTargeted()` skill lacking a vanilla "Has a range of" line; api/hooks/skills/skill.nut.HD_generateRangeTooltipString then appended `getMaxRange()` — which is `0` for perks/backgrounds/self-target skills, producing literal "Range: 0 tiles". Guard both: only add the row when `this.getMaxRange() > 0`, and make the generator return `""` when max range <= 0. When a kept QoL hook _invents_ a tooltip row, it must respect the skill's actual data or it silently rewrites vanilla tooltips.
