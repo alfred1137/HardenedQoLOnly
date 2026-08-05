@@ -5,12 +5,23 @@
 // spawn; hitchance overlay, ZOC call, shield/durability tooltips in combat/UI).
 // Balance-only members (BagSlots, WeightStaminaMult, WeightInitiativeMult,
 // ReachAdvantageMult, HD_ImmuneToChilled) and the
-// getStamina/getVision/getClone function overrides are NOT restored — those
+// getVision/getClone function overrides are NOT restored — those
 // features are purged; vanilla functions already exist.
 
 // ShowFrenzyEyes: red glowing eyes (QoL visual). Flipped true by kept
 // killing_frenzy_effect and berserker_mushrooms_effect hooks.
 ::Const.CharacterProperties.ShowFrenzyEyes <- false;
+
+// QoL: base-stamina getter for the kept Fatigue tooltip (tooltip_events.nut
+// getBaseAttributesTooltip calls getBaseProperties().getStamina()). Vanilla
+// CharacterProperties has no getStamina — upstream added it for its stamina
+// rework. Pure vanilla-field math (Stamina * StaminaMult, negative-stamina
+// mult reversal), no balance churn; restore for the kept consumer.
+::Const.CharacterProperties.getStamina <- function()
+{
+	local staminaMult = (this.Stamina >= 0) ? this.StaminaMult : (1 / this.StaminaMult);
+	return ::Math.floor(::MSU.Math.roundToDec(this.Stamina * staminaMult, 3));
+}
 
 // QoL: headshot-aware hitchance (kept tooltip hooks in skill.nut and
 // actor.nut call getHeadHitchance / rely on getHitchance delegating to it).
