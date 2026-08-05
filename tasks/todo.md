@@ -1,8 +1,24 @@
 # TODO — QoL-Only Fork Transformation
 
-Status: IN PROGRESS — Phase 6 rename in progress (identity `mod_hardened_qol_fork`); manual load test + Phase 7 docs still open. Crash-sweep pass complete.
+Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on live test 2026-08-05 14:34). Crash-sweep pass complete. Patch cycle closed.
 
 ## Session Log (latest first)
+
+### Session: Release + crash-sweep patches (2026-08-05)
+
+Published GitHub release v1.22.2 (upstream-aligned version), then fixed 5 purge-over-delete classes found via live game logs. Version stays in sync with upstream (`1.22.2`); patch tags `v1.22.2-patch.N`:
+
+- **v1.22.2-patch.1** — restored `CharacterProperties.getHeadHitchance` + `getHitchance` override + `HeadshotReceivedChance`/`HeadshotReceivedChanceMult` (kept tooltip hooks skill.nut:81 + actor.nut call them; purge deleted them). Restored lean `strategy.nut` with `HD_DealtHitToEnemy`/`HD_WasHitByEnemy` stats (kept skill_container.nut writes them; dropped upstream `updateDefending` Feat).
+- **v1.22.2-patch.2** — restored `::Const.Corpse.HD_FatalityType`, `HD_CorpseTouched`, `::Const.Combat.ShakeEffectZOCHighlight` (kept actor.nut onDamageReceived + turn_sequence_bar ZOC highlight read them).
+- **v1.22.2-patch.3** — added standalone `gfx/ui/mini/hd_bleeding_mini_{1..5}.png` (insufficient — see brush lesson).
+- **v1.22.2-patch.4** — restored `::Const.World.HD_InventoryUpgradeSlots` with VANILLA values `[9,9,9]` (upstream `[18,27,36]` = balance churn; kept retinue_manager + tooltip read it).
+- **v1.22.2-patch.5** — added `unpacked_brushes` to build (insufficient — dev source format, not runtime).
+- **v1.22.2-patch.6** — shipped COMPILED brushes: `brushes/mod_hardened.brush` + `gfx/mod_hardened.png` atlas (+ orientation/world_entity pairs) extracted from upstream 1.22.2 release zip; added `brushes/` to build PackDirs. This is the release format (matches MSU `brushes/msu_world.brush`).
+- **v1.22.2-patch.7** — dropped `unpacked_brushes` from build (redundant; compiled brushes supersede).
+
+Final live test (test-202608051434-log.html): 0 ScriptErrors, 0 Unknown Brush, 11 bleed deaths clean. Remaining log noise all cosmetic/external (banner_1822/104 png, Arsenal-Regular.ttf, MSU regex `Invalid match` warnings on sling-diversion + damage lines).
+
+Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/v1.22.2-patch.7. Branch `develop` tip `cfa1e1d6`.
 
 ### Session: Identity rename to mod_hardened_qol_fork (2026-08-04)
 
