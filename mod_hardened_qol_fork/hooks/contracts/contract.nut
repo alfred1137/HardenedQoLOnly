@@ -85,6 +85,49 @@
 
 		return __original(_screen, _restartIfAlreadyActive);
 	}
+
+	// Vanilla Fix: Reforged's RF_autoNegotiate assumes the ActiveScreen's Negotiation
+	// screen always has at least two options and reads Options[1] unguarded. Some
+	// contracts (or the postponed single-option screens this file hooks) leave the
+	// active screen with one option, which throws "the index '1' does not exist".
+	// Mirror Reforged's implementation with an Options.len() guard so auto-negotiate
+	// bails out instead of crashing. This is a Reforged bug, patched fork-side.
+	q.RF_autoNegotiate <- { function RF_autoNegotiate( _numAttempts = 1 )
+	{
+		if (!this.isStarted())
+			this.start();
+
+		if (this.m.ActiveScreen.ID == "Negotiation.Fail" || this.m.Payment.IsFinal)
+			return;
+
+		if (this.m.ActiveScreen.ID != "Negotiation")
+		{
+			foreach (s in this.m.Screens)
+			{
+				if (s.ID == "Negotiation")
+				{
+					this.setScreen("Negotiation");
+					break;
+				}
+			}
+
+			if (this.m.ActiveScreen.ID != "Negotiation")
+				return;
+		}
+
+		for (local i = 0; i < _numAttempts; i++)
+		{
+			if (this.m.ActiveScreen.Options.len() < 2)
+				return;
+
+			this.setScreen(this.getScreen(this.m.ActiveScreen.Options[1].getResult()));
+			if (this.m.ActiveScreen.ID == "Negotiation.Fail")
+				return;
+
+			if (this.m.Payment.IsFinal)
+				break;
+		}
+	}}.RF_autoNegotiate;
 });
 
 ::Hardened.HooksMod.hookTree("scripts/contracts/contract", function(q) {
