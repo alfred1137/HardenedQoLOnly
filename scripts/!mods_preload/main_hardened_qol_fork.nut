@@ -1,7 +1,7 @@
 ::Hardened <- {
 	ID = "mod_hardened_qol_fork",
 	Name = "Hardened QoL Fork",
-	Version = "1.22.4",
+	Version = "1.22.2",
 	// Fork of Darxo/Hardened. Update source intentionally not registered: pointing it at the
 	// upstream repo would offer upstream zips (different ID) as "updates" for this fork.
 	Temp = {	// Used to globally store variables between function calls to implement more advanced, albeit hacky behaviors
