@@ -184,6 +184,14 @@
 		return hitInfo;
 	}
 
+	// Calculate the debuff duration for this character, using NegativeStatusEffectDuration and making sure it is always at least 1
+	// This skill must already be attached to the character in question, when call this function
+	q.HD_getDebuffDuration <- function( _duration )
+	{
+		local ret = _duration + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration;
+		return ::Math.max(1, ret);
+	}
+
 	// New virtual function that is already used various times in different vanilla skills
 	q.findTileToKnockBackTo <- function( _userTile, _targetTile )
 	{
@@ -598,14 +606,18 @@
 // Reforged Functions
 	q.onSkillsUpdated = @(__original) function()
 	{
-		// Feat: streamline handling for immunities which prevent this effect
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		foreach (immunityKey in this.m.HD_PreventedByProperties)
+		// Reforged can call this event for skills, which are no longer attached to a skill container, because they removed themselves
+		if (!::MSU.isNull(this.getContainer()))
 		{
-			if (properties[immunityKey])
+			// Feat: streamline handling for immunities which prevent this effect
+			local properties = this.getContainer().getActor().getCurrentProperties();
+			foreach (immunityKey in this.m.HD_PreventedByProperties)
 			{
-				this.removeSelf();
-				return;
+				if (properties[immunityKey])
+				{
+					this.removeSelf();
+					return;
+				}
 			}
 		}
 
