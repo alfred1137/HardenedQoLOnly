@@ -74,7 +74,18 @@
 
 	q.setScreen = @(__original) function( _screen, _restartIfAlreadyActive = true )
 	{
-		// BISECT-A: pass-through test for Reforged auto-negotiate incompat
+		// Vanilla Fix: setting the same screenID repeatedly triggers its start function multiple times.
+		// For the postpone-wrapped screens (HD_screen_hooked = Success/CounterOffer/Negotiation.Fail)
+		// a second start() would re-run earlyGetResult and re-award payout. Only those screens must
+		// not be restarted.
+		// Scoped to postpone screens (not all non-processInput callers): the old broad override broke
+		// Reforged's RF_autoNegotiate, which relies on vanilla restart=true to progress negotiations
+		// (Options[1] crash). See bisect-A.
+		if (this.m.ActiveScreen != null && "HD_screen_hooked" in this.m.ActiveScreen)
+		{
+			_restartIfAlreadyActive = false;
+		}
+
 		return __original(_screen, _restartIfAlreadyActive);
 	}
 });
