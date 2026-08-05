@@ -16,12 +16,11 @@ $PackDirs = @(
 	"ui",             # JS/CSS UI hooks
 	"gfx",            # textures/brushes
 	"sounds",         # audio
-	"brushes",        # compiled brush defs (sprite id -> atlas); BB registers these at runtime
-	"unpacked_brushes" # brush metadata.xml + sprite sources; BB registers brush ids from these at runtime
+	"brushes"         # compiled brush defs (sprite id -> atlas); BB registers these at runtime
 )
 
 # Never package these even if present.
-$ExcludeDirs = @("doc", ".bbbuilder", "tasks", ".git")
+$ExcludeDirs = @("doc", "unpacked_brushes", ".bbbuilder", "tasks", ".git")
 
 foreach ($d in $PackDirs) {
 	if (-not (Test-Path -LiteralPath $d)) {
