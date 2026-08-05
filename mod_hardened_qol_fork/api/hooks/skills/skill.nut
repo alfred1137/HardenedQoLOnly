@@ -225,6 +225,8 @@
 	// Generate and return a string that contains information about the current Range of this skill
 	q.HD_generateRangeTooltipString <- function()
 	{
+		if (this.getMaxRange() <= 0) return "";
+
 		local rangeString = "Range: ";
 
 		if (this.getMinRange() > 1 && this.getMinRange() != this.getMaxRange())

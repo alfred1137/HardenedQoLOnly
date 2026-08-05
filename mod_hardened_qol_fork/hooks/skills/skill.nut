@@ -328,7 +328,7 @@
 			}
 		}
 
-		if (!hasRangeTooltip && this.isTargeted())
+		if (!hasRangeTooltip && this.isTargeted() && this.getMaxRange() > 0)
 		{
 			ret.push({
 				id = 15,
