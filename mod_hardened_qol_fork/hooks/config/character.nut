@@ -72,3 +72,10 @@
 ::Const.CharacterProperties.ShieldDamageMult <- 1.0;
 ::Const.CharacterProperties.ShieldDamageReceivedMult <- 1.0;
 ::Const.CharacterProperties.WeaponDurabilityLossMult <- 1.0;
+
+// QoL: corpse + ZOC animation constants read by kept hooks.
+// Upstream ::Const.Corpse.HD_* members and ::Const.Combat.ShakeEffectZOCHighlight;
+// both deleted by the purge. Restored here (no balance churn).
+::Const.Corpse.HD_FatalityType <- ::Const.FatalityType.None;	// Fatality type that caused the death of this character
+::Const.Corpse.HD_CorpseTouched <- 0;	// Used during resurrection to prevent recursions from usage of mockFunction
+::Const.Combat.ShakeEffectZOCHighlight <- this.createColor("#ff5555");	// Blink color when highlighting enemies exerting zone of control onto us
