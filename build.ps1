@@ -15,11 +15,12 @@ $PackDirs = @(
 	"scripts",        # bootstrap main_hardened.nut + mod-owned scripts
 	"ui",             # JS/CSS UI hooks
 	"gfx",            # textures/brushes
-	"sounds"          # audio
+	"sounds",         # audio
+	"unpacked_brushes" # brush metadata.xml + sprite sources; BB registers brush ids from these at runtime
 )
 
 # Never package these even if present.
-$ExcludeDirs = @("doc", "unpacked_brushes", ".bbbuilder", "tasks", ".git")
+$ExcludeDirs = @("doc", ".bbbuilder", "tasks", ".git")
 
 foreach ($d in $PackDirs) {
 	if (-not (Test-Path -LiteralPath $d)) {
