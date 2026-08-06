@@ -6,9 +6,10 @@ This fork strips Hardened's balance and mechanic overhauls — the Reforged perk
 
 ## Identity
 
-- Mod ID: **`mod_hardened_qol_fork`** (distinct from upstream `mod_hardened`, so both can be installed side by side)
+- Mod ID: **`mod_hardened_qol_fork`** — **incompatible with and must not be loaded alongside the original Hardened** (`mod_hardened`). Both are declared as conflicting mods, so MSU / Modern Hooks will block the game from loading them together; disable one before enabling the other.
 - Tracks upstream Hardened `develop` (base release `1.22.0`; incorporates upstream `1.22.2` bug fixes)
 - Requires: **MSU**, **Reforged >= 0.9.0**, **Dynamic Spawns >= 0.5.0**
+- Incompatible: the original **Hardened** (`mod_hardened`) — see _Install_ below.
 
 ## Attribution & Support
 
@@ -54,9 +55,10 @@ own discretion.
 
 ## Install
 
-1. Install **MSU**, **Reforged**, and **Dynamic Spawns**.
-2. Unzip `mod_hardened_qol_fork_<version>.zip` into `<Battle Brothers>/data/`.
-3. Enable the mod in the launcher. It can coexist with upstream Hardened.
+1. Install **MSU**, **Reforged**, and **Dynamic Spawns** (plus all of their own dependencies).
+2. **Disable/remove the original Hardened (`mod_hardened`)** if present — this fork conflicts with it, and MSU will refuse to load both at once.
+3. Drop `mod_hardened_qol_fork_<version>.zip` **as-is** (do not extract) into `<Battle Brothers>/data/`.
+4. Enable the mod in the launcher.
 
 ## Build
 

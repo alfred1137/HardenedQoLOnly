@@ -1,7 +1,7 @@
 ::Hardened <- {
 	ID = "mod_hardened_qol_fork",
 	Name = "Hardened QoL Fork",
-	Version = "1.22.2",
+	Version = "1.22.3",
 	// Fork of Darxo/Hardened. Update source intentionally not registered: pointing it at the
 	// upstream repo would offer upstream zips (different ID) as "updates" for this fork.
 	Temp = {	// Used to globally store variables between function calls to implement more advanced, albeit hacky behaviors
@@ -34,6 +34,7 @@
 	"mod_consume [This mods featureset is integrated into Hardened]",
 	"mod_deathlog [This mods featureset is integrated into Hardened]",
 	"mod_equal_location_scouting [This mods featureset is integrated into Hardened]",
+	"mod_hardened [This is a standalone QoL-only fork; the original Hardened mod must not be loaded alongside it]",
 ]);
 
 // We need to load after swifter, because we fix a bug there
