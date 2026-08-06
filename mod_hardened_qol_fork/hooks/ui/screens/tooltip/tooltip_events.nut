@@ -351,7 +351,11 @@
 							"- Losing a fight (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationOnLoss, {AddSign = true}) + ")\n" +
 							"- Failing a contract (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationOnContractFail, {AddSign = true}) + ")\n" +
 							"- Cancelling a contract (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationOnContractCancel, {AddSign = true}) + ")\n" +
-							"- Cancelling a contract with advanced pay (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationOnContractCancel + ::Const.World.Assets.HD_ReputationOnContractCancelAdvance, {AddSign = true}) + ")\n" +
+							// Vanilla has no separate renown hit for advance-pay cancellation; the
+							// stripped renown-penalty Feat (see contract.nut) and its upstream-only
+							// HD_ReputationOnContractCancelAdvance const were removed, so advance-pay
+							// cancel shows only ReputationOnContractCancel (the base cancel penalty).
+							"- Cancelling a contract with advanced pay (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationOnContractCancel, {AddSign = true}) + ")\n" +
 							"- Each passing day (" + ::MSU.Text.colorizeValue(::Const.World.Assets.ReputationDaily, {AddSign = true}) + ")\n" +
 							"- Various Events"
 						);

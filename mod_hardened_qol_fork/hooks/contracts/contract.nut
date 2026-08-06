@@ -13,16 +13,12 @@
 		this.m.HD_PerHead = null;
 	}
 
-	q.cancel = @(__original) function()
-	{
-		__original();
-
-		// Feat: breaking a contract where you took advanced pay, now inflicts a second renown penalty, similar to the relation penalty
-		if (this.m.Faction != 0 && this.m.Payment.Advance != 0)
-		{
-			::World.Assets.addBusinessReputation(::Const.World.Assets.HD_ReputationOnContractCancelAdvance);
-		}
-	}
+	// NOTE: the advance-pay cancellation renown-penalty Feat was purged with the
+	// balance strip (see triage.md: contract.nut → GATE, "strip renown-penalty feat").
+	// Its reader here and the tooltip_entries line for "advanced pay" cancel were
+	// both dropped because they referenced the upstream-only HD_ReputationOnContractCancelAdvance
+	// constant. Vanilla has no separate renown penalty for advance-pay cancellation,
+	// so cancelling with advance pay now applies only ReputationOnContractCancel.
 
 	q.onBeforeStart = @(__original) function( _screen )
 	{
