@@ -6,7 +6,7 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ### Session: Release + crash-sweep patches (2026-08-05)
 
-Published GitHub release v1.22.2 (upstream-aligned version), then fixed 5 purge-over-delete classes found via live game logs. Version stays in sync with upstream (`1.22.2`); patch tags `v1.22.2-patch.N`:
+Published GitHub release v1.22.2 (upstream-aligned version), then fixed 5 purge-over-delete classes found via live game logs. Version stays in sync with upstream (`1.22.3`); patch tags `v1.22.2-patch.N` (schema prefix unchanged; version field tracks upstream base):
 
 - **v1.22.2-patch.1** — restored `CharacterProperties.getHeadHitchance` + `getHitchance` override + `HeadshotReceivedChance`/`HeadshotReceivedChanceMult` (kept tooltip hooks skill.nut:81 + actor.nut call them; purge deleted them). Restored lean `strategy.nut` with `HD_DealtHitToEnemy`/`HD_WasHitByEnemy` stats (kept skill_container.nut writes them; dropped upstream `updateDefending` Feat).
 - **v1.22.2-patch.2** — restored `::Const.Corpse.HD_FatalityType`, `HD_CorpseTouched`, `::Const.Combat.ShakeEffectZOCHighlight` (kept actor.nut onDamageReceived + turn_sequence_bar ZOC highlight read them).
@@ -19,6 +19,17 @@ Published GitHub release v1.22.2 (upstream-aligned version), then fixed 5 purge-
 Final live test (test-202608051434-log.html): 0 ScriptErrors, 0 Unknown Brush, 11 bleed deaths clean. Remaining log noise all cosmetic/external (banner_1822/104 png, Arsenal-Regular.ttf, MSU regex `Invalid match` warnings on sling-diversion + damage lines).
 
 Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/v1.22.2-patch.7. Branch `develop` tip `cfa1e1d6`.
+
+### Session: v1.22.3 bump + Hardened incompatibility (2026-08-06)
+
+- Bumped fork `Version` 1.22.2 -> 1.22.3 (aligns with upstream 1.22.3 base; build output now `mod_hardened_qol_fork_1.22.3.zip`).
+- Carry-over upstream 1.22.3 fix: invert `isGarbage()` guard in `skill.onAdded` (`skill.nut` onOtherSkillAdded path) — self-invalidating skills no longer spuriously re-fire `onOtherSkillAdded`.
+- Declared upstream **Hardened** (`mod_hardened`) as a conflicting mod via `HooksMod.conflictWith` in `scripts/!mods_preload/main_hardened_qol_fork.nut`; MSU / Modern Hooks now block loading both Hardened forks together.
+- README: install guide corrected (drop `.zip` as-is into `/data/`; do not extract) + incompatibility + dependency-closure note.
+- Retired GitHub Releases v1.22.2-patch.8 / v1.22.2-patch.9 / v1.22.2 (superseded). Retagged release as v1.22.2-patch.12 (git tag v1.22.2-patch.11 retained as pre-1.22.3 historical anchor; release asset+notes live at patch.12).
+- Verified built `mod_hardened_qol_fork_1.22.3.zip`: `Version="1.22.3"`, `conflictWith` entry `mod_hardened [...]` present.
+
+Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/v1.22.2-patch.12. Branch `develop` tip `370e4b7d`.
 
 ### Session: Identity rename to mod_hardened_qol_fork (2026-08-04)
 
