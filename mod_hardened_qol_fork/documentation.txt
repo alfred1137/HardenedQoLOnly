@@ -39,6 +39,7 @@ that do NOT exist in this fork.
 
 See `README.md` and https://github.com/Darxo/Hardened (upstream). This fork
 tracks upstream release 1.22.0 minus all balance/mechanic overhauls, and
-incorporates upstream 1.22.1 bug fixes (null-guard hardening). It is a
+incorporates upstream bug fixes through 1.22.4 (null-guard hardening, world map
+UI freeze when cancelling a combat dialog into an immediate attack). It is a
 faithful QoL/fix repackaging of upstream, provided as-is with no commitment to
 future maintenance.

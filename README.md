@@ -7,7 +7,7 @@ This fork strips Hardened's balance and mechanic overhauls — the Reforged perk
 ## Identity
 
 - Mod ID: **`mod_hardened_qol_fork`** — **incompatible with and must not be loaded alongside the original Hardened** (`mod_hardened`). Both are declared as conflicting mods, so MSU / Modern Hooks will block the game from loading them together; disable one before enabling the other.
-- Tracks upstream Hardened `develop` (base release `1.22.0`; incorporates upstream `1.22.3` bug fixes)
+- Tracks upstream Hardened `develop` (base release `1.22.0`; incorporates upstream `1.22.4` bug fixes)
 - Requires: **MSU**, **Reforged >= 0.9.0**, **Dynamic Spawns >= 0.5.0**
 - Incompatible: the original **Hardened** (`mod_hardened`) — MSU / Modern Hooks block loading both; disable one before enabling the other.
 
@@ -16,7 +16,7 @@ This fork strips Hardened's balance and mechanic overhauls — the Reforged perk
 This fork builds on the success of [Hardened](https://github.com/Darxo/Hardened) and upstream's
 continuing maintenance. Credit for the underlying ideas and bug fixes belongs to the upstream
 author (Darxo); this fork repackages their QoL and bug-fix work without the balance/mechanic
-overhauls. We incorporated upstream fixes through release `1.22.3`.
+overhauls. We incorporated upstream fixes through release `1.22.4`.
 
 This fork is provided **as-is**: we make **no commitment** to maintaining it. Upstream may move on,
 and this fork may fall behind, diverge, or be abandoned without notice. Install and use at your
