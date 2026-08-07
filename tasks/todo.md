@@ -10,7 +10,8 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 - Carry-over upstream 1.22.4 fix `5522495f`: world map invisible UI freeze when cancelling a combat dialog into an immediate attack. Ported `world_combat_dialog.nut` (`HD_forceAllowDialog`/`HD_isHidingScreen` + `show`/`isVisible`/`isAnimating`/`onScreenHidden` overrides) + js_hooks `show` velocity-stop. No new settings.
 - Explicitly NOT ported from 1.22.4: Reforged contract-setting hide `HD_hide("Disabled")` (no fork consumer; N/A) and tooltip wording change "an enemy" → "anyones" (upstream grammar regression).
 - docs: README + documentation.txt changelog → 1.22.4.
-- Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/v1.22.2-patch.13 (tag `v1.22.2-patch.13`; branch `develop` tip `32b78068`).
+- Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/1.22.4 (tag `1.22.4`, branch `develop` tip `32b78068`).
+- Tag schema change (user): version-bump releases tag with the bare upstream-mirror version (`1.22.4`); patches on that base → `1.22.4-patch.N`. Initial `v1.22.2-patch.13` tag + release deleted and re-published as `1.22.4`.
 
 ### Session: Release + crash-sweep patches (2026-08-05)
 
