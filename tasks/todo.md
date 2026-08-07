@@ -4,6 +4,14 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ## Session Log (latest first)
 
+### Session: v1.22.4 bump + combat-dialog freeze fix (2026-08-07)
+
+- Bumped fork `Version` 1.22.3 -> 1.22.4 (aligns with upstream 1.22.4 base; build output now `mod_hardened_qol_fork_1.22.4.zip`).
+- Carry-over upstream 1.22.4 fix `5522495f`: world map invisible UI freeze when cancelling a combat dialog into an immediate attack. Ported `world_combat_dialog.nut` (`HD_forceAllowDialog`/`HD_isHidingScreen` + `show`/`isVisible`/`isAnimating`/`onScreenHidden` overrides) + js_hooks `show` velocity-stop. No new settings.
+- Explicitly NOT ported from 1.22.4: Reforged contract-setting hide `HD_hide("Disabled")` (no fork consumer; N/A) and tooltip wording change "an enemy" → "anyones" (upstream grammar regression).
+- docs: README + documentation.txt changelog → 1.22.4.
+- Release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/v1.22.2-patch.13 (tag `v1.22.2-patch.13`; branch `develop` tip `32b78068`).
+
 ### Session: Release + crash-sweep patches (2026-08-05)
 
 Published GitHub release v1.22.2 (upstream-aligned version), then fixed 5 purge-over-delete classes found via live game logs. Version stays in sync with upstream (`1.22.3`); patch tags `v1.22.2-patch.N` (schema prefix unchanged; version field tracks upstream base):
