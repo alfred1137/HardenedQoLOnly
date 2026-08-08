@@ -1,4 +1,5 @@
 ::Const.Strings.World.TimeOfDay <- [
+	"Sunrise",
 	"Morning",
 	"Morning",
 	"Morning",
@@ -10,7 +11,6 @@
 	"Dusk",
 	"Midnight",
 	"Dawn",
-	"Sunrise",
 ];
 
 ::Const.Strings.Tactical.EntityName.Brush = "Bush";	// Vanilla: Brush
