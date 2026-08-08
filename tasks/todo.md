@@ -4,6 +4,14 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ## Session Log (latest first)
 
+### Session: 1.22.4-patch.1 — clock readout phase fix (2026-08-07)
+
+- User report: in-game clock period labels phase-shifted (night→afternoon, dawn→midday, morning→sunset).
+- Diagnosis: fork hosts upstream's `Const.Strings.World.TimeOfDay` verbatim (12 entries) + vanilla `floor(Hours/2)` bucketing; upstream `Const.World.TimeOfDay` object (`world.nut`) is rotated a half step → labels read wrong bucket. Verified byte-identical to upstream → inherited, not fork-introduced.
+- Fix (Hardened schedule): rotated label array (`hooks/config/strings/strings.nut`: Sunrise first, Dawn last) + new `hooks/config/world.nut` repointing `Const.World.TimeOfDay` indices (Sunrise=0, Dusk=9, Midnight=10, Dawn=11) so isDay/isNight night buckets = hours 18-23.
+- Verified build zip payload (world.nut + strings.nut present, indices correct). Committed `249b9b88`, tagged `1.22.4-patch.1`, release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/1.22.4-patch.1.
+- Deferred: `tactical.nut` AmbientLightingColor tint rotation + "Monring" typo (cosmetic; revisit 1.22.4-patch.2 if tint mismatch reported).
+
 ### Session: v1.22.4 bump + combat-dialog freeze fix (2026-08-07)
 
 - Bumped fork `Version` 1.22.3 -> 1.22.4 (aligns with upstream 1.22.4 base; build output now `mod_hardened_qol_fork_1.22.4.zip`).
