@@ -4,6 +4,14 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ## Session Log (latest first)
 
+### Session: 2026-08-09 — Dragonslayer easter-egg: docs + AP-ladder (1.22.4-patch.2 work)
+
+Easter-egg port (item `hd_dragonslayer`, 4 actives, marketplace stock hook, MSU gate `DragonslayerEasterEgg` default OFF, label "Easter Egg") is complete and ships in the 1.22.4 zip. This session:
+
+- Rewrote the 4 actives' `onAfterUpdate` cost ladder from chained-combinatorial `if`s to a condition counter (SwordSpec + Huge + Strong + Executioner `background.executioner`): 1 condition = 0.78 fatigue / 6 AP, 2 = 0.55 / 5, 3+ = 0.33 / 4. Tooltips updated ("... and Executioner ... can stack (max 4 stacks)").
+- Documented easter egg in README (subtle: "Hidden easter egg" bullet + quiet attribution in a new "Easter egg" subsection crediting the ORIGINAL creator **Koltira, a Scaly Grumpiness**, first posted on the Legends Submod Discord; link from msu_settings.nut), in AGENTS.md (PROTECTED do-not-purge note + file inventory), and in lessons.md (Feat-header trap, coy-UI rule, counter-ladder pattern, Discord ID verification).
+- README attribution intentionally does NOT spoil mechanics (off by default).
+
 ### Session: 1.22.4-patch.1 — clock readout phase fix (2026-08-07)
 
 - User report: in-game clock period labels phase-shifted (night→afternoon, dawn→midday, morning→sunset).

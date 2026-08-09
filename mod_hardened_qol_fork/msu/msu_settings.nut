@@ -186,3 +186,12 @@
 
 	qolCharScreenPage.addBooleanSetting("EnableSmartAutoLoot", true, "Enable Smart Auto Loot", "Replace the default Auto-Loot Feature with a smarter system.\n\nSupply Items are consumed automatically.\nWhen the Playerstash is full, the least valueable items are replaced with the excess loot.\n\nThe following itemtypes are ignored, when trying to make room:\n- Unique\n- Precious\n- Crafting\n- Food\n- Loot\n- Tool\n- Usable");
 }
+
+// Easter Egg setting
+{
+	local eggPage = ::Hardened.Mod.ModSettings.addPage("Easter Egg (QoL)");
+	eggPage.addBooleanSetting("DragonslayerEasterEgg", false,
+		"Easter Egg",
+		"Enables access to a hidden easter egg. Item has no crafting recipe. Original creator: Koltira, a Scaly Grumpiness — first posted on the Legends Submod Discord (https://discord.com/channels/547043336465154049/1156335987044122807)."
+	);
+}

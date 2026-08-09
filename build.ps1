@@ -1,6 +1,8 @@
 # build.ps1 - Package HardenedQoLOnly into a Battle Brothers submod zip.
 # Usage:  pwsh ./build.ps1
 # Output: mod_hardened_qol_fork_<version>.zip at repo root (gitignored via *.zip).
+# Version follows the x.y.z-patch.N convention: nearest release tag (e.g. 1.22.4-patch.1),
+# falling back to the ::Hardened.Version from the bootstrap when not a git checkout.
 #
 # Packages the same top-level dirs a release zip contains. Run from repo root.
 
@@ -34,7 +36,14 @@ $m = [regex]::Match($bootstrap, 'Version\s*=\s*"([^"]+)"')
 if (-not $m.Success) { throw "Could not parse ::Hardened.Version from bootstrap" }
 $Version = $m.Groups[1].Value
 
-$ZipName = "mod_hardened_qol_fork_$Version.zip"
+# Release name per convention x.y.z-patch.N (git tag); fallback to bootstrap version.
+$ReleaseVersion = $Version
+$tag = & git describe --tags --abbrev=0 2>$null
+if ($LASTEXITCODE -eq 0 -and -not [string]::IsNullOrEmpty($tag)) {
+	$ReleaseVersion = $tag.TrimStart("v")
+}
+
+$ZipName = "mod_hardened_qol_fork_$ReleaseVersion.zip"
 $ZipPath = Join-Path $Root $ZipName
 
 if (Test-Path -LiteralPath $ZipPath) {

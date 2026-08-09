@@ -11,16 +11,16 @@ This fork strips Hardened's balance and mechanic overhauls — the Reforged perk
 - Requires: **MSU**, **Reforged >= 0.9.0**, **Dynamic Spawns >= 0.5.0**
 - Incompatible: the original **Hardened** (`mod_hardened`) — MSU / Modern Hooks block loading both; disable one before enabling the other.
 
-## Attribution & Support
+## Attribution \& Support
 
-This fork builds on the success of [Hardened](https://github.com/Darxo/Hardened) and upstream's
-continuing maintenance. Credit for the underlying ideas and bug fixes belongs to the upstream
-author (Darxo); this fork repackages their QoL and bug-fix work without the balance/mechanic
-overhauls. We incorporated upstream fixes through release `1.22.4`.
+This fork builds on the success of [Hardened](https://github.com/Darxo/Hardened) and upstream's continuing maintenance. Credit for the underlying ideas and bug fixes belongs to the upstream author (Darxo); this fork repackages their QoL and bug-fix work without the balance/mechanic overhauls. We incorporated upstream fixes through release `1.22.4`.
 
-This fork is provided **as-is**: we make **no commitment** to maintaining it. Upstream may move on,
-and this fork may fall behind, diverge, or be abandoned without notice. Install and use at your
+This fork is provided **as-is**: we make **no commitment** to maintaining it. Upstream may move on, and this fork may fall behind, diverge, or be abandoned without notice. Install and use at your
 own discretion.
+
+### Easter egg
+
+The hidden option named "Easter Egg" in MSU settings unlocks a special weapon port of a fan-made Legends submod content. That item and its abilities were created by **Koltira, a Scaly Grumpiness**, first posted on the [Legends Submod Discord](https://discord.com/channels/547043336465154049/1156335987044122807). This fork carries the port as an easter egg out of respect for the original work; it is off by default and not affiliated with the original author.
 
 ## What was removed
 
@@ -51,6 +51,7 @@ own discretion.
 - **Broken-weapon** log/sound + no weapon-drop on break
 - **Perk stack count** display (Fast Adaptation)
 - **Mastery icon fixes** (Anticipation icon bug on Cleaver/Throwing mastery)
+- **Hidden easter egg** — optional, disabled by default (toggle "Easter Egg" in MSU settings); see Attribution.
 - Dozens of **Vanilla Fixes** (e.g. `onEquip` crossbow crash, `getHitpointsMax` rounding, `setDirty` TurnSequenceBar null check, drum double-grip, lightbringer tooltip, obsidian dagger reanimation draw)
 
 ## Install
