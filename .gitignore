@@ -3,4 +3,6 @@ brushes/
 gfx/*.png
 !gfx/*/.png
 .bbbuilder/tasks/test-*-log.html
+tasks/test-*-log.html
+sentry_db_logi_download_assistant/
 doc/mod_guts_dragonslayer_v1.0.4/
