@@ -81,4 +81,4 @@ Compress-Archive -Path (Join-Path $Stage "*") -DestinationPath $ZipPath -Compres
 Remove-Item -LiteralPath $Stage -Recurse -Force
 
 Write-Host "Done: $ZipPath"
-Write-Host "Install: unzip into <Battle Brothers>/data/, requires MSU + Reforged + Dynamic Spawns."
+Write-Host "Install: drop zip into <Battle Brothers>/data/ as-is, requires MSU + Reforged + Dynamic Spawns."

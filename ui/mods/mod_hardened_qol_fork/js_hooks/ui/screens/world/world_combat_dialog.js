@@ -54,7 +54,7 @@ WorldCombatDialog.prototype.loadFromData = function (_data) {
     _subTitle,
     _headerImagePath,
     _withTabs,
-    _classes,
+    _classes
   ) {
     _subTitle = formatTerrainName(_data.Image);
     return oldCreateDialog.apply(this, arguments);

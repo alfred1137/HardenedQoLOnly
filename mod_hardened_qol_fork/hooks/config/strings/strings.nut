@@ -1,18 +1,3 @@
-::Const.Strings.World.TimeOfDay <- [
-	"Sunrise",
-	"Morning",
-	"Morning",
-	"Morning",
-	"Midday",
-	"Afternoon",
-	"Afternoon",
-	"Afternoon",
-	"Sunset",
-	"Dusk",
-	"Midnight",
-	"Dawn",
-];
-
 ::Const.Strings.Tactical.EntityName.Brush = "Bush";	// Vanilla: Brush
 
 ::Const.Strings.Distance[0] += " (0 - 5 tiles)";
