@@ -37,6 +37,19 @@ that do NOT exist in this fork.
 
 # Changelog
 
+## 1.22.4-patch.3
+
+- Remove: upstream Hardened world clock schedule (`TimeOfDay` label array, `Const.World.TimeOfDay` index table, ambient lighting override, `DayTime` concept tooltip). Vanilla clock restored; feature added no meaningful QoL and was phase-shifted.
+- Change: build script install instruction corrected ("drop zip into data/ as-is").
+
+## 1.22.4-patch.2
+
+- Fix: JS SyntaxError in `world_combat_dialog.js` — trailing comma in function parameter list rejected by Coherent GT ES5 parser. Combat dialog show/hide velocity-stop override was dead; cancel + immediate re-show triggered invisible-window freeze on world map.
+
+## 1.22.4-patch.1
+
+- Fix: in-game clock period labels being phase-shifted (night read as afternoon, dawn as midday, etc.). Root cause: upstream Hardened ships `TimeOfDay` label array and `Const.World.TimeOfDay` index object rotated one bucket against the `floor(Hours / 2)` mapping. Remapped both to Hardened schedule: Sunrise 0-1, Morning 2-7, Midday 8-9, Afternoon 10-15, Sunset 16-17, Dusk 18-19, Midnight 20-21, Dawn 22-23. **Dropped in patch.3** (vanilla clock restored).
+
 See `README.md` and https://github.com/Darxo/Hardened (upstream). This fork
 tracks upstream release 1.22.0 minus all balance/mechanic overhauls, and
 incorporates upstream bug fixes through 1.22.4 (null-guard hardening, world map

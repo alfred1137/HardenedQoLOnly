@@ -26,6 +26,7 @@ The hidden option named "Easter Egg" in MSU settings unlocks a special weapon po
 
 - Reforged perk reworks and new perks (e.g. Reach rework, Double Grip rework, Crowded, new/renamed perks)
 - Hardened's world/contract/faction difficulty scaling (`::Hardened.Global` scalars) — reverts to base Reforged scaling
+- Upstream Hardened world clock schedule (sunrise/morning/midday/afternoon labels, ambient lighting override, `DayTime` concept tooltip) — vanilla clock restored
 - Economy/price reworks (buy/sell price multipliers, buyback, drop-condition changes)
 - Stamina/Initiative/Weight rework (stamina minimum, weight-after-multiplier)
 - Item/weapon/armor/helmet/shield stat rebalances
