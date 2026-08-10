@@ -12,16 +12,16 @@ Analyze Battle Brothers HTML logs from the HardenedQoLOnly codespace. Logs land 
 1. **Locate log**: newest `tasks/test-*.log.html` (glob `tasks/test-*.html`).
 2. **Extract error stacks** (primary):
    ```powershell
-   & ".agent\skills\bb-log-analysis\scripts\err_stacks.ps1" -Path <log>
+   & ".agents\skills\bb-log-analysis\scripts\err_stacks.ps1" -Path <log>
    ```
    Prints distinct error messages + first stacktrace each. Empty output = 0 ScriptErrors.
 3. **Extract just messages** (count flood):
    ```powershell
-   & ".agent\skills\bb-log-analysis\scripts\err_msgs.ps1" -Path <log>
+   & ".agents\skills\bb-log-analysis\scripts\err_msgs.ps1" -Path <log>
    ```
 4. **Extract full stacks** (verbose, for root-cause walk):
    ```powershell
-   & ".agent\skills\bb-log-analysis\scripts\distinct_errors.ps1" -Path <log>
+   & ".agents\skills\bb-log-analysis\scripts\distinct_errors.ps1" -Path <log>
    ```
 
 ## Classification
