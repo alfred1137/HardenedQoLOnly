@@ -580,7 +580,7 @@
 		}
 	}
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	q.onUse = @(__original) function( _user, _targetTile = null )
 	{
 		// Todo, only do that during your turn? What happens if this is triggered during someone elses turn?
 		this.m.HD_RoundLastUsed = ::Time.getRound();	// Imprint the last round in which this skill was used for the cooldown framework

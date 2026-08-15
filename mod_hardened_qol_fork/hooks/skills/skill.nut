@@ -341,7 +341,7 @@
 		return ret;
 	}
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	q.onUse = @(__original) function( _user, _targetTile = null )
 	{
 		// We make sure everyone who needs to know, now knows about the action we just did onto _targetTile, no matter what kind of skill we used
 		this.revealUser(_targetTile);

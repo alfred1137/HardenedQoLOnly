@@ -43,7 +43,6 @@
 		if (recoverSkill != null)
 		{
 			recoverSkill.m.IsUsable = false;
-			this.getContainer().getActor().setDirty(true);	// Update the UI so that Recover is instantly shown as disabled
 		}
 	}
 

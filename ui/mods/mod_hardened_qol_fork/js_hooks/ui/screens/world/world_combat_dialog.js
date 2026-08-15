@@ -88,7 +88,7 @@ WorldCombatDialog.prototype.loadFromData = function (_data) {
       var row = $('<div class="entity-row">');
       var left = $('<div class="entity-left">');
       left.append(
-        '<img src="' + Path.GFX + "ui/orientation/" + entity.Icon + '.png" />',
+        '<img src="' + Path.GFX + "ui/orientation/" + entity.Icon + '.png" />'
       );
       row.append(left);
 
@@ -96,7 +96,7 @@ WorldCombatDialog.prototype.loadFromData = function (_data) {
       right.append(
         '<span class="entity-name text-font-medium font-color-description">' +
           entity.Name +
-          "</span>",
+          "</span>"
       );
       row.append(right);
 
