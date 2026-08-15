@@ -4,6 +4,15 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ## Session Log (latest first)
 
+### Session: 1.22.4-patch.4 — stack overflow + JS SyntaxError + MSU param warning (2026-08-15)
+
+- **Bug: native stack overflow (198×)** — `setDirty(true)` in `onUpdate` of 3 injury hooks (`collapsed_lung_part`, `crushed_windpipe`, `pierced_lung`) recursed URUI → Reforged nimble → MaJin RCE 2.7.1 update loop. Removed setDirty lines; `IsUsable = false` + tooltip kept. Upstream carries same latent bug (fork-local fix).
+- **Bug: JS SyntaxError** — trailing commas at `world_combat_dialog.js` lines 91/99 (ES5-era CEF rejects; Node tolerates). Removed 2 commas → whole js_hooks bucket loads again.
+- **MSU startup warning** — MaJin RCE 2.7.0→2.7.1 wraps 1-param `bandage_ally_skill.onUse`; our hookTree wrapper (2 required params) flagged. Fixed: `_targetTile = null` optional in `hooks/skills/skill.nut:344` + `api/hooks/skills/skill.nut:583` (matches majin pattern; runtime-neutral — Squirrel fills null anyway). Verified benign in 17:10 log. Reforged's own `onVerifyTarget` warning persists (their hook, out of scope).
+- **External, not ours:** campaign-load stack via `mod_stack_based_skills/skill_container.nut:20` ← `clever_recruiter/world_state.nut:7` (our `world_state.nut:61` = pass-through `__original()` only).
+- Committed `9e863cb3`, tagged `1.22.4-patch.4`, release: https://github.com/alfred1137/HardenedQoLOnly/releases/tag/1.22.4-patch.4. Retired releases `1.22.4-patch.3` + `1.22.4-patch.2` (git tags retained).
+- Note: `build.ps1` names zip from git tag (`git describe --tags`), not bootstrap Version — must tag BEFORE rebuild.
+
 ### Session: 2026-08-09 — Dragonslayer easter-egg: docs + AP-ladder (1.22.4-patch.2 work)
 
 Easter-egg port (item `hd_dragonslayer`, 4 actives, marketplace stock hook, MSU gate `DragonslayerEasterEgg` default OFF, label "Easter Egg") is complete and ships in the 1.22.4 zip. This session:
