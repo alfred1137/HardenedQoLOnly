@@ -37,6 +37,20 @@ that do NOT exist in this fork.
 
 # Changelog
 
+## 1.22.5
+
+- Port upstream 1.22.5 QoL and bug fixes.
+- Add: minus sign formatting — negative numbers use en-dash with non-breaking spaces for readability in tooltips (Squirrel + JS hooks).
+- Add: charmed unit targeting improvements — temporarily charmed units are less likely to be targeted by former allies (target attraction reduction + AI query value override).
+
+### Deferred from upstream 1.22.5 (not yet integrated)
+
+The following upstream 1.22.5 features were reviewed but deferred for separate integration:
+
+- **Stat breakdown system** (`HD_addPropertyBreakdown`, `SupportedBreakdowns` table, `getBaseAttributesTooltip` rewrite, Reach nested tooltip fix) — major QoL feature (~240 lines) that adds per-skill breakdown tooltips for every character screen stat. Medium risk due to size and tooltip_events.nut rewrite. Replaces current Fatigue-only tooltip override.
+- **`HD_getInitiativeModifierFromFatigue()`** API helper — only used by upstream's `getInitiative` override (balance: fatigue-initiative formula) and stat breakdowns. Neither in scope.
+- **`HD_hide()` MSU setting API** (`hooks_early/mods/msu/settings.nut`) — allows hiding/disabling MSU settings at runtime. Only use case is disabling incompatible Reforged contract settings, which our QoL purge already removed.
+
 ## 1.22.4-patch.3
 
 - Remove: upstream Hardened world clock schedule (`TimeOfDay` label array, `Const.World.TimeOfDay` index table, ambient lighting override, `DayTime` concept tooltip). Vanilla clock restored; feature added no meaningful QoL and was phase-shifted.
@@ -52,7 +66,7 @@ that do NOT exist in this fork.
 
 See `README.md` and https://github.com/Darxo/Hardened (upstream). This fork
 tracks upstream release 1.22.0 minus all balance/mechanic overhauls, and
-incorporates upstream bug fixes through 1.22.4 (null-guard hardening, world map
-UI freeze when cancelling a combat dialog into an immediate attack). It is a
+incorporates upstream fixes through 1.22.5 (null-guard hardening, world map
+UI freeze fix, minus sign formatting, charm targeting QoL). It is a
 faithful QoL/fix repackaging of upstream, provided as-is with no commitment to
 future maintenance.
