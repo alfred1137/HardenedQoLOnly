@@ -4,6 +4,18 @@ Status: STABLE — v1.22.2-patch.7 released (0 ScriptErrors, 0 Unknown Brush on 
 
 ## Session Log (latest first)
 
+### Session: 1.23.0 base bump — port Tier-1 fixes (2026-09-08)
+
+- Upstream released 1.23.0 (43 commits past 1.22.5). Triage: hexagon maps, encumbrance/weight rework, perk reworks (feral rage, sanguine curse, hex, breakthrough), spawn/scaling, concepts system = balance/mechanic → SKIP (out of fork scope).
+- Ported 4 Tier-1 QoL/fix commits only:
+  - `2a705957` hitchance-leak on hidden enemies → `api/hooks/entity/tactical/actor.nut` (2 spots, `isHiddenToPlayer()` guard)
+  - `dae0da97` duplicate range tooltips → `hooks/skills/skill.nut` getTooltip (prefix-check `Has a range of `/`Range: ` == 0)
+  - `01f5a68c` Vanilla Fix armor-upgrade Condition tooltip staleness → `api/hooks/items/armor_upgrades/armor_upgrade.nut` (getTooltip uses `m.ConditionModifier`)
+  - `98210341` campaign seed logged on `startNewCampaign` → `api/hooks/states/world_state.nut`
+- NOT ported: `a9b44cc7` stat-breakdown (Reforged nested-tooltip entanglement + conflicts fork's `getBaseAttributesTooltip`), `fe0cdde9`/`934823bd`/`9c272b39` mobility/AoE tags (~30 purged skill files).
+- Bump `Version` → `1.23.0` (bare upstream-mirror, per schema). Build output `mod_hardened_qol_fork_1.23.0.zip`.
+- Verified all 4 diffs byte-match upstream behavior. Build clean.
+
 ### Session: 1.22.4-patch.4 — stack overflow + JS SyntaxError + MSU param warning (2026-08-15)
 
 - **Bug: native stack overflow (198×)** — `setDirty(true)` in `onUpdate` of 3 injury hooks (`collapsed_lung_part`, `crushed_windpipe`, `pierced_lung`) recursed URUI → Reforged nimble → MaJin RCE 2.7.1 update loop. Removed setDirty lines; `IsUsable = false` + tooltip kept. Upstream carries same latent bug (fork-local fix).

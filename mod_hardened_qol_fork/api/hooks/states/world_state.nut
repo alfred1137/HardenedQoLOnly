@@ -1,4 +1,11 @@
 ::Hardened.HooksMod.hook("scripts/states/world_state", function(q) {
+	q.startNewCampaign = @(__original) function()
+	{
+		::logInfo("Hardened: Starting new campaign with seed " + this.m.CampaignSettings.Seed);
+
+		__original();
+	}
+
 	q.showCombatDialog = @(__original) function(_isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null)
 	{
 		if (::World.Assets.m.IsAlwaysShowingScoutingReport)
